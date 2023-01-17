@@ -1,0 +1,349 @@
+---
+title: "DS 202: Intro to R"
+author: Yumou Qiu
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+## Welcome R
+
+## Outline
+
+- R is a calculator
+- R functions, loop
+- five commands to look at objects
+- extracting pieces
+- a first glimpse at data
+
+
+## The R language
+
+- Learning a new language: grammar, vocabulary
+- Loading, examining, summarizing data
+- Analyzing data
+- Getting help
+<!--- - Miscellaneous useful stuff --->
+
+
+## {.white}
+
+<img class="cover" src="images/language.png" alt="", width=2000>
+
+## Grammar
+
+- Basic algebra is the same as calculator/mathematics
+- explicit operators: `2*x` not `2x`,  `2^p` instead of $2^p$
+- Applying a function is similar 
+- Making a variable, use `<-` or `=`
+- Everything in R is a vector
+
+## Examples
+
+<div class="double">
+<p class="double-flow">
+**Math** 
+
+Assignments
+$x = \frac{2}{3}$
+
+Functions
+$\sqrt{x}$
+
+Vectors
+$y = \left( 1, 2, 3, 5\right)^{\prime}$  
+
+Indices
+$y_1$
+
+Mathematical Operators
+$\sum_{i=1}^{4} y$
+
+$2y$
+</p><p class="double-flow">
+
+
+**Code**
+
+x <- 2/3 or x = 2/3
+
+sqrt(x)
+
+y = c(1,2,3,5)
+
+y[1]
+
+sum(y)
+
+2*y
+
+</p>
+</div>
+
+
+## Your Turn (5 min) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Introduce vector $x$ defined as $x = (4, 1, 3, 9)^{\prime}$</span>
+- <span style="color:white">Introduce vector $y$ defined as  $y = (1, 2, 3, 5)^{\prime}$</span>
+- <span style="color:white">Calculate the Euclidean distance between the two vectors $x$ and $y$, defined as 
+\[
+d = \sqrt{\sum_{i=1}^4 (x_i - y_i)^2}
+\]</span>
+- <span style="color:white">What does a negative index do?</span>
+- <span style="color:white">What happens if an index is repeated multiple times, i.e. what is `x[c(1,1,1,2,2,2,3,3,3)]`?</span>
+
+```{r}
+x = c(4, 1, 3, 9)
+y = c(1, 2, 3, 5)
+d = sqrt(sum((x - y)^2))
+
+x
+x[-2]
+```
+
+## Vocabulary 
+
+- What verbs (=functions) do you need to know?
+- Loading data
+- Accessing parts of things
+- calculation
+- Statistical summaries
+- ...
+
+## R Reference Card
+
+- Download the R Reference Card from http://cran.r-project.org/doc/contrib/Short-refcard.pdf
+- Open/Print it so that you can glance at it while working
+
+## R functions -- Define your own function
+
+You have seen the build-in functions in R
+
+- `sqrt()`
+- `sum()`
+
+How to build your own functions?
+
+```{r}
+q = function(x, y){
+  q = x^2 + y^2
+  return(q)
+}
+
+q(1, 2)
+```
+
+## General language
+
+```
+FunctionName = function(arg1, arg2, ...){
+  ... ...
+  return(...)
+}
+```
+
+- `FunctionName` is chosen by your own
+- `arg1`, `arg2` can be vectors or matrices
+```{r}
+q(c(1, 1), c(1, 2))
+```
+- `return(...)` is the final output of your function
+- use the function: `FunctionName(arg1, arg2, ...)`
+
+## Looping
+
+```{r}
+a = c(1 : 10)
+b = c()
+
+for (i in 1 : length(a)){
+  b[i] = a[i]^2
+  b[i]
+  #print(b[i])
+  #cat("Iteration = ", i, ", value =", b[i], "\n")
+}
+
+b
+a^2
+```
+
+## Extract from a vector/matrix
+
+```{r}
+a = c(1, 3, 5, 7, 9)
+a[3]
+a[c(1, 2)]
+
+A = matrix(c(1 : 9), 3, 3)
+A
+A[1, 2]
+```
+
+##
+
+```{r}
+A = matrix(c(1 : 9), 3, 3)
+A
+A[1, ]
+A[, 1]
+A[1 : 2, 2 : 3] #equivalent to A[c(1, 2), c(2, 3)]
+```
+
+## Your Turn (10 min) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Write a function to calculate the variance of the data $X = (x_{1}, \ldots,  x_{n})^{\prime}$:
+$$Var(X) = \frac{1}{n - 1}\sum_{i = 1}^{n}(x_{i} - \bar{x})^2  \ for \  \bar{x} = \frac{1}{n}\sum_{i = 1}^{n}x_{i}.$$</span>
+- <span style="color:white">Evaluate your function on $X = (1, 2, \ldots, 10)^{\prime}$.</span>
+- <span style="color:white">Try the R build-in function `var()`. Do you have the same result?</span>
+
+```{r}
+variance = function(x){
+  # input x is a vector
+  n = length(x)
+  v = sum((x - mean(x))^2) / (n - 1)
+  return(v)
+}
+
+x = c(1 : 10)
+variance(x)
+var(x) # var() is the built-in function for variance calculation in R
+
+```
+
+## Very basics
+
+### Getting help within R
+
+If you want to know what a specific `command` is doing:
+
+```
+?command
+??command
+help(command) 
+help.search(command)
+```
+
+### Getting out
+
+```
+q()
+```
+Quits out of the console
+
+
+## Loading class data
+
+- Some R packages have in-built datasets
+- For this class, there is an R package available on github 
+- Installing/Updating `classdata` package (once every so often):
+```{r, message=FALSE, results='hide'}
+devtools::install_github("heike/classdata")
+```
+- Make the data available (every time you start R):
+```{r}
+library(classdata)
+```
+
+
+## Your Turn (5 min) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">Install the package `classdata` on your machine <br>
+<span style="color:white">Make the package active in your current R session:
+```{r}
+library(classdata)
+```
+<span style="color:white">Check the R help on the dataset `cities`<br>
+<span style="color:white">What happens if you just type in the name of the dataset?
+
+
+## Inspecting objects
+
+for object `x`, we can try out the following commands:
+
+- ```x``` 
+- ```head(x)```
+- ```summary(x)```
+- ```str(x)```
+- ```dim(x)```
+
+
+<font color="darkblue">Try these commands out for yourself on the `cities` data.</font>
+
+## The `cities` data
+
+- `cities` is a data frame with columns (variables) and rows (records)
+
+```{r}
+str(cities)
+```
+
+## Extracting parts of objects
+
+For object `x`, we can extract parts in the following manner:
+
+```
+x$variable
+x[, "variable"]
+x[rows, columns]
+x[1:5, 2:3]
+x[c(1,5,6), c("State","Year")]
+x$variable[rows]
+```
+`rows` and `columns` are vectors of indices.
+
+For example, the codes in the same line give the same results:
+```
+cities$Population, cities[, "Population"], cities[, 2];
+cities$City[c(2 : 10)], cities[c(2 : 10), "City"], cities[c(2 : 10), 1]
+```
+
+<font color="darkblue">Try these commands out for yourself on the `cities` data.</font>
+
+
+## Statistical summaries
+
+Elements of the five point summary: <br>
+```mean, median, min, max, quartiles```<br>
+
+Other summary statistics:<br>
+```range, sd, var```<br>
+
+Summaries of dependence between two variables:<br>
+```cor, cov```
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Print and take a look at the first 10 data records of the `cities` data
+- <span style="color:white">Compute mean and standard deviation for the number of burglaries. Why do you get NAs? (read `?NA`)
+- <span style="color:white">Advanced:  Read `?mean` and `?sd`, and fix missing value problem
+
+```{r}
+library(classdata)
+head(cities, 10)
+
+mean(cities$Burglary)
+sd(cities$Burglary)
+
+mean(cities$Burglary, na.rm = TRUE)
+sd(cities$Burglary, na.rm = TRUE)
+```
+
+## Your turn - practice to ask questions {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+
+<span style="color:white">Write down questions that you could answer with this data 4 minutes by yourself, then push your questions to the "yumouqiu/classexample" repository, and we'll show those ideas in Github.
+
+<span style="color:white">The types of crimes are defined on the UCR website, see http://www.ucrdatatool.gov/offenses.cfm

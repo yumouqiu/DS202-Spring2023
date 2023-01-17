@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202: Graphics with ggplot2</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="03_r-graphics_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="03_r-graphics_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="03_r-graphics_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="03_r-graphics_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="03_r-graphics_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+    <style type="text/css">
+   div.sourceCode { overflow-x: auto; }
+   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+     margin: 0; padding: 0; vertical-align: baseline; border: none; }
+   table.sourceCode { width: 100%; line-height: 100%; }
+   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+   td.sourceCode { padding-left: 5px; }
+   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code > span.dt { color: #902000; } /* DataType */
+   code > span.dv { color: #40a070; } /* DecVal */
+   code > span.bn { color: #40a070; } /* BaseN */
+   code > span.fl { color: #40a070; } /* Float */
+   code > span.ch { color: #4070a0; } /* Char */
+   code > span.st { color: #4070a0; } /* String */
+   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code > span.ot { color: #007020; } /* Other */
+   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code > span.fu { color: #06287e; } /* Function */
+   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+   code > span.cn { color: #880000; } /* Constant */
+   code > span.sc { color: #4070a0; } /* SpecialChar */
+   code > span.vs { color: #4070a0; } /* VerbatimString */
+   code > span.ss { color: #bb6688; } /* SpecialString */
+   code > span.im { } /* Import */
+   code > span.va { color: #19177c; } /* Variable */
+   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code > span.op { color: #666666; } /* Operator */
+   code > span.bu { } /* BuiltIn */
+   code > span.ex { } /* Extension */
+   code > span.pp { color: #bc7a00; } /* Preprocessor */
+   code > span.at { color: #7d9029; } /* Attribute */
+   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202: Graphics with ggplot2</h1>
+    <p>Yumou Qiu</p>
+  </header>
+
+  
+  
+<section id="looking-some-more-at-data" class="titleslide slide level1"><h2 class="shout">Looking … some more … at data</h2></section><section id="plan-for-answers" class="slide level2">
+<h2>Plan for answers</h2>
+<ol type="1">
+<li>Explore how one (or more) variables are distributed: <em>barchart or histogram</em></li>
+<li>Explore how two variables are related: <em>scatterplot, boxplot, tile plot</em></li>
+<li>Explore how two variables are related, conditioned on other variables: <em>facetting, color &amp; other aesthetics</em></li>
+</ol>
+<p>Look at 3 next, then come back to 1 and 2.</p>
+</section><section id="getting-ready" class="slide level2">
+<h2>Getting ready</h2>
+<p>Load libraries:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2) <span class="co"># not found? run install.packages(&quot;ggplot2&quot;)</span>
+<span class="kw">library</span>(classdata) <span class="co"># not found? run devtools::install_github(&quot;heike/classdata&quot;)</span></code></pre></div>
+</section><section id="facetting" class="slide level2">
+<h2>Facetting</h2>
+<p>Can facet to display plots for different subsets:</p>
+<p><code>facet_wrap</code>, <code>facet_grid</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Year, <span class="dt">y =</span> Murder), <span class="dt">data=</span>fbiwide) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>State) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="03_r-graphics_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" /></p>
+</section><section id="setup-of-facet_wrap-and-facet_grid" class="slide level2">
+<h2>Setup of <code>facet_wrap</code> and <code>facet_grid</code></h2>
+<ul>
+<li><code>facet_grid</code> has formula specification: <code>rows ~ cols</code></li>
+<li><code>facet_wrap</code> has specification <code>~ variables</code></li>
+<li>multiple variables (in either specification) are included in form of a sum, i.e. <code>rowvar1 + rowvar2 ~ colvar1+ colvar2</code></li>
+<li>no variable (in <code>facet_grid</code>) is written as <code>.</code>, i.e. <code>rowvar ~ .</code> are plots in a single column.</li>
+</ul>
+</section><section id="your-turn" class="slide level2 white">
+<h2>Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000> Use the <code>fbiwide</code> data from the package <code>classdata</code> for this your turn.</p>
+<ul>
+<li><span style="color:white">Plot the number of car thefts by year for each state (facet by state).</font></li>
+<li><span style="color:white">The numbers are dominated by the number of thefts in California, New York, and Texas. Use a log-scale for the y-axis. Does that help?</font></li>
+<li><span style="color:white">Another approach to fix the domination by CA, TX and NY: Read up on the parameters in <code>facet_wrap</code> to find a way to give each panel its own scale. Comment on the difference in the results.</font></li>
+</ul>
+</section><section id="facets-vs-aesthetics" class="slide level2">
+<h2>Facets vs aesthetics?</h2>
+<ul>
+<li>Will need to experiment as to which one answers your question/tells the story best</li>
+<li>Rule of thumb:
+<ul>
+<li>aesthetics: explore relationship</li>
+<li>Facets: comparison</li>
+</ul></li>
+</ul>
+</section><section id="boxplots" class="slide level2">
+<h2>Boxplots</h2>
+<p><img src="03_r-graphics_files/figure-revealjs/unnamed-chunk-4-1.png" width="768" /></p>
+</section><section id="boxplot-definition" class="slide level2">
+<h2>Boxplot definition</h2>
+<ul>
+<li>definition by J.W. Tukey (1960s, EDA 1977)</li>
+</ul>
+<p><img src="images/boxplots-definition.png" /></p>
+</section><section id="boxplots-1" class="slide level2">
+<h2>Boxplots</h2>
+<ul>
+<li>are used for group comparisons and outlier identifications</li>
+<li>usually only make sense in form of side-by-side boxplots.</li>
+<li><code>geom_boxplot</code> in ggplot2 needs <code>x</code> and <code>y</code> variable (<code>y</code> is measurement, <code>x</code> is categorical)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> fbi, <span class="kw">aes</span>(<span class="dt">x =</span> Type, <span class="dt">y =</span> <span class="kw">log10</span>(Count))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
+</section><section id="your-turn-1" class="slide level2 white">
+<h2>Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<ul>
+<li><span style="color:white">Using ggplot2, draw side-by-side boxplots of the number of robberies by state. Use a log transformation on y and compare results.</font></li>
+<li><span style="color:white"><strong>Stretch goal:</strong> Compare rates of robberies by state, i.e. adjust robberies by the state population. Then plot side-by-side boxplots. </font></li>
+</ul>
+</section><section id="boxplots---pros-and-cons" class="slide level2">
+<h2>Boxplots - Pros and Cons</h2>
+<ul>
+<li><strong>Pros:</strong>
+<ul>
+<li>Symmetry vs Skewness</li>
+<li>Outliers</li>
+<li>Quick Summary</li>
+<li>Comparisons across multiple Treatments (side by side boxplots)</li>
+</ul></li>
+<li><strong>Cons:</strong>
+<ul>
+<li>Boxplots hide multiple modes and gaps in the data</li>
+<li>Boxplots cannot tell the detail distribution of the data</li>
+</ul></li>
+</ul>
+</section><section id="univariate-plots" class="slide level2">
+<h2>Univariate plots</h2>
+<p>Histograms:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(fbiwide, <span class="kw">aes</span>(<span class="dt">x =</span> Motor.vehicle.theft)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5000</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;binwidth = 5000&quot;</span>)</code></pre></div>
+<p><img src="03_r-graphics_files/figure-revealjs/unnamed-chunk-6-1.png" width="384" /></p>
+</section><section id="univariate-plots-1" class="slide level2">
+<h2>Univariate plots</h2>
+<p>Histograms:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(fbiwide, <span class="kw">aes</span>(<span class="dt">x =</span> Motor.vehicle.theft)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1000</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;binwidth = 1000&quot;</span>)</code></pre></div>
+<p><img src="03_r-graphics_files/figure-revealjs/unnamed-chunk-7-1.png" width="384" /></p>
+</section><section id="barchart" class="slide level2">
+<h2>Barchart</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(fbi, <span class="kw">aes</span>(<span class="dt">x =</span> Type)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">weight=</span> Count)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
+<p><img src="03_r-graphics_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" /></p>
+</section><section id="histograms-and-barcharts" class="slide level2">
+<h2>Histograms and barcharts</h2>
+<p>What do we look for?</p>
+<ul>
+<li>Symmetry/Skewness</li>
+<li>Modes, Groups (big pattern: where is the bulk of the data?)</li>
+<li>Gaps &amp; Outliers (deviation from the big pattern: where are the other points?)</li>
+</ul>
+<p>For the histogram, always choose the binwidth consciously</p>
+<p>In a barchart, choose the order of the categories consciously (later)</p>
+</section><section id="your-turn-2" class="slide level2 white">
+<h2>Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<ul>
+<li><span style="color:white">Use the <code>fbi</code> data set to draw a barchart of the variable <code>Violent Crime</code>. Make the height of the bars dependent on the number of reports (use <code>weight</code>). Then facet by type (does the result match your expectation? good! get rid of facetting). Color bars by <code>Type</code>. </font></li>
+<li><span style="color:white">Use the <code>fbi</code> data set to draw a histogram of the number of reports. Facet by type, make sure to use individual scales for the panels. </font></li>
+</ul>
+</section><section id="more-on-ggplot2" class="slide level2">
+<h2>More on <code>ggplot2</code></h2>
+<ul>
+<li>reference/document: <a href="http://ggplot2.tidyverse.org/reference/" class="uri">http://ggplot2.tidyverse.org/reference/</a></li>
+<li>RStudio cheat sheet for <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">ggplot2</a></li>
+<li>ggplot2 mailing list: <a href="https://groups.google.com/forum/?fromgroups#!forum/ggplot2" class="uri">https://groups.google.com/forum/?fromgroups#!forum/ggplot2</a></li>
+</ul>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="03_r-graphics_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

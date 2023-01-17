@@ -1,0 +1,169 @@
+---
+title: "DS 202 - Working in teams: Sample solution for the test case"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width=4, fig.height=4)
+library(tidyverse)
+```
+
+## Sample Solution to the test case 
+
+## A test case
+
+We are asked to : 
+
+1. Visualize life expectancy over time for Canada in the 1950s and 1960s using a line plot.
+2. Something is clearly wrong with this plot! Turns out there's a data error 
+in the data file: life expectancy for Canada in the year 1957 is coded
+as `999999`, it should actually be `69.96`. Make this correction.
+3. Visualize life expectancy over time for Canada again, with the corrected data.
+
+Using the gapminder data provided
+
+## Step-by-step plan of work
+
+1. Read the data
+2. Focus on values of Canada
+3. Visualize the values for Canada
+4. See whether we can find the problem
+5. ... then we'll see ...
+
+## Reading the data 
+
+```{r}
+life5060 <- read.csv("https://raw.githubusercontent.com/ds202-at-isu/materials/master/01_collaborative-environment/data/gapminder-5060.csv")
+head(life5060)
+dim(life5060)
+```
+
+## Focus on the values for Canada
+
+```{r}
+canada <- life5060 %>% filter(country == "Canada")
+head(canada)
+dim(canada)
+```
+
+
+##
+
+- %>% means pass argument to a function
+
+```{r}
+log(exp(abs(-3)))
+-3 %>% abs() %>% exp() %>% log()
+```
+
+
+## Another way of data processing
+
+```{r}
+canada1 <- life5060[life5060$country == "Canada", ]
+head(canada1)
+dim(canada1)
+```
+
+## Visualize 
+
+Draw a line for the life expectancy in Canada
+```{r}
+canada %>% 
+  ggplot(aes(x = year, y = lifeExp)) +
+  geom_line()
+```
+
+## Find the problematic value and fix it
+
+```{r}
+canada %>% filter(year == 1957)
+
+canada_fixed <- canada %>% mutate(
+  lifeExp = replace(lifeExp, year==1957, 69.96)  
+)
+
+canada_fixed
+```
+
+##
+
+- Another way
+
+```{r}
+canada_fixed1 = canada1
+canada_fixed1$lifeExp[canada_fixed1$year==1957] = 69.96
+canada_fixed1
+```
+
+## visualize the fixed data
+
+```{r}
+canada_fixed %>% ggplot(aes(x = year, y = lifeExp)) +
+  geom_line()
+```
+
+## Use basic plot function in r
+
+```{r}
+plot(x = canada_fixed$year, y = canada_fixed$lifeExp, 
+     type = 'l', xlab = "year", ylab = "lifeExp")
+```
+
+## ... on to the stretch goal ... 
+
+Add lines for Mexico and the US
+
+```{r}
+canada_fixed %>% 
+  ggplot(aes(x = year, y = lifeExp, group=country)) + geom_line() +
+  geom_line(data = life5060 %>% 
+              filter(country %in% c("United States", "Mexico")))
+```
+
+
+## Use basic plot function in r
+
+```{r}
+plot(x = canada_fixed$year, y = canada_fixed$lifeExp, 
+     type = 'l', xlab = "year", ylab = "lifeExp")
+
+US = life5060[life5060$country == "United States", ]
+Mexico = life5060[life5060$country == "Mexico", ]
+
+lines(x = US$year, y = US$lifeExp)
+lines(x = Mexico$year, y = Mexico$lifeExp)
+```
+
+## ... on to the stretch goal ... 
+
+Add lines for Mexico and the US, color lines by country and add a legend
+
+```{r, fig.width = 6}
+canada_fixed %>% 
+  ggplot(aes(x = year, y = lifeExp, colour=country)) + geom_line() +
+  geom_line(data = life5060 %>% 
+              filter(country %in% c("United States", "Mexico")))
+
+```
+
+## How reproducible is this solution?
+
+1. Navigate to https://yumouqiu.github.io/DS202-Spring2022/
+2. Open the folder `01_collaborative-environment` and download the file `02_test-case-solution.Rmd`
+3. Open the file in RStudio.
+4. "Knit" the file.
+
+
+## RMarkdown
+
+### This is a RMarkdown presentation
+
+- code and text/documentation are interwoven: reproducible and self-documenting.
+- extend or refine analyses by copying and modifying code blocks.
+- disseminate your work by sharing the RMarkdown file

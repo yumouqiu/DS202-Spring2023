@@ -1,0 +1,179 @@
+---
+title: "DS 202: Radar plot"
+author: Yumou Qiu
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+## Radar plot (Star plot)
+
+- Show the values of variables in a circle
+- Easy to compare for different observational unit or groups
+- Popularly used in sports and games
+
+## Radar plot example I
+
+<img src="https://miro.medium.com/max/960/1*gzhKwiBn1RSaiga-cHTNkg.png" width=650>
+
+## Radar plot example II
+
+<img src="https://i1.wp.com/statsbomb.com/wp-content/uploads/2016/04/Messi_2013_vs-JoeAverage1.png?w=600&ssl=1" width=450>
+
+## Data Example
+
+`iris` data
+
+```{r}
+head(iris)
+
+summary(iris)
+```
+
+## Code I 
+
+```{r, message = FALSE}
+library(tidyverse)
+library(reshape2)
+
+mean.iris <-
+    iris %>% 
+    group_by(Species) %>% 
+    summarise_all("mean") %>% 
+    melt()
+
+coord_radar <- function (theta = "x", start = 0, direction = 1) 
+{
+    theta <- match.arg(theta, c("x", "y"))
+    r <- if (theta == "x") 
+        "y"
+    else "x"
+    ggproto("CordRadar", CoordPolar, theta = theta, r = r, start = start, 
+        direction = sign(direction),
+        is_linear = function(coord) TRUE)
+}
+```
+
+## Code II
+
+```{r, message = FALSE, echo = FALSE}
+ggplot(mean.iris, aes(x = variable, y = value)) +
+  geom_polygon(aes(group = Species, color = Species), fill = NA, size = 2) +
+  geom_line(aes(group = Species, color = Species), size = 2) +
+  facet_wrap(~ Species) +
+  theme(strip.text.x = element_text(size = rel(0.8)),
+        axis.text.x = element_text(size = rel(0.8)),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) +
+  xlab("") + ylab("") +
+  guides(color = "none") +
+  coord_radar()
+```
+
+## Code II
+
+```{r, message = FALSE, eval = FALSE}
+ggplot(mean.iris, aes(x = variable, y = value)) +
+  geom_polygon(aes(group = Species, color = Species), fill = NA, size = 2) +
+  geom_line(aes(group = Species, color = Species), size = 2) +
+  facet_wrap(~ Species) +
+  theme(strip.text.x = element_text(size = rel(0.8)),
+        axis.text.x = element_text(size = rel(0.8)),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) +
+  xlab("") + ylab("") +
+  guides(color = "none") +
+  coord_radar()
+```
+
+## Code III
+
+```{r, message = FALSE, echo = FALSE}
+ggplot(mean.iris, aes(x = variable, y = value)) +
+  geom_polygon(aes(group = Species, color = Species), fill = NA, size = 2, show.legend = FALSE) +
+  geom_line(aes(group = Species, color = Species), size = 2) +
+  theme(strip.text.x = element_text(size = rel(0.8)),
+        axis.text.x = element_text(size = rel(0.8)),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) +
+  xlab("") + ylab("") +
+  guides(color = guide_legend(ncol=2)) +
+  coord_radar()
+```
+
+## Code III
+
+```{r, message = FALSE, eval = FALSE}
+ggplot(mean.iris, aes(x = variable, y = value)) +
+  geom_polygon(aes(group = Species, color = Species), fill = NA, size = 2, show.legend = FALSE) +
+  geom_line(aes(group = Species, color = Species), size = 2) +
+  theme(strip.text.x = element_text(size = rel(0.8)),
+        axis.text.x = element_text(size = rel(0.8)),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) +
+  xlab("") + ylab("") +
+  guides(color = guide_legend(ncol=2)) +
+  coord_radar()
+```
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For the `fbi` data:</span>
+
+- <span style="color:white">Choose `California` and `New York`</span>
+- <span style="color:white">Choose Year `1971` and `2016`</span>
+- <span style="color:white">Make a radar plot to compare `State`, `Year` and `Type` by the crime rate</span>
+- <span style="color:white">Remove `Rape` and `Legacy.rape` for this plot</span>
+
+## Solution
+
+```{r, eval = FALSE}
+library(classdata)
+
+crime.compare = dplyr::filter(fbi, Year %in% c(1971, 2016), State %in% c("California", "New York")) %>% mutate(Abb = as.factor(Abb))
+levels(crime.compare$Type)[1] = "Assault"
+levels(crime.compare$Type)[5] = "MV.theft"
+levels(crime.compare$Type)[6] = "Murder"
+
+crime.compare %>% filter(Type != "Legacy.rape", Type != "Rape") %>%
+  ggplot(aes(x = Type, y = log(Count / Population * 10^5))) +
+  geom_polygon(aes(group = Abb, color = Abb), fill = NA, size = 2, show.legend = FALSE) +
+  geom_line(aes(group = Abb, color = Abb), size = 2) +
+  facet_wrap(~Year) + 
+  theme(strip.text.x = element_text(size = rel(0.8)),
+        axis.text.x = element_text(size = rel(0.8)),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) +
+  xlab("") + ylab("") +
+  guides(color = guide_legend(ncol=2)) +
+  coord_radar()
+```
+
+## Solution
+
+```{r, echo = FALSE}
+library(classdata)
+
+crime.compare = dplyr::filter(fbi, Year %in% c(1971, 2016), State %in% c("California", "New York")) %>% mutate(Abb = as.factor(Abb))
+levels(crime.compare$Type)[1] = "Assault"
+levels(crime.compare$Type)[5] = "MV.theft"
+levels(crime.compare$Type)[6] = "Murder"
+
+crime.compare %>% filter(Type != "Legacy.rape", Type != "Rape") %>%
+  ggplot(aes(x = Type, y = log(Count / Population * 10^5))) +
+  geom_polygon(aes(group = Abb, color = Abb), fill = NA, size = 2, show.legend = FALSE) +
+  geom_line(aes(group = Abb, color = Abb), size = 2) +
+  facet_wrap(~Year) + 
+  theme(strip.text.x = element_text(size = rel(0.8)),
+        axis.text.x = element_text(size = rel(0.8)),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) +
+  xlab("") + ylab("") +
+  guides(color = guide_legend(ncol=2)) +
+  coord_radar()
+```

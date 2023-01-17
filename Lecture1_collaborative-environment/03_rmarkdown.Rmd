@@ -1,0 +1,127 @@
+---
+title: "DS 202 - R, RStudio, and RMarkdown"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R, RStudio, and RMarkdown
+
+## R is ...
+
+* __Free__ to use
+* __Extensible__: 
+    - Over 12,000 user contributed add-on packages currently on CRAN!
+    - 12071 different packages available!
+* __Powerful__: With the right tools, get more work done, faster.
+* __Flexible__: Not a question of _can_, but _how_.
+* __Frustrating__: Flexibility comes at a cost:
+    - You need to truely understand what you are doing. 
+    - Be careful about the errors in the packages.).
+
+
+## RStudio is ... {.white}
+
+[From Julie Lowndes](http://jules32.github.io/resources/RStudio_intro/):  
+
+<!--- <img class="cover" src="images/airport.png" alt=""> --->
+
+<blockquote>
+<p style="color:red"><b>If R were an airplane, RStudio would be the airport</b>, providing many, many supporting services that make it easier for you, the pilot, to take off and go to awesome places. Sure, you can fly an airplane without an airport, but having those runways and supporting infrastructure is a game-changer.</p>
+</blockquote>
+
+
+## The RStudio IDE
+
+<img class="cover" src="images/rstudio-panes.png" alt="">
+
+## The RStudio IDE
+
+
+1. **Source editor:** Docking station for multiple files, Useful shortcuts ("Knit", "Run"), Highlighting/Tab-completion, Code-checking (R, HTML, JS), Debugging features  
+2. **Console window:** Run the code, Highlighting/Tab-completion, Search recent commands
+3. **Environment pane:** Working datasets/objects, Tools for package development, git, etc
+4. **Other tabs/panes:** Graphics, R documentation, File system navigation/access
+
+
+<p class = "note">
+*Protip:* save yourself the headaches figuring out file paths and instead work in an RStudio R project (popup menu at the top left, change your working directory).
+</p>
+
+## Markdown
+
+- Markdown is a particular type of **markup** language.
+- Markup languages are designed to **produce documents from plain text**.
+- Some of you may be familiar with **LaTeX**. This is another (less human friendly) markup language for creating pdf documents.
+- LaTeX gives you much greater control, but it is restricted to pdf and has a much greater learning curve.
+- **Markdown** is becoming a **standard**. Many websites will generate HTML from Markdown (e.g. GitHub, Stack Overflow, reddit, ...).
+
+## Markdown is easy
+
+```
+*italic*
+**bold**
+
+# Header 1
+## Header 2
+### Header 3
+
+- List item 1
+- List item 2
+    - item 2a
+    - item 2b
+
+1. Numbered list item 1
+2. Numbered list item 2
+    - item 2a
+    - item 2b
+```
+
+
+Have a look at RStudio's [RMarkdown cheat sheet](https://www.rstudio.com/resources/cheatsheets/)
+
+## What is RMarkdown?
+
+- ... an authoring format that enables easy creation of dynamic documents, presentations, and reports from R. 
+- it combines the core syntax of markdown with embedded R code chunks that are run so their output can be included in the final document.
+- R Markdown documents are fully reproducible (they are automatically regenerated whenever underlying R code or data changes).
+
+## {.white}
+
+<img class="cover" src="images/rmarkdown.png" alt="">
+
+
+## Why R Markdown?
+
+- **It's simple.** Focus on writing, rather than debugging silly errors.
+- **It's flexible.** Markdown was created to simplify writing HTML, but thanks to pandoc, Markdown converts to many different formats!
+- **It's dynamic.** Find a critical error? Get a new dataset? Regenerate your report without copy/paste hell!
+- **Encourages transparency.** Collaborators (including your future self) will thank you for integrating your analysis & report.
+- **Enables interactivity/reactivity.** Allow your audience to explore the analysis (rather than passively read it).
+
+## {.white}
+
+<img class="cover" src="images/hello-rmarkdown.png" alt="">
+
+
+
+## Your Turn (5 min) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+
+
+1. <span style="color:white">Open RStudio, create a new project.</span>
+2. <span style="color:white">Create a new RMarkdown file and knit it.</span>
+3. <span style="color:white">Navigate to the RMarkdown cheat sheet and download a copy (Google for the link!)</span>
+3. <span style="color:white">Make changes to the markdown formatting and knit again.</span>
+4. <span style="color:white">Export output to different files.</span>
+5. <span style="color:white">If you feel adventurous, change some of the R code and knit again.</span>
+

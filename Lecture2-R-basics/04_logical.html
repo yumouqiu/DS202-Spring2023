@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202: Logical variables and Filters</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="04_logical_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="04_logical_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="04_logical_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="04_logical_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="04_logical_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+    <style type="text/css">
+   div.sourceCode { overflow-x: auto; }
+   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+     margin: 0; padding: 0; vertical-align: baseline; border: none; }
+   table.sourceCode { width: 100%; line-height: 100%; }
+   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+   td.sourceCode { padding-left: 5px; }
+   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code > span.dt { color: #902000; } /* DataType */
+   code > span.dv { color: #40a070; } /* DecVal */
+   code > span.bn { color: #40a070; } /* BaseN */
+   code > span.fl { color: #40a070; } /* Float */
+   code > span.ch { color: #4070a0; } /* Char */
+   code > span.st { color: #4070a0; } /* String */
+   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code > span.ot { color: #007020; } /* Other */
+   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code > span.fu { color: #06287e; } /* Function */
+   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+   code > span.cn { color: #880000; } /* Constant */
+   code > span.sc { color: #4070a0; } /* SpecialChar */
+   code > span.vs { color: #4070a0; } /* VerbatimString */
+   code > span.ss { color: #bb6688; } /* SpecialString */
+   code > span.im { } /* Import */
+   code > span.va { color: #19177c; } /* Variable */
+   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code > span.op { color: #666666; } /* Operator */
+   code > span.bu { } /* BuiltIn */
+   code > span.ex { } /* Extension */
+   code > span.pp { color: #bc7a00; } /* Preprocessor */
+   code > span.at { color: #7d9029; } /* Attribute */
+   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202: Logical variables and Filters</h1>
+    <p>Yumou Qiu</p>
+  </header>
+
+  
+  
+<section id="logical-variables-and-filters" class="titleslide slide level1"><h2 class="shout">Logical variables and Filters</h2></section><section id="logical-vectors" class="slide level2">
+<h2>Logical vectors</h2>
+<ul>
+<li>Vectors consisting of values <code>TRUE</code> and <code>FALSE</code></li>
+<li>Very important!</li>
+<li>Usually created with a logical comparison</li>
+<li><code>&lt;, &gt;, ==, !=, &lt;=, &gt;=</code></li>
+<li><code>x %in% c(1, 4, 3, 7)</code></li>
+<li><code>subset</code> or <code>dplyr::filter</code></li>
+</ul>
+</section><section id="logical-expressions" class="slide level2">
+<h2>Logical expressions</h2>
+<ul>
+<li><code>&amp;</code> and <code>|</code> are the logical <em>and</em> and <em>or</em></li>
+<li><code>!</code> is the logical <em>not</em></li>
+<li>use parentheses () when linking expressions to avoid mis-interpretation</li>
+</ul>
+</section><section id="logical-operations" class="slide level2">
+<h2>Logical Operations</h2>
+<p><img src="images/logical.png" /></p>
+</section><section id="your-turn" class="slide level2 white">
+<h2>Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white"> Define vector <code>a</code> to be <code>a &lt;- c(1,15, 3,20, 5,8,9,10, 1,3)</code></p>
+<p><span style="color:white"> Find the expression for the logical vector that is TRUE where <code>a</code> is: </span></p>
+<ul>
+<li><span style="color:white">less than 20</span></li>
+<li><span style="color:white">squared value is at least 100 or less than 10</span></li>
+<li><span style="color:white">equals 1 or 3</span></li>
+<li><span style="color:white">even <br> Hint: have a look at the help for the operator <code>%%</code></span></li>
+</ul>
+</section><section id="filter-dplyr" class="slide level2">
+<h2><code>filter {dplyr}</code></h2>
+<p><code>filter</code> is a command of package <code>dplyr</code></p>
+<p><code>filter(data, ...)</code> finds subset of <code>data</code> where conditions specified by logical expression in <code>...</code> are true, e.g. <code>filter(fbi, Year == 2014)</code> <code>filter(fbi, Type == &quot;Larceny.theft&quot;, State %in% c(&quot;Iowa&quot;, &quot;Minnesota&quot;))</code></p>
+<p>multiple expressions are combined by a logical and <code>&amp;</code></p>
+<p>Note that the command <code>subset</code> works very similarly.</p>
+<p>Caution! there is another function called <code>filter</code> in the <code>stats</code> package. Use <code>::</code> to make sure you use the right one: <code>dplyr::filter</code></p>
+</section><section id="your-turn-1" class="slide level2 white">
+<h2>Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<ul>
+<li><span style="color:white">Get a subset of all crimes in Iowa, Plot incidences/rates for one type of crime over time.</span></li>
+<li><span style="color:white">Get a subset of all crimes in 2009. Plot the number or rate for one type of crime by state.</span></li>
+<li><span style="color:white">Get a subset of the data that includes number of homicides for the last five years. Find the rate of homicides, extract all states that have a rate of greater than 90% of the rates across all states, and plot (Hint: <code>?quantile</code>).</span></li>
+</ul>
+<p><span style="color:white">Extra credit (1 point): submit your code (regardless of whether it works or not) in Canvas (yourturn-sept18).</p>
+</section><section id="updating-elements-in-a-vector" class="slide level2">
+<h2>Updating elements in a vector</h2>
+<p>You can take a subset and update the original data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>
+a</code></pre></div>
+<pre><code>## [1] 1 2 3 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">0</span>
+a</code></pre></div>
+<pre><code>## [1] 1 0 0 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">replace</span>(a, a <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1]  1 -1 -1  4</code></pre>
+<p>Very useful in combination with logical subsetting</p>
+</section><section id="updating-elements-in-a-data-set" class="slide level2">
+<h2>Updating elements in a data set</h2>
+<p>data sets and their parts can be used as rhs of an assignment:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(classdata)
+
+<span class="co"># introduces new variable in the data set fbiwide</span>
+fbiwide<span class="op">$</span>murder.rate &lt;-<span class="st"> </span>fbiwide<span class="op">$</span>Murder<span class="op">/</span>fbiwide<span class="op">$</span>Population<span class="op">*</span><span class="dv">100000</span>
+
+<span class="kw">names</span>(fbiwide)</code></pre></div>
+<pre><code>##  [1] &quot;State&quot;               &quot;Abb&quot;                 &quot;Year&quot;               
+##  [4] &quot;Population&quot;          &quot;Violent.crime&quot;       &quot;Murder&quot;             
+##  [7] &quot;Legacy.rape&quot;         &quot;Rape&quot;                &quot;Robbery&quot;            
+## [10] &quot;Aggravated.assault&quot;  &quot;Property.crime&quot;      &quot;Burglary&quot;           
+## [13] &quot;Larceny.theft&quot;       &quot;Motor.vehicle.theft&quot; &quot;murder.rate&quot;</code></pre>
+<p>if that variable exists before, it is being over-written/updated</p>
+</section><section id="your-turn-2" class="slide level2 white">
+<h2>Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white">The gapminder data we originally worked with is available <a href="https://stat480-at-isu.github.io/materials/01_collaborative-environment/data/gapminder-5060.csv">here</a>. It is also on Canvas. </span></p>
+<ul>
+<li><span style="color:white"><code>read.csv</code> helps you read the ‘csv’ file. Store the result in an object.</span></li>
+<li><span style="color:white">use <code>?read.csv</code> to see the help document.</span></li>
+<li><span style="color:white">What format does the object have?</span></li>
+<li><span style="color:white">Replace the problematic value in life expectancy for Canada in 1957 by 69.96. </span></li>
+</ul>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="04_logical_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

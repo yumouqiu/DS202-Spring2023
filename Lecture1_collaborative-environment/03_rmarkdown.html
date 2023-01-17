@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202 - R, RStudio, and RMarkdown</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="03_rmarkdown_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="03_rmarkdown_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="03_rmarkdown_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="03_rmarkdown_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="03_rmarkdown_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202 - R, RStudio, and RMarkdown</h1>
+    <p>Yumou Qiu</p>
+  </header>
+
+  
+  
+<section id="r-rstudio-and-rmarkdown" class="slide level2">
+<h2>R, RStudio, and RMarkdown</h2>
+</section>
+<section id="r-is" class="slide level2">
+<h2>R is …</h2>
+<ul>
+<li><strong>Free</strong> to use</li>
+<li><strong>Extensible</strong>:
+<ul>
+<li>Over 12,000 user contributed add-on packages currently on CRAN!</li>
+<li>12071 different packages available!</li>
+</ul></li>
+<li><strong>Powerful</strong>: With the right tools, get more work done, faster.</li>
+<li><strong>Flexible</strong>: Not a question of <em>can</em>, but <em>how</em>.</li>
+<li><strong>Frustrating</strong>: Flexibility comes at a cost:
+<ul>
+<li>You need to truely understand what you are doing.</li>
+<li>Be careful about the errors in the packages.).</li>
+</ul></li>
+</ul>
+</section>
+<section id="rstudio-is" class="slide level2 white">
+<h2>RStudio is …</h2>
+<p><a href="http://jules32.github.io/resources/RStudio_intro/">From Julie Lowndes</a>:</p>
+<!--- <img class="cover" src="images/airport.png" alt=""> --->
+<blockquote>
+<p style="color:red">
+<b>If R were an airplane, RStudio would be the airport</b>, providing many, many supporting services that make it easier for you, the pilot, to take off and go to awesome places. Sure, you can fly an airplane without an airport, but having those runways and supporting infrastructure is a game-changer.
+</p>
+</blockquote>
+</section>
+<section id="the-rstudio-ide" class="slide level2">
+<h2>The RStudio IDE</h2>
+<p><img class="cover" src="images/rstudio-panes.png" alt=""></p>
+</section>
+<section id="the-rstudio-ide-1" class="slide level2">
+<h2>The RStudio IDE</h2>
+<ol type="1">
+<li><strong>Source editor:</strong> Docking station for multiple files, Useful shortcuts (“Knit”, “Run”), Highlighting/Tab-completion, Code-checking (R, HTML, JS), Debugging features<br />
+</li>
+<li><strong>Console window:</strong> Run the code, Highlighting/Tab-completion, Search recent commands</li>
+<li><strong>Environment pane:</strong> Working datasets/objects, Tools for package development, git, etc</li>
+<li><strong>Other tabs/panes:</strong> Graphics, R documentation, File system navigation/access</li>
+</ol>
+<p class="note">
+<em>Protip:</em> save yourself the headaches figuring out file paths and instead work in an RStudio R project (popup menu at the top left, change your working directory).
+</p>
+</section>
+<section id="markdown" class="slide level2">
+<h2>Markdown</h2>
+<ul>
+<li>Markdown is a particular type of <strong>markup</strong> language.</li>
+<li>Markup languages are designed to <strong>produce documents from plain text</strong>.</li>
+<li>Some of you may be familiar with <strong>LaTeX</strong>. This is another (less human friendly) markup language for creating pdf documents.</li>
+<li>LaTeX gives you much greater control, but it is restricted to pdf and has a much greater learning curve.</li>
+<li><strong>Markdown</strong> is becoming a <strong>standard</strong>. Many websites will generate HTML from Markdown (e.g. GitHub, Stack Overflow, reddit, …).</li>
+</ul>
+</section>
+<section id="markdown-is-easy" class="slide level2">
+<h2>Markdown is easy</h2>
+<pre><code>*italic*
+**bold**
+
+# Header 1
+## Header 2
+### Header 3
+
+- List item 1
+- List item 2
+    - item 2a
+    - item 2b
+
+1. Numbered list item 1
+2. Numbered list item 2
+    - item 2a
+    - item 2b</code></pre>
+<p>Have a look at RStudio’s <a href="https://www.rstudio.com/resources/cheatsheets/">RMarkdown cheat sheet</a></p>
+</section>
+<section id="what-is-rmarkdown" class="slide level2">
+<h2>What is RMarkdown?</h2>
+<ul>
+<li>… an authoring format that enables easy creation of dynamic documents, presentations, and reports from R.</li>
+<li>it combines the core syntax of markdown with embedded R code chunks that are run so their output can be included in the final document.</li>
+<li>R Markdown documents are fully reproducible (they are automatically regenerated whenever underlying R code or data changes).</li>
+</ul>
+</section>
+<section id="section" class="slide level2 white">
+<h2></h2>
+<p><img class="cover" src="images/rmarkdown.png" alt=""></p>
+</section>
+<section id="why-r-markdown" class="slide level2">
+<h2>Why R Markdown?</h2>
+<ul>
+<li><strong>It’s simple.</strong> Focus on writing, rather than debugging silly errors.</li>
+<li><strong>It’s flexible.</strong> Markdown was created to simplify writing HTML, but thanks to pandoc, Markdown converts to many different formats!</li>
+<li><strong>It’s dynamic.</strong> Find a critical error? Get a new dataset? Regenerate your report without copy/paste hell!</li>
+<li><strong>Encourages transparency.</strong> Collaborators (including your future self) will thank you for integrating your analysis &amp; report.</li>
+<li><strong>Enables interactivity/reactivity.</strong> Allow your audience to explore the analysis (rather than passively read it).</li>
+</ul>
+</section>
+<section id="section-1" class="slide level2 white">
+<h2></h2>
+<p><img class="cover" src="images/hello-rmarkdown.png" alt=""></p>
+</section>
+<section id="your-turn-5-min" class="slide level2 white">
+<h2>Your Turn (5 min)</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<ol type="1">
+<li><span style="color:white">Open RStudio, create a new project.</span></li>
+<li><span style="color:white">Create a new RMarkdown file and knit it.</span></li>
+<li><span style="color:white">Navigate to the RMarkdown cheat sheet and download a copy (Google for the link!)</span></li>
+<li><span style="color:white">Make changes to the markdown formatting and knit again.</span></li>
+<li><span style="color:white">Export output to different files.</span></li>
+<li><span style="color:white">If you feel adventurous, change some of the R code and knit again.</span></li>
+</ol>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="03_rmarkdown_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

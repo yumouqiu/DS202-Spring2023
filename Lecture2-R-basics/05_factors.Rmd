@@ -1,0 +1,191 @@
+---
+title: "DS 202: Working with factor variables"
+author: Yumou Qiu
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+# Factor variables
+
+## Factors
+
+
+- A special type of variable to indicate categories
+- both *labels* and their *order* (i.e. numbers) 
+- By default text variables are stored in factors during input
+- numeric categorical variables have to be converted to factors manually
+- `factor` creates a new factor with specified labels
+
+
+
+## Your Turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Inspect the `fbi` object. How many variables are there? Which type does each of the variables have?</span>
+- <span style="color:white">Make a summary of Year</span>
+- <span style="color:white">Make Year  a factor variable: `fbi$Year <- factor(fbi$Year)`</span>
+- <span style="color:white">Compare summary of Year to the previous result</span>
+- <span style="color:white">Are there other variables that should be factors (or vice versa)? </span>
+
+```{r}
+dim(fbi)
+
+summary(fbi$Year)
+
+fbi$Year.factor = factor(fbi$Year)
+
+summary(fbi$Year.factor)
+
+```
+
+## Note: factors in boxplots
+
+boxplots in ggplot2 only work properly if the x variable is a character variable or a factor:
+
+```{r, echo=FALSE, warning=FALSE, message= FALSE}
+library(ggplot2)
+library(classdata)
+```
+
+```{r}
+twoyear <- dplyr::filter(fbi, Year %in% c(1961, 2014))
+```
+
+<div class="double">
+<p class="double-flow">
+```{r, fig.width=3, fig.height = 3, message = FALSE, warning = FALSE}
+ggplot(data = twoyear, aes(x = Year, y = Count)) + geom_boxplot()
+```
+</p>
+<p class="double-flow">
+```{r, fig.width=3, fig.height = 3, message = FALSE, warning = FALSE}
+ggplot(data = twoyear, aes(x = factor(Year), y = Count)) + geom_boxplot()
+```
+</p>
+
+</div>
+
+## Data types: checking and casting
+
+Checking for, and casting between types: 
+
+- `str`, `mode` provide info on type
+- `is.XXX` (with XXX either `factor, int, numeric, logical, character, ...` ) checks for specific type
+- `as.XXX` casts to specific type
+
+
+## Casting between types
+
+![](images/casting.png)
+**Note:** `as.numeric` applied to a factor retrieves *order* of labels, not labels, even if those could be interpreted as numbers.
+
+To get the labels of a factor as numbers, first cast to character and then to a number.
+
+## Levels of factor variables
+
+- `levels(x)` shows us the levels of factor variable `x` in their current order
+- factor variables often have to be re-ordered for ease of comparisons
+- We can specify the order of the levels by explicitly listing them, see `help(factor)`
+- We can make the order of the levels in one variable dependent on the summary statistic of another variable
+
+
+## Reordering factor levels - manual
+
+```{r}
+levels(fbi$Type)
+```
+
+
+```{r, echo = FALSE, eval = FALSE}
+fbi$Type = factor(fbi$Type)
+levels(fbi$Type)
+```
+
+manually (extremely sensitive to typos):
+
+```{r}
+levels(factor(fbi$Type, levels=c("Larceny.theft", "Burglary", "Motor.vehicle.theft", "Aggravated.assault", "Robbery", "Legacy.rape", "Murder.and.nonnegligent.Manslaughter", "Rape")))
+```
+
+## What will happen if there are typos?
+
+```{r}
+temp = factor(fbi$Type, levels=c("Larceny.theft", "Burglary", "Motor.vehicle.theft", "Aggravated.assault", "Robbery", "Legacy.rape", "murder.and.nonnegligent.Manslaughter", "Rape"))
+levels(temp)
+unique(temp)
+```
+
+## Reordering factor levels - using another variable
+
+`reorder(factor, numbers, function)`
+
+reorder levels in factor by values in `numbers`. Use `function` to summarise (average is used by default). 
+
+```{r}
+levels(reorder(fbi$Type, fbi$Count, na.rm=TRUE))
+```
+
+missing values in `numbers`? make sure to use parameter `na.rm=TRUE`!
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For this your turn use the `fbi` object from the `classdata` package. </span>
+
+- <span style="color:white">Introduce a rate of the number of reported offenses by population into the `fbi` data. You could use the *Ames standard* to make values comparable to a city of the size of Ames (population ~70,000).</span>
+- <span style="color:white">
+Plot boxplots of crime rates by different types of crime. How can you make axis text legible? </span>
+- <span style="color:white">
+Reorder the boxplots of crime rates, such that the boxplots are ordered by their medians. </span>
+- <span style="color:white">
+For one type of crime (`subset` or `filter`) plot boxplots of rates by state, reorder boxplots by median crime rates</span>
+
+
+```{r, echo = FALSE, eval = FALSE}
+library(ggplot2)
+fbi$Crime.rate = fbi$Count / fbi$Population * 70000
+ggplot(data = fbi, aes(x = Type, y = Crime.rate)) + geom_boxplot() + coord_flip()
+
+fbi1 = fbi
+fbi1$Type = factor(fbi1$Type)
+levels(fbi1$Type)
+levels(fbi1$Type)[c(1, 5, 6)] = c("Assault", "MV.theft", "Murder")
+ggplot(data = fbi1, aes(x = Type, y = Crime.rate)) + geom_boxplot() + coord_flip()
+
+fbi2 = fbi1
+fbi2$Type = factor(fbi2$Type, levels = levels(reorder(fbi1$Type, fbi1$Crime.rate, median, na.rm=TRUE)))
+ggplot(data = fbi2, aes(x = Type, y = Crime.rate)) + geom_boxplot() + coord_flip()
+
+fbi3 = dplyr::filter(fbi, Type == "Burglary")
+mode(fbi3$State)
+fbi3$State = factor(fbi3$State)
+fbi3$State = factor(fbi3$State, levels = levels(reorder(fbi3$State, fbi3$Crime.rate, median, na.rm=TRUE)))
+ggplot(data = fbi3, aes(x = State, y = Crime.rate)) + geom_boxplot() + coord_flip()
+```
+
+## Changing Levels' names
+
+```{r}
+fbi$Type = factor(fbi$Type)
+levels(fbi$Type)
+```
+
+```{r}
+levels(fbi$Type)[6] = "Murder"
+
+levels(fbi$Type)
+```
+
+
+## Read more on factors
+
+- Wickham & Grolemund's <a href="http://r4ds.had.co.nz/factors.html">chapter on factors</a> in *R for Data Science*
+- Roger Peng: [*stringsAsFactors: An unauthorized biography*](http://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/")
+- Thomas Lumley: <a href="http://notstatschat.tumblr.com/post/124987394001/stringsasfactors-sigh"><em>stringsAsFactors = &lt;sigh&gt;</em></a> 
+- The `forcats` package has a lot of additional functions that make working with factors easier.

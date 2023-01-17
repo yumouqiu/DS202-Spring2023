@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202 - Reproducibility of Your Work</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="01_test-case_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="01_test-case_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="01_test-case_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="01_test-case_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="01_test-case_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202 - Reproducibility of Your Work</h1>
+    <p>Yumou Qiu</p>
+  </header>
+
+  
+  
+<section id="tools-for-reproducibility" class="slide level2">
+<h2>Tools for Reproducibility</h2>
+</section>
+<section id="a-test-case" class="slide level2">
+<h2>A test case</h2>
+<p>This is a two-part exercise:</p>
+<p><strong>Part 1:</strong> Analyze + document</p>
+<p><strong>Part 2:</strong> Swap + discuss (after class)</p>
+</section>
+<section id="part-1-analyze-document" class="slide level2">
+<h2>Part 1: Analyze + document</h2>
+<p>Introduce yourself to your neighbor. Solve the following problem as a team.</p>
+<p>Assume you are a team within a larger project (i.e. keep your collaborators in mind).</p>
+<p>Complete the following tasks and <strong>write instructions / documentation</strong> for your collaborator to reproduce your work starting with the original dataset (<a href="data/gapminder-5060.csv"><code>data/gapminder-5060.csv</code></a> or <a href="data/gapminder-5060.xlsx"><code>data/gapminder-5060.xlsx</code></a>).</p>
+</section>
+<section id="your-turn-analyze-document-20-mins" class="slide level2 white">
+<h2>Your turn: analyze + document (20 mins)</h2>
+<p><img src="images/blue.jpeg" class="cover" height=1500></p>
+<ol type="1">
+<li><font color="white">Visualize life expectancy over time for Canada in the 1950s and 1960s using a line plot.</font></li>
+<li><font color="white">Document your result.</font></li>
+</ol>
+</section>
+<section id="your-turn-analyze-document-20-mins-1" class="slide level2 white">
+<h2>Your turn: analyze + document (20 mins)</h2>
+<p><img src="images/blue.jpeg" class="cover" height=1500></p>
+<ol type="1">
+<li><font color="white">Visualize life expectancy over time for Canada in the 1950s and 1960s using a line plot.</font></li>
+<li><font color="white">Something is clearly wrong with this plot! Turns out there’s a data error in the data file: life expectancy for Canada in the year 1957 is coded as <code>999999</code>, it should actually be <code>69.96</code>. Make this correction.</font></li>
+<li><font color="white">Visualize life expectancy over time for Canada again, with the corrected data.</font><br></li>
+</ol>
+<font color="white"><em>Pro goal:</em> Add lines for Mexico and the United States.</font>
+</p>
+</section>
+<section id="part-2-swap-discuss-after-class-homework" class="slide level2 white">
+<h2>Part 2: swap + discuss (after class homework)</h2>
+<p><img src="images/blue.jpeg" class="cover" height=1500></p>
+<ol type="1">
+<li><font color="white">Introduce yourself to the team closest to you.</font></li>
+<li><font color="white">Email your instructions / documentation to the other team member. Your team member should try to reproduce your work, first <strong>without talking to each oher</strong>. </font> <br> <font color="white">If your collaborator does not have/know the software they need to reproduce your work, walk them through it in a way that would emulate the experience. (Remember, this could be part of the irreproducibility problem!)</font></li>
+<li><font color="white">Then, write down the challenges you faced (or didn’t face) or why you were or weren’t able to reproduce their work.</font></li>
+</ol>
+<!--- <br><br>
+
+<font color="white">Thanks to  Jenny Bryant and Mine Cetinkaya-Rundel for the idea for the original  example!</font> --->
+</section>
+<section id="how-did-that-go" class="slide level2">
+<h2>How did that go?</h2>
+<p><img src="images/photo-rudy.jpeg" height=200> or</p>
+</section>
+<section id="how-did-that-go-1" class="slide level2">
+<h2>How did that go?</h2>
+<p><img src="images/photo-rudy.jpeg" height=200> or</p>
+<p><img src="images/photo-trump.png" height=200>?</p>
+<ul>
+<li>Where did things get problematic?</li>
+</ul>
+</section>
+<section id="reflection" class="slide level2">
+<h2>Reflection</h2>
+<ul>
+<li>Were you successful in reproducing each others’ work?</li>
+<li>What tools did you use? <br><br></li>
+<li>What would happen if your collaborator is no longer available to walk you through their analysis?</li>
+<li>What made it easy / hard for reproducing your partners’ work?</li>
+<li>What would have to happen if
+<ul>
+<li>you had to swap out the dataset or extend the analysis further?</li>
+<li>you caught further data errors and had to re-create the analysis with corrections?</li>
+<li>you had to revert back to the original dataset?</li>
+</ul></li>
+</ul>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<ul>
+<li>Everyone struggles with reproducibility and it is a hindrance to moving science forward</li>
+<li>Even with a fairly simple analysis challenges were faced in four main areas: organization, documentation, automation, and dissemination</li>
+</ul>
+<h3 id="reasons-for-irreproducibility"><strong>Reasons for irreproducibility</strong></h3>
+<ul>
+<li>key people missing</li>
+<li>different software used</li>
+<li>lots of focus on getting the project done, very little focus on documentation/instructions</li>
+</ul>
+<!---
+## Particular Issues
+
+- rate of successful reproducibility surprisingly low
+- key people missing
+- different software used
+- lots of focus on getting the project done, very little focus on documentation/instructions
+--->
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="01_test-case_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

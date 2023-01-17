@@ -1,0 +1,131 @@
+---
+title: "DS 202 - Favorite Topics"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Vote data on topics
+
+
+## ... this is what wufoo tells us
+
+<img src="images/topics.png" width=600>
+
+... there's nine more of these charts ... which topic is the best?
+
+## 
+
+... this is what the raw data looks like ...
+
+```{r, echo=FALSE}
+topics <- read.csv("data/Topics of interest.csv")
+topics <- topics %>% select(-Entry.Id)
+head(topics)
+```
+
+## All topics in one
+
+```{r, echo=FALSE, fig.with = 8, fig.height = 4.5}
+tlong <- topics %>% gather(topic, rating, 1:10)
+tlong %>% 
+  ggplot(aes(x = rating)) + geom_bar(aes(fill=rating)) +
+  facet_wrap(~topic, ncol=5) +
+  theme(legend.position="bottom")
+```
+
+
+## ... in the right order ...
+
+```{r, echo=FALSE, fig.with = 8, fig.height = 4.5}
+tlong <- tlong %>% mutate(
+  rating = factor(rating, 
+                  levels= c("Favorite", "Like it very much",
+                            "Like it", "Don't like it that much"))
+)
+tlong %>% 
+  ggplot(aes(x = rating)) + geom_bar(aes(fill=rating)) +
+  facet_wrap(~topic, ncol=5) +
+  theme(legend.position="bottom")
+```
+
+## ... better color scheme ...
+
+```{r, echo=FALSE, fig.with = 8, fig.height = 4.5}
+library(RColorBrewer)
+cols <- brewer.pal("RdBu", n = 8)
+
+tlong %>% 
+  ggplot(aes(x = rating)) + geom_bar(aes(fill=rating)) +
+  facet_wrap(~topic, ncol=5) +
+  theme(legend.position="bottom") +
+  scale_fill_manual(values = cols[c(8,7,6,1)])
+```
+
+## ... a different picture ...
+
+```{r, echo=FALSE, fig.with = 8, fig.height = 4.5}
+library(RColorBrewer)
+cols <- brewer.pal("RdBu", n = 8)
+
+tlong %>% 
+  ggplot(aes(x = topic)) + geom_bar(aes(fill=rating)) +
+  theme(legend.position="bottom") +
+  scale_fill_manual(values = cols[c(8,7,6,1)])
+```
+
+## ... a different picture ...
+
+```{r, echo=FALSE, fig.with = 8, fig.height = 4.5}
+tlong %>% 
+  ggplot(aes(x = topic)) + geom_bar(aes(fill=rating)) +
+  theme(legend.position="bottom") +
+  scale_fill_manual(values = cols[c(8,7,6,1)]) +
+  coord_flip()
+```
+
+## close to a final picture
+
+```{r, echo=FALSE, fig.with = 8, fig.height = 4.5}
+labels <- unique(tlong$topics)
+tlong %>% 
+  ggplot(aes(x = topic)) + geom_bar(aes(fill=rating)) +
+  theme(legend.position="bottom") +
+  scale_fill_manual(values = cols[c(8,7,6,1)]) +
+  coord_flip() + 
+  theme(axis.text.y = element_blank()) +
+  scale_y_reverse() +
+  geom_text(aes(x = topic, label = topic), 
+            y = -nrow(topics)+1, colour="white", hjust=0)
+```
+
+##  THIS is what you said:
+
+```{r, echo=FALSE, fig.with = 8, fig.height = 4.5}
+tlong <- tlong %>% 
+  mutate(
+        topic = reorder(topic, rating, FUN=function(x) 
+          sum(x %in% c("Favorite"))),
+        topic = reorder(topic, rating, FUN=function(x) 
+          sum(x %in% c("Favorite", "Like it very much"))),
+    topic = reorder(topic, rating, FUN=function(x) 
+          -sum(x == "Don't like it that much"))
+  )
+tlong %>% 
+  ggplot(aes(x = topic)) + geom_bar(aes(fill=rating)) +
+  theme(legend.position="bottom") +
+  scale_fill_manual(values = cols[c(8,7,6,1)]) +
+  coord_flip() + 
+  theme(axis.text.y = element_blank()) +
+  scale_y_reverse() +
+  geom_text(aes(x = topic, label = topic), 
+            y = -nrow(topics)+1, colour="white", hjust=0)
+```

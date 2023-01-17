@@ -1,0 +1,29 @@
+---
+title: "R-installation"
+author: "Yumou"
+date: "1/18/2021"
+output: html_document
+---
+
+
+## Installing R
+
+- Go to http://www.r-project.org/
+- From CRAN, pick download site (ISU might be good): https://mirror.las.iastate.edu/CRAN/
+- Pick the download specific to your platform (Mac or Windows)
+- Follow the installation instructions to install the base version of R
+
+
+## Installing RStudio
+
+Download the **free** version of RStudio from www.rstudio.org
+
+## Getting ready for class
+
+Open RStudio. In the console, type:
+
+```
+install.packages("tidyverse")
+```
+
+This will trigger a slew of installs. Check the logs for any error messages that need to be addressed individually.

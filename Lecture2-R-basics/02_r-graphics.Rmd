@@ -1,0 +1,183 @@
+---
+title: "DS 202: Graphics with ggplot2"
+author: Yumou Qiu
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(fig.width=3.5, fig.height=3.5)
+```
+
+# Looking at data
+
+## Data Exploration
+
+- asking good questions is important for any data exploration: "your data won't speak unless you ask the right questions"
+- a data exploration is a cycle of asking questions, looking at the answers, and deriving new questions from them
+- for a sound exploration: start by checking individual variables, then move on to higher dimensions
+
+# An example exploration
+
+
+
+## Your turn {.white}
+
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">
+Write down questions that you could answer with this data 4 minutes by yourself, then pair up for another 3 minutes, and we'll write ideas on the board</span>
+
+```{r}
+library(classdata)
+head(fbiwide)
+```
+
+
+## Plan for answers
+
+- Explore how one (or more) variables are distributed: *barchart or histogram*
+- Explore how two variables are related:  *scatterplot, boxplot, tile plot*
+- Explore how two variables are related, conditioned on other variables: *faceting, color & other aesthetics*
+
+
+We will be using the `ggplot2` framework for plotting
+
+```{r}
+library(ggplot2)
+```
+
+
+## Why `ggplot2`
+
+- Wildly popular package for statistical graphics: over 2.5 million downloads from CRAN in 2017 (several thousand times per day)
+- Developed by Hadley Wickham (An ISU Alumni)
+- Designed to adhere to good graphical practices
+- Constructs plots using the concept of layers
+- Supports a wide variety plot types and extensions
+- Ported to different languages, e.g. `ggpy`
+\medskip
+- http://ggplot2.org/book/ or Hadley's book *ggplot2: Elegant Graphics for Data Analysis* for reference 
+
+
+
+
+## `ggplot` Function
+
+The `ggplot` function is the basic workhorse of ggplot2
+
+- Produces all plot types available with ggplot2
+- Allows for plotting options within the function statement
+- Creates an object that can be saved
+- Plot layers can be added to modify plot complexity
+
+## `ggplot` Structure
+
+The `ggplot` function has the basic syntax:
+
+`ggplot(data, mappings) + geom_type(options)`
+
+- data: dataset to be used
+- mappings: determines which variables are connected to which plot elements, mappings are done with `aes()`
+- type: determines type of the plot, e.g. `point`, `line`, `bar`
+- options: there are so, so many options!
+
+## Scatterplots in `ggplot2`
+
+`aes` allows us to specify mappings; scatterplots need a mapping for `x` and a mapping for `y`:
+
+```{r}
+ggplot(data = fbiwide, aes(x = Burglary, y = Murder)) +
+  geom_point()
+```  
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Draw a scatterplot of the number of burglaries by murders.</span>
+- <span style="color:white">Adjust the numbers of the above scatterplot to show log transformed numbers. How can we interpret the numbers on the axes?</span>
+- <span style="color:white">Draw a scatterplot of the log transformed number of burglaries by motor vehicle thefts.</span>
+
+```{r, echo = FALSE, eval = FALSE}
+ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Murder))) +
+  geom_point()
+
+ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Motor.vehicle.theft))) +
+  geom_point()
+```  
+
+## Revision - Interpreting Scatterplots
+
+- Big patterns
+    - Form and direction
+    - Strength
+- Small patterns
+- Deviations from the pattern
+    - Outliers
+    
+
+## Aesthetics
+
+Can map other variables to size, colour, shape, ....
+
+```{r}
+ggplot(aes(x = log(Burglary), y = log(Motor.vehicle.theft),
+           colour=Year), data=fbiwide) + geom_point()
+```           
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+
+- <span style="color:white">Draw a scatterplot of the log transformed number of burglaries by motor vehicle thefts. Map the state variable to colour. Why is this a terrible idea?</span>
+- <span style="color:white">Draw a scatterplot of the log transformed number of burglaries by motor vehicle thefts. Map Population to size. How do we interpret the output?</span>
+- <span style="color:white">Which other aesthetics are there? Have a look at the [RStudio cheat sheet on visualization](https://www.rstudio.com/resources/cheatsheets/) </span>
+
+<span style="color:white">**Stretch goal**: Draw a histogram of the state populations. </span>
+
+```{r, echo = FALSE, eval = FALSE}
+ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Motor.vehicle.theft), colour = Year)) + geom_point()
+
+ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Motor.vehicle.theft), colour = State)) + geom_point()
+
+ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Motor.vehicle.theft), size = Population)) + geom_point() 
+
+ggplot(data = fbiwide, aes(Population)) + geom_histogram()
+ggplot(data = fbiwide, aes(Population)) + geom_histogram() + facet_wrap(~ State)
+```  
+
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+
+- <span style="color:white">Compare the log transformed number of burglaries by motor vehicle thefts over years. How to make a nice plot?</span>
+- <span style="color:white">Compare the log transformed number of burglaries by motor vehicle thefts over States, coloured by years.</span>
+- <span style="color:white">Now, only focus on comparing California, Colorado, Iowa, Illinois, District of Columbia and New York. </span>
+- <span style="color:white">We all know population is an important factor. How to compare different states by standardized population? </span>
+
+```{r, echo = FALSE, eval = FALSE}
+fbiwide1 = fbiwide[fbiwide$Year %in% c(1961, 1971, 1981, 1991, 2001, 2011), ]
+ggplot(data = fbiwide1, aes(x = log(Burglary), y = log(Motor.vehicle.theft), size = Population)) +
+  geom_point() + facet_grid(. ~ Year)
+
+ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Motor.vehicle.theft), colour = Year)) + 
+  geom_point() + facet_wrap(~ State)
+
+fbiwide2 = fbiwide[fbiwide$State %in% c("California", "Colorado", "Iowa", "Illinois", "District of Columbia", "New York"), ]
+fbiwide2$State_f = factor(fbiwide2$State, levels=c("California", "Colorado", "Iowa", "Illinois", "District of Columbia", "New York"))
+ggplot(data = fbiwide2, aes(x = log(Burglary), y = log(Motor.vehicle.theft), colour = Year)) + 
+  geom_point() + facet_grid(. ~ State_f)
+ggplot(data = fbiwide2, aes(x = log(Burglary), y = log(Motor.vehicle.theft), colour = Year, size = Population)) + 
+  geom_point() + facet_grid(. ~ State_f)
+ggplot(data = fbiwide2, aes(x = log(Burglary / Population), y = log(Motor.vehicle.theft / Population), colour = Year)) + 
+  geom_point() + facet_grid(. ~ State_f)
+```  

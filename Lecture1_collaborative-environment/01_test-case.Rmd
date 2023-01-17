@@ -1,0 +1,129 @@
+---
+title: "DS 202 - Reproducibility of Your Work"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Tools for Reproducibility
+
+
+## A test case
+
+This is a two-part exercise:
+
+**Part 1:** Analyze + document
+
+**Part 2:** Swap + discuss (after class)
+
+
+## Part 1: Analyze + document
+
+Introduce yourself to your neighbor. Solve the following problem as a team.
+
+Assume you are a team within a larger project (i.e. keep your collaborators in mind). 
+
+Complete the following tasks and **write instructions / documentation** for your
+collaborator to reproduce your work starting with the original dataset 
+([`data/gapminder-5060.csv`](data/gapminder-5060.csv) or [`data/gapminder-5060.xlsx`](data/gapminder-5060.xlsx)).
+
+
+
+## Your turn: analyze + document (20 mins) {.white}
+
+<img src="images/blue.jpeg" class="cover" height=1500>
+
+1. <font color="white">Visualize life expectancy over time for Canada in the 1950s and 1960s using a line plot.</font>
+2. <font color="white">Document your result.</font>
+
+
+## Your turn: analyze + document (20 mins) {.white}
+
+<img src="images/blue.jpeg" class="cover" height=1500>
+
+1. <font color="white">Visualize life expectancy over time for Canada in the 1950s and 1960s using a line plot.</font>
+2. <font color="white">Something is clearly wrong with this plot! Turns out there's a data error 
+in the data file: life expectancy for Canada in the year 1957 is coded
+as `999999`, it should actually be `69.96`. Make this correction.</font>
+3. <font color="white">Visualize life expectancy over time for Canada again, with the corrected data.</font><br>
+
+<font color="white">*Pro goal:* Add lines for Mexico and the United States.</font>
+</p>
+
+## Part 2: swap + discuss (after class homework) {.white}
+
+<img src="images/blue.jpeg" class="cover" height=1500>
+
+1. <font color="white">Introduce yourself to the team closest to you.</font>
+2. <font color="white">Email your instructions / documentation to the other team member. Your team member should try to reproduce 
+your work, first **without talking to each oher**. </font>
+<br>
+<font color="white">If your collaborator does not have/know the software they need to reproduce your work,  walk them through it in a way that would emulate the experience. (Remember, this could be part of the
+irreproducibility problem!)</font>
+3. <font color="white">Then, write down the challenges you faced (or didn't face) or why you were or weren't able to reproduce their work.</font>
+
+
+<!--- <br><br>
+
+<font color="white">Thanks to  Jenny Bryant and Mine Cetinkaya-Rundel for the idea for the original  example!</font> --->
+
+
+
+## How did that go? 
+
+<img src="images/photo-rudy.jpeg" height=200> or 
+
+
+
+## How did that go? 
+
+<img src="images/photo-rudy.jpeg" height=200> or 
+
+<img src="images/photo-trump.png" height=200>?
+
+- Where did things get problematic?
+
+
+
+## Reflection
+
+- Were you successful in reproducing each others' work? 
+- What tools did you use?
+<br><br>
+- What would happen if your collaborator is no longer available to walk you through 
+their analysis?
+- What made it easy / hard for reproducing your partners' work?
+- What would have to happen if 
+    - you had to swap out the dataset or extend the analysis further?
+    - you caught further data errors and had to re-create the analysis
+    with corrections?
+    - you had to revert back to the original dataset?
+
+## Summary
+
+- Everyone struggles with reproducibility and it is a hindrance to moving 
+science forward
+- Even with a fairly simple analysis challenges were faced in four main areas:
+organization, documentation, automation, and dissemination
+
+### __Reasons for irreproducibility__
+- key people missing
+- different software used
+- lots of focus on getting the project done, very little focus on documentation/instructions
+
+
+<!---
+## Particular Issues
+
+- rate of successful reproducibility surprisingly low
+- key people missing
+- different software used
+- lots of focus on getting the project done, very little focus on documentation/instructions
+--->
+

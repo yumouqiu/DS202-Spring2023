@@ -1,0 +1,156 @@
+---
+title: "DS 202: Visualizing factor variables"
+author: Yumou Qiu
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+# Factors in visualizations
+
+## Visualizing factors
+
+- visualize factors directly: barcharts
+- use factors in aesthetics (`colour`, `fill`, `shape`) or for facetting
+- always make sure that the order in factors is sensible!
+
+
+## Note: factors for fill color
+
+In area plots (histograms and barcharts for now) use aesthetic `fill` for showing colored areas.
+
+Only factor variables can be mapped to `fill`
+
+## Example: 
+
+
+```{r, message = FALSE}
+library(classdata)
+library(ggplot2)
+ggplot(fbi, aes(x = Type, fill=Year)) + geom_bar() # nothing happens
+```
+
+##
+
+Not sensible, but the colors show up:
+
+```{r}
+ggplot(fbi, aes(x = Type, fill=factor(Year))) + geom_bar() 
+ggplot(fbi, aes(x = Type, fill=factor(Year))) + geom_bar(aes(weight = Count)) 
+```
+
+## Example: Survival on the Titanic
+
+The object `Titanic` is a table of a break down of survival of passengers and crew on board the Titanic by gender and age.
+
+```{r, message = FALSE}
+library(classdata)
+head(titanic)
+```
+
+## Barcharts of all variables
+
+<div class="double">
+<p class="double-flow">
+```{r, fig.width=3, fig.height = 2}
+ggplot(titanic, aes(x = Survived)) + geom_bar()
+
+ggplot(titanic, aes(x = Sex)) + geom_bar()
+```
+</p><p class="double-flow">
+```{r, fig.width=3, fig.height = 2}
+ggplot(titanic, aes(x = Class)) + geom_bar()
+
+ggplot(titanic, aes(x = Age)) + geom_bar()
+```
+</p>
+</div>
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For this your turn use the `titanic` object from the `classdata` package. 
+<!--- (you might have to update the package using the command `devtools::install_github("heike/classdata")`) </span>
+--->
+
+- <span style="color:white">Draw a barchart of Gender. Interpret.</span>
+- <span style="color:white">Map survival to fill color in the barchart of Gender. Interpret.</span>
+- <span style="color:white">In the previous barchart change the `position` parameter to `"fill"`. Interpret.</span>
+- <span style="color:white">Read up on the `position` parameter in `?geom_bar`. Try out other options for `position`.</span>
+- <span style="color:white">Are there other options for `position` parameter? Try.</span>
+
+```{r, echo = FALSE, eval = FALSE}
+ggplot(titanic, aes(x = Sex, fill = Survived)) + geom_bar()
+ggplot(titanic, aes(x = Sex, fill = Survived)) + geom_bar(position = "fill")
+ggplot(titanic, aes(x = Sex, fill = Survived)) + geom_bar(position = position_dodge())
+```
+
+## `position="fill"`
+
+<div class="double">
+<p class="double-flow">
+```{r, fig.width=3, fig.height = 2}
+ggplot(titanic, aes(x = Survived, fill=Survived)) + geom_bar(position="fill")
+
+ggplot(titanic, aes(x = Sex, fill=Survived)) + geom_bar(position="fill")
+```
+</p><p class="double-flow">
+```{r, fig.width=3, fig.height = 2}
+ggplot(titanic, aes(x = Class, fill=Survived)) + geom_bar(position="fill")
+
+ggplot(titanic, aes(x = Age, fill=Survived)) + geom_bar(position = "fill")
+```
+</p>
+</div>
+
+## Two and more factor variables
+
+- besides facetting and position, use
+- *mosaic plots*
+- there are extension packages for `ggplot2`, e.g. `ggmosaic`
+- install `ggmosaic`
+- choose `n` when when asking for `compilation` during the installing 
+
+## Mosaicplots
+
+```{r, fig.width=10, fig.height = 4, message=FALSE}
+library(ggmosaic)
+ggplot(data = titanic)  + 
+  geom_mosaic(aes(x = product(Sex), fill=Survived, weight=1)) +
+  facet_grid(Age~Class)
+```
+
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">In the above plots, we cannot see the relationship between `class` and `gender` since we make `barplot` separately for each `class`. 
+How to show the relationship between `class`, `gender` and `survive`?</span>
+
+<span style="color:white">For the `fbi` data:</span>
+
+- <span style="color:white">Choose `California` and `New York`</span>
+- <span style="color:white">Choose Year `1971` and `2016`</span>
+- <span style="color:white">Compare `State`, `Year` and `Type` by the crime rate</span>
+- <span style="color:white">Rename and reorder the factors appropriately</span>
+
+```{r, echo = FALSE, eval = FALSE}
+ggplot(data = titanic) +
+  geom_mosaic(aes(x = product(Sex, Class), fill=Survived, weight=1))
+
+crime.compare = dplyr::filter(fbi, Year %in% c(1971, 2016), State %in% c("California", "New York"))
+
+crime.compare$Type = factor(crime.compare$Type)
+levels(crime.compare$Type)
+levels(crime.compare$Type) = c("AT", "BY", "LT", "LR", "MT", "MR", "RE", "RY")
+crime.compare$Type = factor(crime.compare$Type, levels = c("MR", "RE", "LR", "RY", "LT", "MT", "AT", "BY"))
+crime.compare$State = factor(crime.compare$State)
+levels(crime.compare$State) = c("CA", "NY")
+ggplot(data = crime.compare) +
+  geom_mosaic(aes(x = product(Year, State), fill = Type, weight = Count / Population))
+```

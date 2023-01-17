@@ -1,0 +1,217 @@
+---
+title: "DS 202: Graphics with ggplot2"
+author: Yumou Qiu
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+# Looking ... some more ... at data
+
+## Plan for answers
+
+1. Explore how one (or more) variables are distributed: *barchart or histogram*
+2. Explore how two variables are related:  *scatterplot, boxplot, tile plot*
+3. Explore how two variables are related, conditioned on other variables: *facetting, color & other aesthetics*
+
+Look at 3 next, then come back to 1 and 2.
+
+## Getting ready
+
+Load libraries:
+
+```{r}
+library(ggplot2) # not found? run install.packages("ggplot2")
+library(classdata) # not found? run devtools::install_github("heike/classdata")
+```
+
+## Facetting
+
+Can facet to display plots for different subsets:
+
+`facet_wrap`, `facet_grid`
+
+```{r, message=FALSE}
+ggplot(aes(x = Year, y = Murder), data=fbiwide) +
+  facet_wrap(~State, scale = "free_y") + 
+  geom_point()
+```
+
+## Setup of `facet_wrap` and `facet_grid`
+
+- `facet_grid` has formula specification: `rows ~ cols`
+- `facet_wrap` has specification `~ variables` 
+- multiple variables (in either specification) are included in form of a sum, i.e. `rowvar1 + rowvar2 ~ colvar1+ colvar2`
+- no variable (in `facet_grid`) is written as `.`, i.e. `rowvar ~ .` are plots in a single column.
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+Use the `fbiwide` data from the package `classdata` for this your turn.
+
+- <span style="color:white">Plot the number of car thefts by year for each state (facet by state).</font>
+- <span style="color:white">The numbers are dominated by the number of thefts in California, New York, and Texas. Use a log-scale for the y-axis. Does that help?</font>
+- <span style="color:white">Another approach to fix the domination by CA, TX and NY: Read up on the parameters in `facet_wrap` to find a way to give each panel its own scale. Comment on the difference in the results.</font>
+
+```{r, echo=FALSE, eval = FALSE}
+ggplot(aes(x = Year, y = Motor.vehicle.theft), data=fbiwide) +
+  facet_wrap(~State) +
+  geom_point()
+
+ggplot(aes(x = Year, y = log(Motor.vehicle.theft)), data=fbiwide) +
+  facet_wrap(~State) +
+  geom_point()
+
+ggplot(aes(x = Year, y = Murder), data=fbiwide) +
+  facet_wrap(~State, scales = "free_y") +
+  geom_point()
+```
+
+## Facets vs aesthetics?
+
+- Will need to experiment as to which one answers your question/tells the story best
+- Rule of thumb: 
+    - aesthetics: explore relationship
+    - Facets: comparison
+
+## Boxplots
+
+```{r, echo=FALSE, warning=FALSE, fig.width = 8, fig.height = 5}
+ggplot(data = fbi, aes(x = Type, y = log10(Count))) + geom_boxplot() + coord_flip()
+```
+
+## Boxplot definition
+
+- definition by J.W. Tukey (1960s, EDA 1977)
+
+![](images/boxplots-definition.png)
+
+## Boxplots
+
+- are used for group comparisons and outlier identifications
+- usually only make sense in form of side-by-side boxplots.
+- `geom_boxplot` in ggplot2 needs `x` and `y` variable (`y` is measurement, `x` is categorical)
+
+```{r, eval=FALSE}
+ggplot(data = fbi, aes(x = Type, y = log10(Count))) +
+  geom_boxplot() + 
+  coord_flip()
+```
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Using ggplot2, draw side-by-side boxplots of the number of robberies by state. Use a log transformation on y and compare results.</font>
+- <span style="color:white">**Stretch goal:** Compare rates of robberies by state, i.e. adjust robberies by the state population. Then plot side-by-side boxplots. </font>
+
+```{r}
+fbi1 = fbi[fbi$Type == "Robbery", ]
+ggplot(data = fbi1, aes(x = State, y = Count)) +
+  geom_boxplot() + 
+  coord_flip()
+
+ggplot(data = fbi1, aes(x = State, y = log(Count))) +
+  geom_boxplot() + 
+  coord_flip()
+
+ggplot(data = fbi1, aes(x = State, y = Count / Population)) +
+  geom_boxplot() + 
+  coord_flip()
+```
+
+## Boxplots - Pros and Cons
+
+- **Pros:**
+    - Symmetry vs Skewness
+    - Outliers
+    - Quick Summary
+    - Comparisons across multiple Treatments (side by side boxplots)
+- **Cons:**
+    - Boxplots hide multiple modes and gaps in the data
+    - Boxplots cannot tell the detail distribution of the data
+
+## Univariate plots
+
+Histograms: 
+
+```{r, fig.width=4, fig.height=3}
+ggplot(fbiwide, aes(x = Motor.vehicle.theft)) + 
+  geom_histogram(binwidth=5000) +
+  ggtitle("binwidth = 5000")
+```
+
+## Univariate plots
+
+Histograms: 
+
+```{r, fig.width=4, fig.height=3}
+ggplot(fbiwide, aes(x = Motor.vehicle.theft)) + 
+  geom_histogram(binwidth=1000) +
+  ggtitle("binwidth = 1000")
+```
+
+
+## Barchart
+
+```{r}
+ggplot(fbi, aes(x = Type)) + 
+  geom_bar(aes(weight= Count)) +
+  coord_flip()
+```
+
+
+## Histograms and barcharts
+
+What do we look for?
+
+- Symmetry/Skewness
+- Modes, Groups  (big pattern: where is the bulk of the data?)
+- Gaps & Outliers (deviation from the big pattern: where are the other points?)
+
+
+For the histogram, always choose the binwidth consciously
+
+In a barchart, choose the order of the categories consciously (later)
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Use the `fbi` data set to draw a barchart of the variable `Violent Crime`. Make the height of the bars dependent on the number of reports (use `weight`). Then facet by type (does the result match your expectation? good! get rid of facetting). Color bars by `Type`. </font>
+- <span style="color:white">Use the `fbi` data set to draw a histogram of the number of reports. Facet by type, make sure to use individual scales for the panels. </font>
+
+```{r, echo=FALSE, eval = FALSE}
+ggplot(aes(x = Violent.crime), data=fbi) +
+  #facet_wrap(~Type) +
+  geom_bar(aes(weight= Count, fill = Type)) +
+  #geom_bar(aes(weight= Count, fill = Type), colour = "black") +
+  coord_flip()
+
+ggplot(aes(x = Count), data = fbi) + geom_histogram() +
+  facet_wrap(~Type, scales = "free")
+
+head(fbiwide)
+head(fbi)
+
+fbi.self = c()
+for (i in 1 : 9){
+  count = fbiwide[, (i + 5)]
+  temp1 = cbind(fbiwide[, c(1 : 4)], count)
+  fbi.self = rbind(fbi.self, temp1)
+}
+
+CrimeNames = names(fbiwide)[6 : 14]
+fbi.self$Type = rep(CrimeNames, each = dim(fbiwide)[1])
+```
+
+## More on `ggplot2`
+
+- reference/document: http://ggplot2.tidyverse.org/reference/
+- RStudio cheat sheet for [ggplot2](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+- ggplot2 mailing list: 
+https://groups.google.com/forum/?fromgroups#!forum/ggplot2
+
