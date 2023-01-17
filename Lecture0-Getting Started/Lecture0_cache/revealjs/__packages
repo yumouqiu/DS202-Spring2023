@@ -1,0 +1,13 @@
+base
+tuneR
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+jpeg
+gridExtra
