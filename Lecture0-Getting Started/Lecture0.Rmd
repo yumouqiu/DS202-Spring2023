@@ -268,7 +268,7 @@ Anything else you can think of?
 ## Vote
 
 Go to Wufoo Site to collect the survey:
-https://www.wufoo.com/
+https://yumouqiu.wufoo.com/forms/m1t2r0nd03rwcg7/
 
 ## What is exploratory data analysis?
 
