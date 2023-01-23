@@ -161,7 +161,7 @@ Full syllabus is available from Canvas.
 
 ### Course website: 
 - Canvas: materials, assignments, code and grading
-- https://yumouqiu.github.io/DS202-Spring2022/: lectures
+- https://yumouqiu.github.io/DS202-Spring2023/: lectures
 
 ## Grades
 
@@ -186,7 +186,7 @@ Full syllabus is available from Canvas.
 
 ## Midterm
 
-- take-home programming exam.
+- programming exam.
 - limited time.
 - open book, open note, open internet (no direct help from anyone else).
 - tentatively scheduled before the Spring break.
