@@ -1,5 +1,5 @@
 # Data Science 202 (Iowa State University)
-
+ 
 ## Lectures
 
 ### January 
