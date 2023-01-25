@@ -38,7 +38,7 @@ Using the gapminder data provided
 ## Reading the data 
 
 ```{r}
-life5060 <- read.csv("https://raw.githubusercontent.com/ds202-at-isu/materials/master/01_collaborative-environment/data/gapminder-5060.csv")
+life5060 <- read.csv("https://raw.githubusercontent.com/yumouqiu/DS202-Spring2023/main/Lecture1_collaborative-environment/data/gapminder-5060.csv")
 head(life5060)
 dim(life5060)
 ```
@@ -154,7 +154,7 @@ canada_fixed %>%
 
 ## How reproducible is this solution?
 
-1. Navigate to https://yumouqiu.github.io/DS202-Spring2022/
+1. Navigate to https://yumouqiu.github.io/DS202-Spring2023/
 2. Open the folder `01_collaborative-environment` and download the file `02_test-case-solution.Rmd`
 3. Open the file in RStudio.
 4. "Knit" the file.
