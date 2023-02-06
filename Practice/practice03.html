@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202 - lab #3: Exploring Happiness</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="practice03_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="practice03_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="practice03_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="practice03_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="practice03_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+    <style type="text/css">
+   a.sourceLine { display: inline-block; line-height: 1.25; }
+   a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+   a.sourceLine:empty { height: 1.2em; }
+   .sourceCode { overflow: visible; }
+   code.sourceCode { white-space: pre; position: relative; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   code.sourceCode { white-space: pre-wrap; }
+   a.sourceLine { text-indent: -1em; padding-left: 1em; }
+   }
+   pre.numberSource a.sourceLine
+     { position: relative; left: -4em; }
+   pre.numberSource a.sourceLine::before
+     { content: attr(data-line-number);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; pointer-events: all; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {  }
+   @media screen {
+   a.sourceLine::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202 - lab #3: Exploring Happiness</h1>
+    <p>Yumou Qiu</p>
+  </header>
+
+  
+  
+<section id="section" class="slide level2 white">
+<h2></h2>
+<p><img src="images/happiness.jpeg" class="cover" height=1500></p>
+<p class="white" style="font-size:100px" align="center">
+In-class practice #3<br> Happiness!
+</p>
+</section>
+<section id="outline" class="slide level2">
+<h2>Outline</h2>
+<ul>
+<li>Find your team members (You may work by yourown)</li>
+<li>Create a Github repository</li>
+<li>Link the repository to Rstudio</li>
+<li>Do a data exploration (on happiness)</li>
+<li>Create an R markdown file that contains all code to read the data and create the plots</li>
+<li>Homework 6</li>
+</ul>
+</section>
+<section id="github-repository" class="slide level2">
+<h2>github repository</h2>
+<ol type="1">
+<li>Log into github</li>
+<li>Create a repository called ‘Homework 6’. Make sure to initialize the repo with a README file.</li>
+<li>Go into the settings of the repository and add your team members as collaborators</li>
+</ol>
+</section>
+<section id="cloning-the-repo" class="slide level2">
+<h2>Cloning the repo</h2>
+<ol type="1">
+<li>Open RStudio, create a new repository using the option “Version Control”, choose git as the option</li>
+<li>From your github repository copy the info you get when clicking on the green “Code” button</li>
+<li>Paste the info into “Repository URL”</li>
+<li>Create the project.</li>
+</ol>
+<p>This clones the repository from github.</p>
+<p>Try push</p>
+</section>
+<section id="user-name-for-github" class="slide level2">
+<h2>User name for github</h2>
+<p><img src="images/username.png" height=450></p>
+</section>
+<section id="password-for-github" class="slide level2">
+<h2>Password for github</h2>
+<p><img src="images/password.png" height=450></p>
+</section>
+<section id="error" class="slide level2">
+<h2>Error!</h2>
+<p><img src="images/error.png" height=450></p>
+</section>
+<section id="github-token" class="slide level2">
+<h2>Github token</h2>
+<p>From last year, we need to create a Github token to push local changes to the repository</p>
+<p>See the link: <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" class="uri">https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token</a></p>
+<p>Greate your token following the instructions</p>
+</section>
+<section id="use-token-instead-of-password" class="slide level2">
+<h2>Use token instead of password</h2>
+<p><img src="images/password.png" height=450></p>
+<p>You can now make local changes.</p>
+</section>
+<section id="a-first-round-of-push-and-pull" class="slide level2">
+<h2>A first round of push and pull</h2>
+<p>Do these changes one at a time in your team. Don’t try to do them all at once.</p>
+<ol type="1">
+<li>Make a change to the README document.</li>
+<li>Go to the ‘Git’ tab in the top right panel.</li>
+<li>All modified files will have an icon with a white ‘M’ on blue background.</li>
+<li>Select the checkbox and click on ‘Commit’. Write a commit message in the top right panel of the new dialog window.</li>
+<li>Hit the green arrow pointing up to ‘push’ changes to your github repo.</li>
+<li>Hit the blue arrow pointing down to ‘pull’ changes from your github repo.</li>
+</ol>
+<p>Commit, and pull, then push often. This will avoid conflicts.</p>
+</section>
+<section id="background" class="slide level2">
+<h2>Background</h2>
+<p>The General Social Survey (GSS) has been run by NORC every other year since 1972 to keep track of current opinions across the United States.</p>
+<p>The package <code>productplots</code> contains a subset of this data, called <code>happy</code>. You can access the data using the command</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">data</span>(happy, <span class="dt">package=</span><span class="st">&quot;productplots&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">head</span>(happy)</a></code></pre></div>
+<pre><code>##   id         happy year age    sex       marital         degree       finrela
+## 1  1 not too happy 1972  23 female never married       bachelor       average
+## 2  2 not too happy 1972  70   male       married lt high school above average
+## 3  3  pretty happy 1972  48 female       married    high school       average
+## 4  4 not too happy 1972  27 female       married       bachelor       average
+## 5  5  pretty happy 1972  61 female       married    high school above average
+## 6  6  pretty happy 1972  26   male never married    high school above average
+##      health wtssall
+## 1      good  0.4446
+## 2      fair  0.8893
+## 3 excellent  0.8893
+## 4      good  0.8893
+## 5      good  0.8893
+## 6      good  0.4446</code></pre>
+</section>
+<section id="updating-and-cleaning-data" class="slide level2">
+<h2>Updating and cleaning data</h2>
+<p>Unfortunately, the dataset ends in 2006. So today’s activity is all about updating the dataset to the data from 2016.</p>
+<p>An excerpt of the GSS data is available from our course website. Dowload the file <a href="https://github.com/yumouqiu/DS202-Spring2022/blob/main/03_tidyverse/data/HAPPY.rds?raw=true">HAPPY.rds</a> and put the file into a folder called “data” next to your Rmd file. The following command is going to load the data into your R session:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">HAPPY &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/HAPPY.rds&quot;</span>)</a></code></pre></div>
+<p>You can find a codebook with explanations for each of the variables at <a href="https://gssdataexplorer.norc.org/" class="uri">https://gssdataexplorer.norc.org/</a></p>
+</section>
+<section id="part-one-cleaning" class="slide level2">
+<h2>Part one (cleaning)</h2>
+<p style="font-size:20px">
+Answer each of the following questions using R code to get an answer. Write a separate code chunk for each variable, once all the data manipulation is done, show the values in a barchart or histogram and comment on the plot.
+</p>
+<ol type="1">
+<li>Data cleaning: the values “IAP”, “DK” and “NA” all encode missing values. Replace all of these instances by the value <code>NA</code>.</li>
+<li>Check the type of the variable and cast into the right type (factor variable for categorical variables). For age, change “89 OR OLDER” to 89 and assume the variable should be numeric.</li>
+<li>Bring all levels of factors into a sensible order. For marital you could e.g. order the levels according to average age.</li>
+</ol>
+<p style="font-size:20px">
+Save the final data set as RDS file (binary R data) using the command:<code>saveRDS</code>
+</p>
+</section>
+<section id="part-two-individual-exploration" class="slide level2">
+<h2>Part two (individual exploration)</h2>
+<p><em>Happiness!</em></p>
+<p>Investigate the relationship between happiness and two other variables in the data. Find a visualization that captures the relationship and write a paragraph to describe it.</p>
+<p>Each member should study a different question (choose different variables to investigate).</p>
+<p>Upload your answers and the dataset to the repository. Discuss and refine answers as a team.</p>
+</section>
+<section id="submission-homework-6" class="slide level2">
+<h2>Submission (Homework 6)</h2>
+<p>In Canvas, submit an RMarkdown file (and the knitted html document) with:</p>
+<ol type="a">
+<li>the names of all team members that worked on the document.</li>
+<li>a link to the github repo you were working in.</li>
+<li>code and answers to all of the questions.</li>
+<li>for the individual exploration, put the name of the team member beside each question you investigated.</li>
+<li>you can upload the data file, but you don’t have to</li>
+</ol>
+<p>Due date: Next Wed at 11:59 pm to submit the RMmarkdown file.</p>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="practice03_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

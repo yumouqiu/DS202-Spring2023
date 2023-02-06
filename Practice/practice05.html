@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202 - lab #5: Drunk Driving and Fatal Accidents</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="practice05_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="practice05_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="practice05_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="practice05_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="practice05_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202 - lab #5: Drunk Driving and Fatal Accidents</h1>
+    <p>Yumou Qiu</p>
+  </header>
+
+  
+  
+<section id="practice-5-accident-data" class="slide level2">
+<h2>Practice #5: Accident data</h2>
+</section>
+<section id="outline" class="slide level2">
+<h2>Outline</h2>
+<ul>
+<li>Find your team members</li>
+<li>Create an R markdown file that contains all code to read the data and create the plots</li>
+<li>Homework 10 submit!</li>
+</ul>
+</section>
+<section id="fars-data" class="slide level2">
+<h2>FARS data</h2>
+<ul>
+<li>US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base (fatal accident report system, <a href="http://www.nhtsa.gov/FARS" class="uri">http://www.nhtsa.gov/FARS</a>)</li>
+<li>FARS consists of 20+ tables consisting of various aspects of each accident Documentation at</li>
+<li><a href="https://www-fars.nhtsa.dot.gov/Main/index.aspx" class="uri">https://www-fars.nhtsa.dot.gov/Main/index.aspx</a></li>
+<li>three of the main tables are <a href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/accident.csv">accident</a>, <a href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/person.csv">person</a>, and <a href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/vehicle.csv">vehicle</a>, stored in the <a href="https://github.com/yumouqiu/DS202-Spring2022/tree/main/Practice/data/fars2016">data foler</a> of our Github page.</li>
+</ul>
+</section>
+<section id="data-background-2" class="slide level2">
+<h2>Data Background (2)</h2>
+<ul>
+<li>Data of the three main tables is made available from our website.</li>
+<li>Load the accident data, plot latitude and longitude on a map.</li>
+<li>Variable names of the <code>accident.csv</code>:</li>
+</ul>
+<pre><code>##  [1] &quot;STATE&quot;      &quot;ST_CASE&quot;    &quot;VE_TOTAL&quot;   &quot;VE_FORMS&quot;   &quot;PVH_INVL&quot;  
+##  [6] &quot;PEDS&quot;       &quot;PERNOTMVIT&quot; &quot;PERMVIT&quot;    &quot;PERSONS&quot;    &quot;COUNTY&quot;    
+## [11] &quot;CITY&quot;       &quot;DAY&quot;        &quot;MONTH&quot;      &quot;YEAR&quot;       &quot;DAY_WEEK&quot;  
+## [16] &quot;HOUR&quot;       &quot;MINUTE&quot;     &quot;NHS&quot;        &quot;RUR_URB&quot;    &quot;FUNC_SYS&quot;  
+## [21] &quot;RD_OWNER&quot;   &quot;ROUTE&quot;      &quot;TWAY_ID&quot;    &quot;TWAY_ID2&quot;   &quot;MILEPT&quot;    
+## [26] &quot;LATITUDE&quot;   &quot;LONGITUD&quot;   &quot;SP_JUR&quot;     &quot;HARM_EV&quot;    &quot;MAN_COLL&quot;  
+## [31] &quot;RELJCT1&quot;    &quot;RELJCT2&quot;    &quot;TYP_INT&quot;    &quot;WRK_ZONE&quot;   &quot;REL_ROAD&quot;  
+## [36] &quot;LGT_COND&quot;   &quot;WEATHER1&quot;   &quot;WEATHER2&quot;   &quot;WEATHER&quot;    &quot;SCH_BUS&quot;   
+## [41] &quot;RAIL&quot;       &quot;NOT_HOUR&quot;   &quot;NOT_MIN&quot;    &quot;ARR_HOUR&quot;   &quot;ARR_MIN&quot;   
+## [46] &quot;HOSP_HR&quot;    &quot;HOSP_MN&quot;    &quot;CF1&quot;        &quot;CF2&quot;        &quot;CF3&quot;       
+## [51] &quot;FATALS&quot;     &quot;DRUNK_DR&quot;</code></pre>
+</section>
+<section id="part-one-accident-data" class="slide level2">
+<h2>Part one: Accident data</h2>
+<ul>
+<li>are there some days of the week where more accidents happen than on others (use variable DAY_WEEK)?</li>
+<li>what time of the day do accidents happen (use variable HOUR)?</li>
+<li>what is the number of accidents with at least one drunk driver (use variable DRUNK_DR)?</li>
+</ul>
+</section>
+<section id="part-two-connecting-data" class="slide level2">
+<h2>Part two: Connecting data</h2>
+<ul>
+<li>Connect to the <a href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/person.csv">person table</a>. Identify drivers (PER_TYP == 1, see fars manual ) and subset on them.</li>
+<li>Join accident and driver table (work out which variable(s) to use)</li>
+<li>Tally the number of accidents by day of the week (DAY_WEEK), hour of the day (HOUR) and gender (SEX). Visualize the results!</li>
+</ul>
+</section>
+<section id="submission" class="slide level2">
+<h2>Submission</h2>
+<p>In Canvas, submit an RMarkdown file (and the knitted html document) with:</p>
+<ol type="a">
+<li>the names of all team members that worked on the document.</li>
+<li>a link to the github repo you were working in.</li>
+<li>code and answers to all of the questions.</li>
+</ol>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="practice05_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

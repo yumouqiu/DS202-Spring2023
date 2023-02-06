@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202 - lab #1: working with git and github</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="practice01_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="practice01_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="practice01_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="practice01_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="practice01_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+  
+  
+      <script src="practice01_files/header-attrs-2.19/header-attrs.js"></script>
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202 - lab #1: working with git and github</h1>
+    <p>Yumou Qiu</p>
+  </header>
+
+  
+  
+<section id="in-class-practice-1" class="slide level2">
+<h2>In-class practice #1</h2>
+</section>
+<section id="overview" class="slide level2">
+<h2>Overview</h2>
+<p>In this activity you are going to learn how to collaborate using
+Github. With your team members you will learn some basics which allow
+you to share and edit files on Github.</p>
+<ol type="1">
+<li>Create a git repository hosted at GitHub</li>
+<li>Build <code>README.md</code> file</li>
+<li>Commit changes to repository</li>
+<li>Collaborate by forking and editing partners file</li>
+<li>Explore Github features: insights, diff, blame, ect.</li>
+</ol>
+</section>
+<section id="create-a-repository-with-a-readme.md-file-10-minutes"
+class="slide level2">
+<h2>Create a repository with a README.md file (10 minutes)</h2>
+<p><strong>Step 1</strong>: First we are going to create a repository
+within our Github user account.</p>
+<p>Follow along with your instructor and perform these steps:</p>
+<ol type="1">
+<li>Go to your Github profile. The url should be <a
+href="">http://github/your-user-gitname</a>.</li>
+<li>Create a new Github repository, click <span
+style="background:limegreen; color:white">new</span> button, under the
+repositories tab.</li>
+<li>Name your repository <code>practice1-your-gitname</code></li>
+<li>In the details write “tips to working with git and github”.</li>
+<li>Click the initiate a <code>README.md file</code> option.</li>
+</ol>
+</section>
+<section id="so-far" class="slide level2">
+<h2>So far</h2>
+<ul>
+<li>Once the repository is created you will be directed to the
+repository page which now has its own web address.</li>
+<li>Each repository on Github has a unique url so you can easily
+share.</li>
+<li>The git history is a detailed history of all the changes made to
+that file. One of the features of using Github is the ability to view
+your repository history which can be displayed in the Insights section
+of your Github repository page.</li>
+<li>At this point in the git history of your
+<code>practice1-your-gitname</code> repository there is only one
+commit.</li>
+</ul>
+</section>
+<section id="edit-the-readme.md-file-5-minutes" class="slide level2">
+<h2>Edit the <code>README.md</code> file (5 minutes)</h2>
+<ol type="1">
+<li>Go to the <code>practice1-your-gitname</code> repository main page.
+Click on <code>README.md</code>, then click “edit this file”. Add the
+following information into the <code>README.md</code> file:
+<ul>
+<li>Name?</li>
+<li>What do you tell people about your field of study at a party?</li>
+<li>In the past month, what are the three main activities you have been
+doing at work/study?</li>
+<li>What are the three most important tools/strategies you use for
+organizing your work?</li>
+</ul></li>
+</ol>
+<p class="note">
+<em>tip</em>: Notice that you can use markdown syntax. Use <a
+href="https://help.github.com/articles/markdown-basics/">this guide</a>
+for Github’s flavor of Markdown. Use the “Preview” button to view the
+formatting of your readme.md file.
+</p>
+</section>
+<section id="commit" class="slide level2">
+<h2>Commit</h2>
+<ul>
+<li><strong>Commit</strong> takes a snap shot of your project. Each
+commit includes a commit message that concisely defines changes made or
+project state at the time of the commit.</li>
+</ul>
+<ol type="1">
+<li>Summarize the changes that you have made in 50 characters or less
+and click the <span style="background:limegreen; color:white"> commit
+</span> button.</li>
+<li>Check out the git history. You should now see two commits.</li>
+</ol>
+<!---## Commit statements
+
+Get into the habit of writing commit statements. They will help you later!
+
+http://starlogs.net/#heike/rwrks
+
+http://starlogs.net/#DS202-at-ISU/DS202-at-ISU.github.io
+--->
+</section>
+<section>
+<section id="edit-and-collaborate-with-your-partner"
+class="title-slide slide level1">
+<h2>Edit and collaborate with your partner</h2>
+
+</section>
+<section id="collaborate" class="slide level2">
+<h2>Collaborate</h2>
+<p>Now it is time to collaborate with a partner. Navigate to one of your
+team members’ repository by searching the url directly in your github
+search windown (take a round-robin approach). In order to edit someone
+else’s repository you usually follow this simplified work flow:</p>
+<ol type="1">
+<li>Fork their repository to your user account</li>
+<li>Make edits and commit</li>
+<li>Create a pull request that merges your changes into their
+repository.</li>
+</ol>
+<p class="note">
+<em>tip</em>:
+<!---Depending on the project there are variations on the above work flow. Often the rules for contributing to a project are outlined in a file called `CONTRIBUTING.md` within the repository. One of the more often used --->
+See the works flows <a
+href="https://guides.github.com/introduction/flow/">Github Flow</a>.
+</p>
+</section>
+<section id="forking" class="slide level2">
+<h2>Forking</h2>
+<ul>
+<li><strong>Forking</strong> is creating a copy of a git repository into
+your own account.<br />
+</li>
+<li>Forking allows you to make changes to a repository without affecting
+the main repository of the project.<br />
+</li>
+<li>This is one of the most exciting aspects of Github - you essentially
+encouraged to copy and play with anyone’s code!</li>
+</ul>
+</section>
+<section id="forking-1" class="slide level2">
+<h2>Forking</h2>
+<ol type="1">
+<li>To fork your partner’s repository click the “fork” button in the top
+left hand part of your screen.<br />
+</li>
+<li>When it asks where you would like to fork the repository, choose
+your user account (if you are new to Github, this should be the only
+option).</li>
+</ol>
+</section>
+<section id="make-edits-and-commit" class="slide level2">
+<h2>Make edits and commit</h2>
+<ul>
+<li>You should now have a copy of your partners repository,
+<code>practice1-their-gitname</code>.</li>
+<li>Github keeps track of the entire git history of the project and all
+forked copies made of the project.</li>
+</ul>
+<ol type="1">
+<li>Edit your partners repository by clicking the edit button.<br />
+</li>
+<li>Paste in the answers to your questions under theirs and make a
+commit.</li>
+</ol>
+</section>
+<section id="create-a-pull-request" class="slide level2">
+<h2>Create a pull request</h2>
+<ul>
+<li>A <strong>pull request</strong> is the final step in the
+collaboration process, essentially asking if the edits made to your copy
+can be incorporated into another repository.</li>
+</ul>
+<ol type="1">
+<li>Make sure you are in your copy of your partner’s repository by
+looking at the url - your user name should preface the repository
+name.<br />
+</li>
+<li>Click the <span style="background:limegreen; color:white">New Pull
+Request</span> button. You will get an overview of the changes you made
+to the repository.</li>
+<li>Click the “Create a Pull Request” button to continue the pull
+request. Your partner will now get a notification of a pull request on
+their main repository, as will you if your partner made changes.</li>
+<li>Go ahead and accept this pull request.</li>
+</ol>
+</section>
+<section id="explore-github-features" class="slide level2">
+<h2>Explore Github Features</h2>
+<p>Now that you have accepted the pull request. Take a few minutes to
+explore the git history using the Insights section of the
+repository.</p>
+</section>
+<section id="analyzing-the-gapminder-5060-dataset" class="slide level2">
+<h2>Analyzing the “gapminder-5060” dataset</h2>
+<p>You may decide what you want to do. For example:</p>
+<ol type="1">
+<li>Creat a (R)Markdown file to study gdpPercap for US</li>
+<li>You collaborator can add lines for different countries</li>
+</ol>
+</section>
+<section id="submission-for-homework-3" class="slide level2">
+<h2>Submission for homework 3</h2>
+<p>In Canvas, submit your (R) Markdown file with:</p>
+<ol type="a">
+<li>a table of team members, and their github repository links<br />
+</li>
+<li>the number of successful pull requests you made, and the github
+repository to which you requested a change</li>
+<li>the number of pull requests you accepted, and the github repository
+from which you accepted</li>
+<li>a list with at least 3 tips of how to make working with git/github
+easier<br />
+</li>
+<li>make a pull request for your RMarkdown file for studying the US
+gdpPercap, the repository will be given in the homework.</li>
+</ol>
+</section>
+<section id="note" class="slide level2">
+<h2>Note</h2>
+<p>make sure that none of the numbers in the above list are 0, i.e. each
+team member has to have at least one successful pull request made and
+accepted. Help out your team member in case they are stuck.</p>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="practice01_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>
