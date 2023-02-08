@@ -97,7 +97,7 @@ d = \sqrt{\sum_{i=1}^4 (x_i - y_i)^2}
 - <span style="color:white">What does a negative index do?</span>
 - <span style="color:white">What happens if an index is repeated multiple times, i.e. what is `x[c(1,1,1,2,2,2,3,3,3)]`?</span>
 
-```{r}
+```{r, echo=FALSE}
 x = c(4, 1, 3, 9)
 y = c(1, 2, 3, 5)
 d = sqrt(sum((x - y)^2))
@@ -203,7 +203,7 @@ $$Var(X) = \frac{1}{n - 1}\sum_{i = 1}^{n}(x_{i} - \bar{x})^2  \ for \  \bar{x} 
 - <span style="color:white">Evaluate your function on $X = (1, 2, \ldots, 10)^{\prime}$.</span>
 - <span style="color:white">Try the R build-in function `var()`. Do you have the same result?</span>
 
-```{r}
+```{r, echo=FALSE, eval=FALSE}
 variance = function(x){
   # input x is a vector
   n = length(x)

@@ -15,26 +15,28 @@
   
   
     <style type="text/css">
-   a.sourceLine { display: inline-block; line-height: 1.25; }
-   a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-   a.sourceLine:empty { height: 1.2em; }
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
    .sourceCode { overflow: visible; }
-   code.sourceCode { white-space: pre; position: relative; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
    div.sourceCode { margin: 1em 0; }
    pre.sourceCode { margin: 0; }
    @media screen {
    div.sourceCode { overflow: auto; }
    }
    @media print {
-   code.sourceCode { white-space: pre-wrap; }
-   a.sourceLine { text-indent: -1em; padding-left: 1em; }
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
    }
-   pre.numberSource a.sourceLine
-     { position: relative; left: -4em; }
-   pre.numberSource a.sourceLine::before
-     { content: attr(data-line-number);
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-       border: none; pointer-events: all; display: inline-block;
+       border: none; display: inline-block;
        -webkit-touch-callout: none; -webkit-user-select: none;
        -khtml-user-select: none; -moz-user-select: none;
        -ms-user-select: none; user-select: none;
@@ -43,9 +45,9 @@
      }
    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
    div.sourceCode
-     {  }
+     {   }
    @media screen {
-   a.sourceLine::before { text-decoration: underline; }
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
    }
    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -79,6 +81,7 @@
   </style>
   
   
+      <script src="01_r-basics_files/header-attrs-2.19/header-attrs.js"></script>
   
 </head>
 
@@ -114,14 +117,17 @@
 </ul>
 </section>
 <section id="section" class="slide level2 white">
-<h2></h2>
-<p>&lt;img class=“cover” src=“images/language.png” alt=&quot;&quot;, width=2000&gt;</p>
+<h2 class="white"></h2>
+<p>&lt;img class=“cover” src=“images/language.png” alt=““,
+width=2000&gt;</p>
 </section>
 <section id="grammar" class="slide level2">
 <h2>Grammar</h2>
 <ul>
 <li>Basic algebra is the same as calculator/mathematics</li>
-<li>explicit operators: <code>2*x</code> not <code>2x</code>, <code>2^p</code> instead of <span class="math inline">\(2^p\)</span></li>
+<li>explicit operators: <code>2*x</code> not <code>2x</code>,
+<code>2^p</code> instead of <span
+class="math inline">\(2^p\)</span></li>
 <li>Applying a function is similar</li>
 <li>Making a variable, use <code>&lt;-</code> or <code>=</code></li>
 <li>Everything in R is a vector</li>
@@ -134,9 +140,11 @@
 <p><strong>Math</strong></p>
 <p>Assignments <span class="math inline">\(x = \frac{2}{3}\)</span></p>
 <p>Functions <span class="math inline">\(\sqrt{x}\)</span></p>
-<p>Vectors <span class="math inline">\(y = \left( 1, 2, 3, 5\right)^{\prime}\)</span></p>
+<p>Vectors <span class="math inline">\(y = \left( 1, 2, 3,
+5\right)^{\prime}\)</span></p>
 <p>Indices <span class="math inline">\(y_1\)</span></p>
-<p>Mathematical Operators <span class="math inline">\(\sum_{i=1}^{4} y\)</span></p>
+<p>Mathematical Operators <span class="math inline">\(\sum_{i=1}^{4}
+y\)</span></p>
 <span class="math inline">\(2y\)</span>
 </p>
 <p class="double-flow">
@@ -151,24 +159,27 @@
 </div>
 </section>
 <section id="your-turn-5-min" class="slide level2 white">
-<h2>Your Turn (5 min)</h2>
+<h2 class="white">Your Turn (5 min)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
-<li><span style="color:white">Introduce vector <span class="math inline">\(x\)</span> defined as <span class="math inline">\(x = (4, 1, 3, 9)^{\prime}\)</span></span></li>
-<li><span style="color:white">Introduce vector <span class="math inline">\(y\)</span> defined as <span class="math inline">\(y = (1, 2, 3, 5)^{\prime}\)</span></span></li>
-<li><span style="color:white">Calculate the Euclidean distance between the two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, defined as <span class="math display">\[
+<li><span style="color:white">Introduce vector <span
+class="math inline">\(x\)</span> defined as <span
+class="math inline">\(x = (4, 1, 3, 9)^{\prime}\)</span></span></li>
+<li><span style="color:white">Introduce vector <span
+class="math inline">\(y\)</span> defined as <span
+class="math inline">\(y = (1, 2, 3, 5)^{\prime}\)</span></span></li>
+<li><span style="color:white">Calculate the Euclidean distance between
+the two vectors <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>, defined as <span
+class="math display">\[
 d = \sqrt{\sum_{i=1}^4 (x_i - y_i)^2}
 \]</span></span></li>
 <li><span style="color:white">What does a negative index do?</span></li>
-<li><span style="color:white">What happens if an index is repeated multiple times, i.e. what is <code>x[c(1,1,1,2,2,2,3,3,3)]</code>?</span></li>
+<li><span style="color:white">What happens if an index is repeated
+multiple times, i.e. what is
+<code>x[c(1,1,1,2,2,2,3,3,3)]</code>?</span></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">d =<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>((x <span class="op">-</span><span class="st"> </span>y)<span class="op">^</span><span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">x</a></code></pre></div>
 <pre><code>## [1] 4 1 3 9</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">x[<span class="op">-</span><span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## [1] 4 3 9</code></pre>
 </section>
 <section id="vocabulary" class="slide level2">
@@ -185,7 +196,9 @@ d = \sqrt{\sum_{i=1}^4 (x_i - y_i)^2}
 <section id="r-reference-card" class="slide level2">
 <h2>R Reference Card</h2>
 <ul>
-<li>Download the R Reference Card from <a href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf" class="uri">http://cran.r-project.org/doc/contrib/Short-refcard.pdf</a></li>
+<li>Download the R Reference Card from <a
+href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf"
+class="uri">http://cran.r-project.org/doc/contrib/Short-refcard.pdf</a></li>
 <li>Open/Print it so that you can glance at it while working</li>
 </ul>
 </section>
@@ -197,12 +210,12 @@ d = \sqrt{\sum_{i=1}^4 (x_i - y_i)^2}
 <li><code>sum()</code></li>
 </ul>
 <p>How to build your own functions?</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">q =<span class="st"> </span><span class="cf">function</span>(x, y){</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  q =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="kw">return</span>(q)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw">q</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">=</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">=</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(q)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 </section>
 <section id="general-language" class="slide level2">
@@ -215,7 +228,7 @@ d = \sqrt{\sum_{i=1}^4 (x_i - y_i)^2}
 <li><code>FunctionName</code> is chosen by your own</li>
 <li><code>arg1</code>, <code>arg2</code> can be vectors or matrices</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">q</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## [1] 2 5</code></pre>
 <ul>
 <li><code>return(...)</code> is the final output of your function</li>
@@ -224,79 +237,75 @@ d = \sqrt{\sum_{i=1}^4 (x_i - y_i)^2}
 </section>
 <section id="looping" class="slide level2">
 <h2>Looping</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">a =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">b =<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="kw">length</span>(a)){</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">  b[i] =<span class="st"> </span>a[i]<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">  b[i]</a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">  <span class="co">#print(b[i])</span></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8">  <span class="co">#cat(&quot;Iteration = &quot;, i, &quot;, value =&quot;, b[i], &quot;\n&quot;)</span></a>
-<a class="sourceLine" id="cb10-9" data-line-number="9">}</a>
-<a class="sourceLine" id="cb10-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb10-11" data-line-number="11">b</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">:</span> <span class="dv">10</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span> <span class="sc">:</span> <span class="fu">length</span>(a)){</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  b[i] <span class="ot">=</span> a[i]<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  b[i]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#print(b[i])</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#cat(&quot;Iteration = &quot;, i, &quot;, value =&quot;, b[i], &quot;\n&quot;)</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div>
 <pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">a<span class="op">^</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>a<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
 </section>
 <section id="extract-from-a-vectormatrix" class="slide level2">
 <h2>Extract from a vector/matrix</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">a =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">a[<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">a[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</span></code></pre></div>
 <pre><code>## [1] 1 3</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">A =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="dv">9</span>), <span class="dv">3</span>, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">A</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span> <span class="sc">:</span> <span class="dv">9</span>), <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>A</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    4    7
 ## [2,]    2    5    8
 ## [3,]    3    6    9</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">A[<span class="dv">1</span>, <span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>A[<span class="dv">1</span>, <span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">A =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="dv">9</span>), <span class="dv">3</span>, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">A</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span> <span class="sc">:</span> <span class="dv">9</span>), <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>A</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    4    7
 ## [2,]    2    5    8
 ## [3,]    3    6    9</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">A[<span class="dv">1</span>, ]</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>A[<span class="dv">1</span>, ]</span></code></pre></div>
 <pre><code>## [1] 1 4 7</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">A[, <span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>A[, <span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] 1 2 3</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">A[<span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">2</span> <span class="op">:</span><span class="st"> </span><span class="dv">3</span>] <span class="co">#equivalent to A[c(1, 2), c(2, 3)]</span></a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>A[<span class="dv">1</span> <span class="sc">:</span> <span class="dv">2</span>, <span class="dv">2</span> <span class="sc">:</span> <span class="dv">3</span>] <span class="co">#equivalent to A[c(1, 2), c(2, 3)]</span></span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    4    7
 ## [2,]    5    8</code></pre>
 </section>
 <section id="your-turn-10-min" class="slide level2 white">
-<h2>Your Turn (10 min)</h2>
+<h2 class="white">Your Turn (10 min)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
-<li><span style="color:white">Write a function to calculate the variance of the data <span class="math inline">\(X = (x_{1}, \ldots, x_{n})^{\prime}\)</span>: <span class="math display">\[Var(X) = \frac{1}{n - 1}\sum_{i = 1}^{n}(x_{i} - \bar{x})^2  \ for \  \bar{x} = \frac{1}{n}\sum_{i = 1}^{n}x_{i}.\]</span></span></li>
-<li><span style="color:white">Evaluate your function on <span class="math inline">\(X = (1, 2, \ldots, 10)^{\prime}\)</span>.</span></li>
-<li><span style="color:white">Try the R build-in function <code>var()</code>. Do you have the same result?</span></li>
+<li><span style="color:white">Write a function to calculate the variance
+of the data <span class="math inline">\(X = (x_{1}, \ldots,
+x_{n})^{\prime}\)</span>: <span class="math display">\[Var(X) =
+\frac{1}{n - 1}\sum_{i = 1}^{n}(x_{i} - \bar{x})^2  \ for \  \bar{x} =
+\frac{1}{n}\sum_{i = 1}^{n}x_{i}.\]</span></span></li>
+<li><span style="color:white">Evaluate your function on <span
+class="math inline">\(X = (1, 2, \ldots,
+10)^{\prime}\)</span>.</span></li>
+<li><span style="color:white">Try the R build-in function
+<code>var()</code>. Do you have the same result?</span></li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">variance =<span class="st"> </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb30-2" data-line-number="2">  <span class="co"># input x is a vector</span></a>
-<a class="sourceLine" id="cb30-3" data-line-number="3">  n =<span class="st"> </span><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb30-4" data-line-number="4">  v =<span class="st"> </span><span class="kw">sum</span>((x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x))<span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb30-5" data-line-number="5">  <span class="kw">return</span>(v)</a>
-<a class="sourceLine" id="cb30-6" data-line-number="6">}</a>
-<a class="sourceLine" id="cb30-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb30-8" data-line-number="8">x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb30-9" data-line-number="9"><span class="kw">variance</span>(x)</a></code></pre></div>
-<pre><code>## [1] 9.166667</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">var</span>(x) <span class="co"># var() is the built-in function for variance calculation in R</span></a></code></pre></div>
-<pre><code>## [1] 9.166667</code></pre>
 </section>
 <section id="very-basics" class="slide level2">
 <h2>Very basics</h2>
 <h3 id="getting-help-within-r">Getting help within R</h3>
-<p>If you want to know what a specific <code>command</code> is doing:</p>
+<p>If you want to know what a specific <code>command</code> is
+doing:</p>
 <pre><code>?command
 ??command
 help(command) 
@@ -310,20 +319,25 @@ help.search(command)</code></pre>
 <ul>
 <li>Some R packages have in-built datasets</li>
 <li>For this class, there is an R package available on github</li>
-<li>Installing/Updating <code>classdata</code> package (once every so often):</li>
+<li>Installing/Updating <code>classdata</code> package (once every so
+often):</li>
 </ul>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;heike/classdata&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;heike/classdata&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Make the data available (every time you start R):</li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">library</span>(classdata)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classdata)</span></code></pre></div>
 </section>
 <section id="your-turn-5-min-1" class="slide level2 white">
-<h2>Your Turn (5 min)</h2>
+<h2 class="white">Your Turn (5 min)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">Install the package <code>classdata</code> on your machine <br> <span style="color:white">Make the package active in your current R session:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">library</span>(classdata)</a></code></pre></div>
-<p><span style="color:white">Check the R help on the dataset <code>cities</code><br> <span style="color:white">What happens if you just type in the name of the dataset?</p>
+<p><span style="color:white">Install the package <code>classdata</code>
+on your machine <br> <span style="color:white">Make the package active
+in your current R session:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classdata)</span></code></pre></div>
+<p><span style="color:white">Check the R help on the dataset
+<code>cities</code><br> <span style="color:white">What happens if you
+just type in the name of the dataset?</p>
 </section>
 <section id="inspecting-objects" class="slide level2">
 <h2>Inspecting objects</h2>
@@ -335,14 +349,16 @@ help.search(command)</code></pre>
 <li><code>str(x)</code></li>
 <li><code>dim(x)</code></li>
 </ul>
-<p><font color="darkblue">Try these commands out for yourself on the <code>cities</code> data.</font></p>
+<p><font color="darkblue">Try these commands out for yourself on the
+<code>cities</code> data.</font></p>
 </section>
 <section id="the-cities-data" class="slide level2">
 <h2>The <code>cities</code> data</h2>
 <ul>
-<li><code>cities</code> is a data frame with columns (variables) and rows (records)</li>
+<li><code>cities</code> is a data frame with columns (variables) and
+rows (records)</li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">str</span>(cities)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(cities)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    1207 obs. of  14 variables:
 ##  $ City               : chr  &quot;Adel&quot; &quot;Albia&quot; &quot;Ames&quot; &quot;Amosa&quot; ...
 ##  $ Population         : int  4067 3699 52541 5646 36876 2464 32059 2611 12899 25571 ...
@@ -361,35 +377,44 @@ help.search(command)</code></pre>
 </section>
 <section id="extracting-parts-of-objects" class="slide level2">
 <h2>Extracting parts of objects</h2>
-<p>For object <code>x</code>, we can extract parts in the following manner:</p>
+<p>For object <code>x</code>, we can extract parts in the following
+manner:</p>
 <pre><code>x$variable
 x[, &quot;variable&quot;]
 x[rows, columns]
 x[1:5, 2:3]
 x[c(1,5,6), c(&quot;State&quot;,&quot;Year&quot;)]
 x$variable[rows]</code></pre>
-<p><code>rows</code> and <code>columns</code> are vectors of indices.</p>
+<p><code>rows</code> and <code>columns</code> are vectors of
+indices.</p>
 <p>For example, the codes in the same line give the same results:</p>
 <pre><code>cities$Population, cities[, &quot;Population&quot;], cities[, 2];
 cities$City[c(2 : 10)], cities[c(2 : 10), &quot;City&quot;], cities[c(2 : 10), 1]</code></pre>
-<p><font color="darkblue">Try these commands out for yourself on the <code>cities</code> data.</font></p>
+<p><font color="darkblue">Try these commands out for yourself on the
+<code>cities</code> data.</font></p>
 </section>
 <section id="statistical-summaries" class="slide level2">
 <h2>Statistical summaries</h2>
-<p>Elements of the five point summary: <br> <code>mean, median, min, max, quartiles</code><br></p>
+<p>Elements of the five point summary: <br>
+<code>mean, median, min, max, quartiles</code><br></p>
 <p>Other summary statistics:<br> <code>range, sd, var</code><br></p>
-<p>Summaries of dependence between two variables:<br> <code>cor, cov</code></p>
+<p>Summaries of dependence between two variables:<br>
+<code>cor, cov</code></p>
 </section>
 <section id="your-turn" class="slide level2 white">
-<h2>Your turn</h2>
+<h2 class="white">Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
-<li><span style="color:white">Print and take a look at the first 10 data records of the <code>cities</code> data</li>
-<li><span style="color:white">Compute mean and standard deviation for the number of burglaries. Why do you get NAs? (read <code>?NA</code>)</li>
-<li><span style="color:white">Advanced: Read <code>?mean</code> and <code>?sd</code>, and fix missing value problem</li>
+<li><span style="color:white">Print and take a look at the first 10 data
+records of the <code>cities</code> data</li>
+<li><span style="color:white">Compute mean and standard deviation for
+the number of burglaries. Why do you get NAs? (read
+<code>?NA</code>)</li>
+<li><span style="color:white">Advanced: Read <code>?mean</code> and
+<code>?sd</code>, and fix missing value problem</li>
 </ul>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">library</span>(classdata)</a>
-<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="kw">head</span>(cities, <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classdata)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cities, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##          City Population Violent.crime Murder Rape Robbery Aggravated.assault
 ## 1        Adel       4067             3      0    0       0                  3
 ## 2       Albia       3699             9      0    0       0                  9
@@ -412,20 +437,26 @@ cities$City[c(2 : 10)], cities[c(2 : 10), &quot;City&quot;], cities[c(2 : 10), 1
 ## 8              23        7            15                   1     0  iowa 2006
 ## 9             412      112           285                  15     3  iowa 2006
 ## 10           1226      296           881                  49    23  iowa 2006</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">mean</span>(cities<span class="op">$</span>Burglary)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(cities<span class="sc">$</span>Burglary)</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">sd</span>(cities<span class="op">$</span>Burglary)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(cities<span class="sc">$</span>Burglary)</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">mean</span>(cities<span class="op">$</span>Burglary, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(cities<span class="sc">$</span>Burglary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 112.6739</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">sd</span>(cities<span class="op">$</span>Burglary, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(cities<span class="sc">$</span>Burglary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 273.271</code></pre>
 </section>
-<section id="your-turn---practice-to-ask-questions" class="slide level2 white">
-<h2>Your turn - practice to ask questions</h2>
+<section id="your-turn---practice-to-ask-questions"
+class="slide level2 white">
+<h2 class="white">Your turn - practice to ask questions</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">Write down questions that you could answer with this data 4 minutes by yourself, then push your questions to the “yumouqiu/classexample” repository, and we’ll show those ideas in Github.</p>
-<p><span style="color:white">The types of crimes are defined on the UCR website, see <a href="http://www.ucrdatatool.gov/offenses.cfm" class="uri">http://www.ucrdatatool.gov/offenses.cfm</a></p>
+<p><span style="color:white">Write down questions that you could answer
+with this data 4 minutes by yourself, then push your questions to the
+“yumouqiu/classexample” repository, and we’ll show those ideas in
+Github.</p>
+<p><span style="color:white">The types of crimes are defined on the UCR
+website, see <a href="http://www.ucrdatatool.gov/offenses.cfm"
+class="uri">http://www.ucrdatatool.gov/offenses.cfm</a></p>
 </section>
 
   <!--
