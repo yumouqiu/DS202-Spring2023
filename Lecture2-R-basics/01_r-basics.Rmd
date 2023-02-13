@@ -344,6 +344,6 @@ sd(cities$Burglary, na.rm = TRUE)
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
 
-<span style="color:white">Write down questions that you could answer with this data 4 minutes by yourself, then push your questions to the "yumouqiu/classexample" repository, and we'll show those ideas in Github.
+<span style="color:white">Write down questions that you could answer with this data 4 minutes by yourself, then push your questions to the "yumouqiu/DS202-inclass-practice" repository, and we'll show those ideas in Github.
 
 <span style="color:white">The types of crimes are defined on the UCR website, see http://www.ucrdatatool.gov/offenses.cfm
