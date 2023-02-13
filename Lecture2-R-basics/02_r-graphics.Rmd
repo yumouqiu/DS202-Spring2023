@@ -92,7 +92,7 @@ The `ggplot` function has the basic syntax:
 `aes` allows us to specify mappings; scatterplots need a mapping for `x` and a mapping for `y`:
 
 ```{r}
-ggplot(data = fbiwide, aes(x = Burglary, y = Murder)) +
+ggplot(data = fbiwide, aes(x = burglary, y = homicide)) +
   geom_point()
 ```  
 
@@ -105,10 +105,10 @@ ggplot(data = fbiwide, aes(x = Burglary, y = Murder)) +
 - <span style="color:white">Draw a scatterplot of the log transformed number of burglaries by motor vehicle thefts.</span>
 
 ```{r, echo = FALSE, eval = FALSE}
-ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Murder))) +
+ggplot(data = fbiwide, aes(x = log(burglary), y = log(homicide))) +
   geom_point()
 
-ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Motor.vehicle.theft))) +
+ggplot(data = fbiwide, aes(x = log(burglary), y = log(motor_vehicle_theft))) +
   geom_point()
 ```  
 
@@ -127,8 +127,8 @@ ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Motor.vehicle.theft))) +
 Can map other variables to size, colour, shape, ....
 
 ```{r}
-ggplot(aes(x = log(Burglary), y = log(Motor.vehicle.theft),
-           colour=Year), data=fbiwide) + geom_point()
+ggplot(aes(x = log(burglary), y = log(motor_vehicle_theft),
+           colour=year), data=fbiwide) + geom_point()
 ```           
 
 ## Your turn {.white}
@@ -143,14 +143,14 @@ ggplot(aes(x = log(Burglary), y = log(Motor.vehicle.theft),
 <span style="color:white">**Stretch goal**: Draw a histogram of the state populations. </span>
 
 ```{r, echo = FALSE, eval = FALSE}
-ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Motor.vehicle.theft), colour = Year)) + geom_point()
+ggplot(data = fbiwide, aes(x = log(burglary), y = log(motor_vehicle_theft), colour = year)) + geom_point()
 
-ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Motor.vehicle.theft), colour = State)) + geom_point()
+ggplot(data = fbiwide, aes(x = log(burglary), y = log(motor_vehicle_theft), colour = state)) + geom_point()
 
-ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Motor.vehicle.theft), size = Population)) + geom_point() 
+ggplot(data = fbiwide, aes(x = log(burglary), y = log(motor_vehicle_theft), size = population)) + geom_point() 
 
-ggplot(data = fbiwide, aes(Population)) + geom_histogram()
-ggplot(data = fbiwide, aes(Population)) + geom_histogram() + facet_wrap(~ State)
+ggplot(data = fbiwide, aes(population)) + geom_histogram()
+ggplot(data = fbiwide, aes(population)) + geom_histogram() + facet_wrap(~ state)
 ```  
 
 
@@ -165,19 +165,19 @@ ggplot(data = fbiwide, aes(Population)) + geom_histogram() + facet_wrap(~ State)
 - <span style="color:white">We all know population is an important factor. How to compare different states by standardized population? </span>
 
 ```{r, echo = FALSE, eval = FALSE}
-fbiwide1 = fbiwide[fbiwide$Year %in% c(1961, 1971, 1981, 1991, 2001, 2011), ]
-ggplot(data = fbiwide1, aes(x = log(Burglary), y = log(Motor.vehicle.theft), size = Population)) +
-  geom_point() + facet_grid(. ~ Year)
+fbiwide1 = fbiwide[fbiwide$year %in% c(1961, 1971, 1981, 1991, 2001, 2011), ]
+ggplot(data = fbiwide1, aes(x = log(burglary), y = log(motor_vehicle_theft), size = population)) +
+  geom_point() + facet_grid(. ~ year)
 
-ggplot(data = fbiwide, aes(x = log(Burglary), y = log(Motor.vehicle.theft), colour = Year)) + 
-  geom_point() + facet_wrap(~ State)
+ggplot(data = fbiwide, aes(x = log(Burglary), y = log(motor_vehicle_theft), colour = year)) + 
+  geom_point() + facet_wrap(~ state)
 
 fbiwide2 = fbiwide[fbiwide$State %in% c("California", "Colorado", "Iowa", "Illinois", "District of Columbia", "New York"), ]
 fbiwide2$State_f = factor(fbiwide2$State, levels=c("California", "Colorado", "Iowa", "Illinois", "District of Columbia", "New York"))
-ggplot(data = fbiwide2, aes(x = log(Burglary), y = log(Motor.vehicle.theft), colour = Year)) + 
-  geom_point() + facet_grid(. ~ State_f)
-ggplot(data = fbiwide2, aes(x = log(Burglary), y = log(Motor.vehicle.theft), colour = Year, size = Population)) + 
-  geom_point() + facet_grid(. ~ State_f)
-ggplot(data = fbiwide2, aes(x = log(Burglary / Population), y = log(Motor.vehicle.theft / Population), colour = Year)) + 
-  geom_point() + facet_grid(. ~ State_f)
+ggplot(data = fbiwide2, aes(x = log(burglary), y = log(motor_vehicle_theft), colour = year)) + 
+  geom_point() + facet_grid(. ~ state_f)
+ggplot(data = fbiwide2, aes(x = log(burglary), y = log(motor_vehicle_theft), colour = year, size = population)) + 
+  geom_point() + facet_grid(. ~ state_f)
+ggplot(data = fbiwide2, aes(x = log(burglary / population), y = log(motor_vehicle_theft / population), colour = year)) + 
+  geom_point() + facet_grid(. ~ state_f)
 ```  
