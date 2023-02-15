@@ -64,8 +64,8 @@ a %in% c(1, 3)
 
 `filter` is a command of package `dplyr`
 
-`filter(data, ...)` finds subset of `data` where conditions specified by logical expression in `...` are true, e.g. `filter(fbi, Year == 2014)`
-`filter(fbi, Type == "Larceny.theft", State %in% c("Iowa", "Minnesota"))`
+`filter(data, ...)` finds subset of `data` where conditions specified by logical expression in `...` are true, e.g. `filter(fbi, year == 2014)`
+`filter(fbi, type == "larceny", State %in% c("Iowa", "Minnesota"))`
 
 multiple expressions are combined by a logical and `&`
 
@@ -88,18 +88,18 @@ library(tidyverse)
 library(classdata)
 
 crime.IA = dplyr::filter(fbiwide, State == "Iowa")
-ggplot(data = crime.IA, aes(x = Year, y = Legacy.rape)) + geom_point()
+ggplot(data = crime.IA, aes(x = year, y = rape_legacy)) + geom_point()
 
-crime.2009 = dplyr::filter(fbiwide, Year == 2009)
-ggplot(data = crime.2009, aes(x = State)) + geom_bar(aes(weight = Legacy.rape)) + coord_flip()
+crime.2009 = dplyr::filter(fbiwide, year == 2009)
+ggplot(data = crime.2009, aes(x = State)) + geom_bar(aes(weight = rape_legacy)) + coord_flip()
 
-fbi.2009 = dplyr::filter(fbi, Year == 2009)
-ggplot(data = fbi.2009, aes(x = Abb)) + geom_bar(aes(weight = Count, fill = Type)) + coord_flip()
+fbi.2009 = dplyr::filter(fbi, year == 2009)
+ggplot(data = fbi.2009, aes(x = Abb)) + geom_bar(aes(weight = count, fill = type)) + coord_flip()
 
-crime.last5 = dplyr::filter(fbiwide, Year %in% c(2010 : 2014))
-crime.last5$Murder.rate = crime.last5$Murder / crime.last5$Population*100000
-quantile(crime.last5$Murder.rate, 0.9)
-out = dplyr::filter(crime.last5, Murder.rate > quantile(crime.last5$Murder.rate, 0.9))
+crime.last5 = dplyr::filter(fbiwide, year %in% c(2010 : 2014))
+crime.last5$homicide.rate = crime.last5$homicide / crime.last5$population*100000
+quantile(crime.last5$homicide.rate, 0.9)
+out = dplyr::filter(crime.last5, homicide.rate > quantile(crime.last5$homicide.rate, 0.9))
 out[, c(1 : 3)]
 ```
 
@@ -128,7 +128,7 @@ data sets and their parts can be used as rhs of an assignment:
 library(classdata)
 
 # introduces new variable in the data set fbiwide
-fbiwide$murder.rate <- fbiwide$Murder/fbiwide$Population*100000
+fbiwide$homicide.rate <- fbiwide$homicide/fbiwide$population*100000
 
 names(fbiwide)
 ```

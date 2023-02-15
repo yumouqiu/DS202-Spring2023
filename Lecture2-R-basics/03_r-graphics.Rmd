@@ -35,8 +35,8 @@ Can facet to display plots for different subsets:
 `facet_wrap`, `facet_grid`
 
 ```{r, message=FALSE}
-ggplot(aes(x = Year, y = Murder), data=fbiwide) +
-  facet_wrap(~State, scale = "free_y") + 
+ggplot(aes(x = year, y = homicide), data=fbiwide) +
+  facet_wrap(~state, scale = "free_y") + 
   geom_point()
 ```
 
@@ -57,16 +57,16 @@ Use the `fbiwide` data from the package `classdata` for this your turn.
 - <span style="color:white">Another approach to fix the domination by CA, TX and NY: Read up on the parameters in `facet_wrap` to find a way to give each panel its own scale. Comment on the difference in the results.</font>
 
 ```{r, echo=FALSE, eval = FALSE}
-ggplot(aes(x = Year, y = Motor.vehicle.theft), data=fbiwide) +
-  facet_wrap(~State) +
+ggplot(aes(x = year, y = motor_vehicle_theft), data=fbiwide) +
+  facet_wrap(~state) +
   geom_point()
 
-ggplot(aes(x = Year, y = log(Motor.vehicle.theft)), data=fbiwide) +
-  facet_wrap(~State) +
+ggplot(aes(x = year, y = log(motor_vehicle_theft)), data=fbiwide) +
+  facet_wrap(~state) +
   geom_point()
 
-ggplot(aes(x = Year, y = Murder), data=fbiwide) +
-  facet_wrap(~State, scales = "free_y") +
+ggplot(aes(x = year, y = homicide), data=fbiwide) +
+  facet_wrap(~state, scales = "free_y") +
   geom_point()
 ```
 
@@ -80,7 +80,7 @@ ggplot(aes(x = Year, y = Murder), data=fbiwide) +
 ## Boxplots
 
 ```{r, echo=FALSE, warning=FALSE, fig.width = 8, fig.height = 5}
-ggplot(data = fbi, aes(x = Type, y = log10(Count))) + geom_boxplot() + coord_flip()
+ggplot(data = fbi, aes(x = type, y = log10(count))) + geom_boxplot() + coord_flip()
 ```
 
 ## Boxplot definition
@@ -96,7 +96,7 @@ ggplot(data = fbi, aes(x = Type, y = log10(Count))) + geom_boxplot() + coord_fli
 - `geom_boxplot` in ggplot2 needs `x` and `y` variable (`y` is measurement, `x` is categorical)
 
 ```{r, eval=FALSE}
-ggplot(data = fbi, aes(x = Type, y = log10(Count))) +
+ggplot(data = fbi, aes(x = type, y = log10(count))) +
   geom_boxplot() + 
   coord_flip()
 ```
@@ -108,17 +108,17 @@ ggplot(data = fbi, aes(x = Type, y = log10(Count))) +
 - <span style="color:white">Using ggplot2, draw side-by-side boxplots of the number of robberies by state. Use a log transformation on y and compare results.</font>
 - <span style="color:white">**Stretch goal:** Compare rates of robberies by state, i.e. adjust robberies by the state population. Then plot side-by-side boxplots. </font>
 
-```{r}
-fbi1 = fbi[fbi$Type == "Robbery", ]
-ggplot(data = fbi1, aes(x = State, y = Count)) +
+```{r, echo=FALSE, eval = FALSE}
+fbi1 = fbi[fbi$type == "Robbery", ]
+ggplot(data = fbi1, aes(x = state, y = count)) +
   geom_boxplot() + 
   coord_flip()
 
-ggplot(data = fbi1, aes(x = State, y = log(Count))) +
+ggplot(data = fbi1, aes(x = state, y = log(count))) +
   geom_boxplot() + 
   coord_flip()
 
-ggplot(data = fbi1, aes(x = State, y = Count / Population)) +
+ggplot(data = fbi1, aes(x = state, y = count / population)) +
   geom_boxplot() + 
   coord_flip()
 ```
@@ -139,7 +139,7 @@ ggplot(data = fbi1, aes(x = State, y = Count / Population)) +
 Histograms: 
 
 ```{r, fig.width=4, fig.height=3}
-ggplot(fbiwide, aes(x = Motor.vehicle.theft)) + 
+ggplot(fbiwide, aes(x = motor_vehicle_theft)) + 
   geom_histogram(binwidth=5000) +
   ggtitle("binwidth = 5000")
 ```
@@ -149,7 +149,7 @@ ggplot(fbiwide, aes(x = Motor.vehicle.theft)) +
 Histograms: 
 
 ```{r, fig.width=4, fig.height=3}
-ggplot(fbiwide, aes(x = Motor.vehicle.theft)) + 
+ggplot(fbiwide, aes(x = motor_vehicle_theft)) + 
   geom_histogram(binwidth=1000) +
   ggtitle("binwidth = 1000")
 ```
@@ -158,8 +158,8 @@ ggplot(fbiwide, aes(x = Motor.vehicle.theft)) +
 ## Barchart
 
 ```{r}
-ggplot(fbi, aes(x = Type)) + 
-  geom_bar(aes(weight= Count)) +
+ggplot(fbi, aes(x = type)) + 
+  geom_bar(aes(weight= count)) +
   coord_flip()
 ```
 
@@ -181,18 +181,18 @@ In a barchart, choose the order of the categories consciously (later)
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
-- <span style="color:white">Use the `fbi` data set to draw a barchart of the variable `Violent Crime`. Make the height of the bars dependent on the number of reports (use `weight`). Then facet by type (does the result match your expectation? good! get rid of facetting). Color bars by `Type`. </font>
+- <span style="color:white">Use the `fbi` data set to draw a barchart of the variable `Violent Crime`. Make the height of the bars dependent on the number of reports (use `weight`). Then facet by type (does the result match your expectation? good! get rid of facetting). Color bars by `type`. </font>
 - <span style="color:white">Use the `fbi` data set to draw a histogram of the number of reports. Facet by type, make sure to use individual scales for the panels. </font>
 
 ```{r, echo=FALSE, eval = FALSE}
-ggplot(aes(x = Violent.crime), data=fbi) +
-  #facet_wrap(~Type) +
-  geom_bar(aes(weight= Count, fill = Type)) +
-  #geom_bar(aes(weight= Count, fill = Type), colour = "black") +
+ggplot(aes(x = violent_crime), data=fbi) +
+  #facet_wrap(~type) +
+  geom_bar(aes(weight= count, fill = type)) +
+  #geom_bar(aes(weight= count, fill = type), colour = "black") +
   coord_flip()
 
-ggplot(aes(x = Count), data = fbi) + geom_histogram() +
-  facet_wrap(~Type, scales = "free")
+ggplot(aes(x = count), data = fbi) + geom_histogram() +
+  facet_wrap(~type, scales = "free")
 
 head(fbiwide)
 head(fbi)
@@ -205,7 +205,7 @@ for (i in 1 : 9){
 }
 
 CrimeNames = names(fbiwide)[6 : 14]
-fbi.self$Type = rep(CrimeNames, each = dim(fbiwide)[1])
+fbi.self$type = rep(CrimeNames, each = dim(fbiwide)[1])
 ```
 
 ## More on `ggplot2`
