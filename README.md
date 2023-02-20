@@ -27,3 +27,9 @@
 02/15 [Lecture 2-3-GGplot 1](Lecture2-R-basics\02_r-graphics.html)
 
 02/20 [Lecture 2-4-GGplot 2](Lecture2-R-basics\03_r-graphics.html)
+
+02/22 [Lecture 2-5-Logical](Lecture2-R-basics\04_logical.html)
+
+02/27 [Lecture 2-6-Factors](Lecture2-R-basics\05_factors.html)
+
+03/01 [Lecture 2-7-Practice for GGplot](Practice\practice02.html)

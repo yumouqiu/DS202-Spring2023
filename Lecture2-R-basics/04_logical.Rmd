@@ -91,7 +91,7 @@ crime.IA = dplyr::filter(fbiwide, State == "Iowa")
 ggplot(data = crime.IA, aes(x = year, y = rape_legacy)) + geom_point()
 
 crime.2009 = dplyr::filter(fbiwide, year == 2009)
-ggplot(data = crime.2009, aes(x = State)) + geom_bar(aes(weight = rape_legacy)) + coord_flip()
+ggplot(data = crime.2009, aes(x = state)) + geom_bar(aes(weight = rape_legacy)) + coord_flip()
 
 fbi.2009 = dplyr::filter(fbi, year == 2009)
 ggplot(data = fbi.2009, aes(x = Abb)) + geom_bar(aes(weight = count, fill = type)) + coord_flip()
