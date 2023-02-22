@@ -124,7 +124,7 @@ mis-interpretation</li>
 </section>
 <section id="logical-operations" class="slide level2">
 <h2>Logical Operations</h2>
-<p><img data-src="images/logical.png" /></p>
+<p><img src="images/logical.png" width=750 height=400></p>
 </section>
 <section id="your-turn" class="slide level2 white">
 <h2 class="white">Your turn</h2>
@@ -141,16 +141,6 @@ that is TRUE where <code>a</code> is: </span></p>
 <li><span style="color:white">even <br> Hint: have a look at the help
 for the operator <code>%%</code></span></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">15</span>, <span class="dv">3</span>,<span class="dv">20</span>, <span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>, <span class="dv">1</span>,<span class="dv">3</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;</span> <span class="dv">20</span></span></code></pre></div>
-<pre><code>##  [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(a<span class="sc">^</span><span class="dv">2</span> <span class="sc">&gt;=</span> <span class="dv">100</span>) <span class="sc">|</span> (a<span class="sc">^</span><span class="dv">2</span> <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>##  [1]  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(a <span class="sc">%%</span> <span class="dv">2</span>) <span class="sc">==</span> <span class="dv">0</span></span></code></pre></div>
-<pre><code>##  [1] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE</code></pre>
 </section>
 <section id="filter-dplyr" class="slide level2">
 <h2><code>filter {dplyr}</code></h2>
@@ -179,31 +169,29 @@ number of homicides for the last five years. Find the rate of homicides,
 extract all states that have a rate of greater than 90% of the rates
 across all states, and plot (Hint: <code>?quantile</code>).</span></li>
 </ul>
-<p><span style="color:white">Extra credit (1 point): submit your code
-(regardless of whether it works or not) in Canvas (yourturn-sept18).</p>
 </section>
 <section id="updating-elements-in-a-vector" class="slide level2">
 <h2>Updating elements in a vector</h2>
 <p>You can take a subset and update the original data:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## [1] 1 0 0 4</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">replace</span>(a, a <span class="sc">==</span> <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">replace</span>(a, a <span class="sc">==</span> <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1]  1 -1 -1  4</code></pre>
 <p>Very useful in combination with logical subsetting</p>
 </section>
 <section id="updating-elements-in-a-data-set" class="slide level2">
 <h2>Updating elements in a data set</h2>
 <p>data sets and their parts can be used as rhs of an assignment:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classdata)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># introduces new variable in the data set fbiwide</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>fbiwide<span class="sc">$</span>homicide.rate <span class="ot">&lt;-</span> fbiwide<span class="sc">$</span>homicide<span class="sc">/</span>fbiwide<span class="sc">$</span>population<span class="sc">*</span><span class="dv">100000</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(fbiwide)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classdata)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># introduces new variable in the data set fbiwide</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>fbiwide<span class="sc">$</span>homicide.rate <span class="ot">&lt;-</span> fbiwide<span class="sc">$</span>homicide<span class="sc">/</span>fbiwide<span class="sc">$</span>population<span class="sc">*</span><span class="dv">100000</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(fbiwide)</span></code></pre></div>
 <pre><code>##  [1] &quot;state&quot;               &quot;state_id&quot;            &quot;state_abbr&quot;         
 ##  [4] &quot;year&quot;                &quot;population&quot;          &quot;violent_crime&quot;      
 ##  [7] &quot;homicide&quot;            &quot;rape_legacy&quot;         &quot;rape_revised&quot;       

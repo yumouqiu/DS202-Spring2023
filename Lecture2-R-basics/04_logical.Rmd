@@ -28,7 +28,7 @@ output:
 
 ## Logical Operations
 
-![](images/logical.png)
+<img src="images/logical.png" width=750 height=400>
 
 ## Your turn {.white}
 
@@ -48,7 +48,7 @@ Find the expression for the logical vector that is TRUE where `a` is:
   Hint: have a look at the help for the operator `%%`</span>
   
   
-```{r}
+```{r, eval = FALSE, echo = FALSE}
 a = c(1,15, 3,20, 5,8,9,10, 1,3)
 
 a < 20
@@ -81,7 +81,6 @@ Caution! there is another function called `filter` in the `stats` package. Use `
 - <span style="color:white">Get a subset of all crimes in 2009. Plot the number or rate for one type of crime by state.</span>
 - <span style="color:white">Get a subset of the data that includes number of homicides for the last five years. Find the rate of homicides, extract all states that have a rate of greater than 90% of the rates across all states, and plot (Hint: `?quantile`).</span>
 
-<span style="color:white">Extra credit (1 point): submit your code (regardless of whether it works or not) in Canvas (yourturn-sept18).
 
 ```{r, eval = FALSE, echo = FALSE}
 library(tidyverse)
