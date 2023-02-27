@@ -27,19 +27,21 @@ output:
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
 - <span style="color:white">Inspect the `fbi` object. How many variables are there? Which type does each of the variables have?</span>
-- <span style="color:white">Make a summary of Year</span>
-- <span style="color:white">Make Year  a factor variable: `fbi$Year <- factor(fbi$Year)`</span>
-- <span style="color:white">Compare summary of Year to the previous result</span>
+- <span style="color:white">Make a summary of year</span>
+- <span style="color:white">Make year  a factor variable: `fbi$year <- factor(fbi$year)`</span>
+- <span style="color:white">Compare summary of year to the previous result</span>
 - <span style="color:white">Are there other variables that should be factors (or vice versa)? </span>
 
-```{r}
+```{r, eval = FALSE, echo = FALSE}
+library(classdata)
+
 dim(fbi)
 
-summary(fbi$Year)
+summary(fbi$year)
 
-fbi$Year.factor = factor(fbi$Year)
+fbi$year.factor = factor(fbi$year)
 
-summary(fbi$Year.factor)
+summary(fbi$year.factor)
 
 ```
 
@@ -53,18 +55,18 @@ library(classdata)
 ```
 
 ```{r}
-twoyear <- dplyr::filter(fbi, Year %in% c(1961, 2014))
+twoyear <- dplyr::filter(fbi, year %in% c(1981, 2020))
 ```
 
 <div class="double">
 <p class="double-flow">
 ```{r, fig.width=3, fig.height = 3, message = FALSE, warning = FALSE}
-ggplot(data = twoyear, aes(x = Year, y = Count)) + geom_boxplot()
+ggplot(data = twoyear, aes(x = year, y = count)) + geom_boxplot()
 ```
 </p>
 <p class="double-flow">
 ```{r, fig.width=3, fig.height = 3, message = FALSE, warning = FALSE}
-ggplot(data = twoyear, aes(x = factor(Year), y = Count)) + geom_boxplot()
+ggplot(data = twoyear, aes(x = factor(year), y = count)) + geom_boxplot()
 ```
 </p>
 
@@ -97,25 +99,32 @@ To get the labels of a factor as numbers, first cast to character and then to a 
 ## Reordering factor levels - manual
 
 ```{r}
-levels(fbi$Type)
+levels(fbi$type)
 ```
 
 
 ```{r, echo = FALSE, eval = FALSE}
-fbi$Type = factor(fbi$Type)
-levels(fbi$Type)
+fbi$type = factor(fbi$type)
+levels(fbi$type)
 ```
 
 manually (extremely sensitive to typos):
 
 ```{r}
-levels(factor(fbi$Type, levels=c("Larceny.theft", "Burglary", "Motor.vehicle.theft", "Aggravated.assault", "Robbery", "Legacy.rape", "Murder.and.nonnegligent.Manslaughter", "Rape")))
+levels(factor(fbi$type, 
+              levels=c("larceny", "burglary", 
+                     "motor_vehicle_theft", "aggravated_assault", 
+                     "robbery", "arson", "rape_legacy", "rape_revised", "homicide")
+              )
+       )
 ```
 
 ## What will happen if there are typos?
 
 ```{r}
-temp = factor(fbi$Type, levels=c("Larceny.theft", "Burglary", "Motor.vehicle.theft", "Aggravated.assault", "Robbery", "Legacy.rape", "murder.and.nonnegligent.Manslaughter", "Rape"))
+temp = factor(fbi$type, levels=c("Larceny", "burglary", 
+                     "motor_vehicle_theft", "aggravated_assault", 
+                     "robbery", "arson", "rape_legacy", "rape_revised", "homicide"))
 levels(temp)
 unique(temp)
 ```
@@ -127,7 +136,7 @@ unique(temp)
 reorder levels in factor by values in `numbers`. Use `function` to summarise (average is used by default). 
 
 ```{r}
-levels(reorder(fbi$Type, fbi$Count, na.rm=TRUE))
+levels(reorder(fbi$type, fbi$count, na.rm=TRUE))
 ```
 
 missing values in `numbers`? make sure to use parameter `na.rm=TRUE`!
@@ -149,20 +158,20 @@ For one type of crime (`subset` or `filter`) plot boxplots of rates by state, re
 
 ```{r, echo = FALSE, eval = FALSE}
 library(ggplot2)
-fbi$Crime.rate = fbi$Count / fbi$Population * 70000
-ggplot(data = fbi, aes(x = Type, y = Crime.rate)) + geom_boxplot() + coord_flip()
+fbi$Crime.rate = fbi$count / fbi$population * 70000
+ggplot(data = fbi, aes(x = type, y = Crime.rate)) + geom_boxplot() + coord_flip()
 
 fbi1 = fbi
-fbi1$Type = factor(fbi1$Type)
-levels(fbi1$Type)
-levels(fbi1$Type)[c(1, 5, 6)] = c("Assault", "MV.theft", "Murder")
-ggplot(data = fbi1, aes(x = Type, y = Crime.rate)) + geom_boxplot() + coord_flip()
+fbi1$type = factor(fbi1$type)
+levels(fbi1$type)
+levels(fbi1$type)[c(1, 5, 6)] = c("Assault", "MV.theft", "Murder")
+ggplot(data = fbi1, aes(x = type, y = Crime.rate)) + geom_boxplot() + coord_flip()
 
 fbi2 = fbi1
-fbi2$Type = factor(fbi2$Type, levels = levels(reorder(fbi1$Type, fbi1$Crime.rate, median, na.rm=TRUE)))
-ggplot(data = fbi2, aes(x = Type, y = Crime.rate)) + geom_boxplot() + coord_flip()
+fbi2$type = factor(fbi2$type, levels = levels(reorder(fbi1$type, fbi1$Crime.rate, median, na.rm=TRUE)))
+ggplot(data = fbi2, aes(x = type, y = Crime.rate)) + geom_boxplot() + coord_flip()
 
-fbi3 = dplyr::filter(fbi, Type == "Burglary")
+fbi3 = dplyr::filter(fbi, type == "Burglary")
 mode(fbi3$State)
 fbi3$State = factor(fbi3$State)
 fbi3$State = factor(fbi3$State, levels = levels(reorder(fbi3$State, fbi3$Crime.rate, median, na.rm=TRUE)))
@@ -172,14 +181,14 @@ ggplot(data = fbi3, aes(x = State, y = Crime.rate)) + geom_boxplot() + coord_fli
 ## Changing Levels' names
 
 ```{r}
-fbi$Type = factor(fbi$Type)
-levels(fbi$Type)
+fbi$type = factor(fbi$type)
+levels(fbi$type)
 ```
 
 ```{r}
-levels(fbi$Type)[6] = "Murder"
+levels(fbi$type)[6] = "Murder"
 
-levels(fbi$Type)
+levels(fbi$type)
 ```
 
 

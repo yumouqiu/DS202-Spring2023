@@ -15,44 +15,73 @@
   
   
     <style type="text/css">
-   div.sourceCode { overflow-x: auto; }
-   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-     margin: 0; padding: 0; vertical-align: baseline; border: none; }
-   table.sourceCode { width: 100%; line-height: 100%; }
-   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-   td.sourceCode { padding-left: 5px; }
-   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-   code > span.dt { color: #902000; } /* DataType */
-   code > span.dv { color: #40a070; } /* DecVal */
-   code > span.bn { color: #40a070; } /* BaseN */
-   code > span.fl { color: #40a070; } /* Float */
-   code > span.ch { color: #4070a0; } /* Char */
-   code > span.st { color: #4070a0; } /* String */
-   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-   code > span.ot { color: #007020; } /* Other */
-   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-   code > span.fu { color: #06287e; } /* Function */
-   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-   code > span.cn { color: #880000; } /* Constant */
-   code > span.sc { color: #4070a0; } /* SpecialChar */
-   code > span.vs { color: #4070a0; } /* VerbatimString */
-   code > span.ss { color: #bb6688; } /* SpecialString */
-   code > span.im { } /* Import */
-   code > span.va { color: #19177c; } /* Variable */
-   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-   code > span.op { color: #666666; } /* Operator */
-   code > span.bu { } /* BuiltIn */
-   code > span.ex { } /* Extension */
-   code > span.pp { color: #bc7a00; } /* Preprocessor */
-   code > span.at { color: #7d9029; } /* Attribute */
-   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
+   .sourceCode { overflow: visible; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+   }
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {   }
+   @media screen {
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   
   
+      <script src="05_factors_files/header-attrs-2.19/header-attrs.js"></script>
   
 </head>
 
@@ -65,139 +94,176 @@
 
   
   
-<section id="factor-variables" class="titleslide slide level1"><h2 class="shout">Factor variables</h2></section><section id="factors" class="slide level2">
+<section>
+<section id="factor-variables" class="title-slide slide level1">
+<h2>Factor variables</h2>
+
+</section>
+<section id="factors" class="slide level2">
 <h2>Factors</h2>
 <ul>
 <li>A special type of variable to indicate categories</li>
 <li>both <em>labels</em> and their <em>order</em> (i.e. numbers)</li>
 <li>By default text variables are stored in factors during input</li>
-<li>numeric categorical variables have to be converted to factors manually</li>
+<li>numeric categorical variables have to be converted to factors
+manually</li>
 <li><code>factor</code> creates a new factor with specified labels</li>
 </ul>
-</section><section id="your-turn" class="slide level2 white">
-<h2>Your Turn</h2>
+</section>
+<section id="your-turn" class="slide level2 white">
+<h2 class="white">Your Turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
-<li><span style="color:white">Inspect the <code>fbi</code> object. How many variables are there? Which type does each of the variables have?</span></li>
-<li><span style="color:white">Make a summary of Year</span></li>
-<li><span style="color:white">Make Year a factor variable: <code>fbi$Year &lt;- factor(fbi$Year)</code></span></li>
-<li><span style="color:white">Compare summary of Year to the previous result</span></li>
-<li><span style="color:white">Are there other variables that should be factors (or vice versa)? </span></li>
+<li><span style="color:white">Inspect the <code>fbi</code> object. How
+many variables are there? Which type does each of the variables
+have?</span></li>
+<li><span style="color:white">Make a summary of year</span></li>
+<li><span style="color:white">Make year a factor variable:
+<code>fbi$year &lt;- factor(fbi$year)</code></span></li>
+<li><span style="color:white">Compare summary of year to the previous
+result</span></li>
+<li><span style="color:white">Are there other variables that should be
+factors (or vice versa)? </span></li>
 </ul>
-</section><section id="note-factors-in-boxplots" class="slide level2">
+</section>
+<section id="note-factors-in-boxplots" class="slide level2">
 <h2>Note: factors in boxplots</h2>
-<p>boxplots in ggplot2 only work properly if the x variable is a character variable or a factor:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">twoyear &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(fbi, Year <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1961</span>, <span class="dv">2014</span>))</code></pre></div>
+<p>boxplots in ggplot2 only work properly if the x variable is a
+character variable or a factor:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>twoyear <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(fbi, year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1981</span>, <span class="dv">2020</span>))</span></code></pre></div>
 <div class="double">
 <p class="double-flow">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> twoyear, <span class="kw">aes</span>(<span class="dt">x =</span> Year, <span class="dt">y =</span> Count)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<img src="05_factors_files/figure-revealjs/unnamed-chunk-3-1.png" width="288" />
-</p>
-<p class="double-flow">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> twoyear, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Year), <span class="dt">y =</span> Count)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> twoyear, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> count)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <img src="05_factors_files/figure-revealjs/unnamed-chunk-4-1.png" width="288" />
 </p>
+<p class="double-flow">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> twoyear, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(year), <span class="at">y =</span> count)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<img src="05_factors_files/figure-revealjs/unnamed-chunk-5-1.png" width="288" />
+</p>
 </div>
-</section><section id="data-types-checking-and-casting" class="slide level2">
+</section>
+<section id="data-types-checking-and-casting" class="slide level2">
 <h2>Data types: checking and casting</h2>
 <p>Checking for, and casting between types:</p>
 <ul>
 <li><code>str</code>, <code>mode</code> provide info on type</li>
-<li><code>is.XXX</code> (with XXX either <code>factor, int, numeric, logical, character, ...</code> ) checks for specific type</li>
+<li><code>is.XXX</code> (with XXX either
+<code>factor, int, numeric, logical, character, ...</code> ) checks for
+specific type</li>
 <li><code>as.XXX</code> casts to specific type</li>
 </ul>
-</section><section id="casting-between-types" class="slide level2">
+</section>
+<section id="casting-between-types" class="slide level2">
 <h2>Casting between types</h2>
-<p><img src="images/casting.png" /> <strong>Note:</strong> <code>as.numeric</code> applied to a factor retrieves <em>order</em> of labels, not labels, even if those could be interpreted as numbers.</p>
-<p>To get the labels of a factor as numbers, first cast to character and then to a number.</p>
-</section><section id="levels-of-factor-variables" class="slide level2">
+<p><img data-src="images/casting.png" /> <strong>Note:</strong>
+<code>as.numeric</code> applied to a factor retrieves <em>order</em> of
+labels, not labels, even if those could be interpreted as numbers.</p>
+<p>To get the labels of a factor as numbers, first cast to character and
+then to a number.</p>
+</section>
+<section id="levels-of-factor-variables" class="slide level2">
 <h2>Levels of factor variables</h2>
 <ul>
-<li><code>levels(x)</code> shows us the levels of factor variable <code>x</code> in their current order</li>
-<li>factor variables often have to be re-ordered for ease of comparisons</li>
-<li>We can specify the order of the levels by explicitly listing them, see <code>help(factor)</code></li>
-<li>We can make the order of the levels in one variable dependent on the summary statistic of another variable</li>
+<li><code>levels(x)</code> shows us the levels of factor variable
+<code>x</code> in their current order</li>
+<li>factor variables often have to be re-ordered for ease of
+comparisons</li>
+<li>We can specify the order of the levels by explicitly listing them,
+see <code>help(factor)</code></li>
+<li>We can make the order of the levels in one variable dependent on the
+summary statistic of another variable</li>
 </ul>
-</section><section id="reordering-factor-levels---manual" class="slide level2">
+</section>
+<section id="reordering-factor-levels---manual" class="slide level2">
 <h2>Reordering factor levels - manual</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(fbi<span class="op">$</span>Type)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(fbi<span class="sc">$</span>type)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
 <p>manually (extremely sensitive to typos):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(<span class="kw">factor</span>(fbi<span class="op">$</span>Type, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Larceny.theft&quot;</span>, <span class="st">&quot;Burglary&quot;</span>, <span class="st">&quot;Motor.vehicle.theft&quot;</span>, <span class="st">&quot;Aggravated.assault&quot;</span>, <span class="st">&quot;Robbery&quot;</span>, <span class="st">&quot;Legacy.rape&quot;</span>, <span class="st">&quot;Murder.and.nonnegligent.Manslaughter&quot;</span>, <span class="st">&quot;Rape&quot;</span>)))</code></pre></div>
-<pre><code>## [1] &quot;Larceny.theft&quot;                       
-## [2] &quot;Burglary&quot;                            
-## [3] &quot;Motor.vehicle.theft&quot;                 
-## [4] &quot;Aggravated.assault&quot;                  
-## [5] &quot;Robbery&quot;                             
-## [6] &quot;Legacy.rape&quot;                         
-## [7] &quot;Murder.and.nonnegligent.Manslaughter&quot;
-## [8] &quot;Rape&quot;</code></pre>
-</section><section id="what-will-happen-if-there-are-typos" class="slide level2">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(<span class="fu">factor</span>(fbi<span class="sc">$</span>type, </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;larceny&quot;</span>, <span class="st">&quot;burglary&quot;</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;motor_vehicle_theft&quot;</span>, <span class="st">&quot;aggravated_assault&quot;</span>, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;robbery&quot;</span>, <span class="st">&quot;arson&quot;</span>, <span class="st">&quot;rape_legacy&quot;</span>, <span class="st">&quot;rape_revised&quot;</span>, <span class="st">&quot;homicide&quot;</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>       )</span></code></pre></div>
+<pre><code>## [1] &quot;larceny&quot;             &quot;burglary&quot;            &quot;motor_vehicle_theft&quot;
+## [4] &quot;aggravated_assault&quot;  &quot;robbery&quot;             &quot;arson&quot;              
+## [7] &quot;rape_legacy&quot;         &quot;rape_revised&quot;        &quot;homicide&quot;</code></pre>
+</section>
+<section id="what-will-happen-if-there-are-typos" class="slide level2">
 <h2>What will happen if there are typos?</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp =<span class="st"> </span><span class="kw">factor</span>(fbi<span class="op">$</span>Type, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Larceny.theft&quot;</span>, <span class="st">&quot;Burglary&quot;</span>, <span class="st">&quot;Motor.vehicle.theft&quot;</span>, <span class="st">&quot;Aggravated.assault&quot;</span>, <span class="st">&quot;Robbery&quot;</span>, <span class="st">&quot;Legacy.rape&quot;</span>, <span class="st">&quot;murder.and.nonnegligent.Manslaughter&quot;</span>, <span class="st">&quot;Rape&quot;</span>))
-<span class="kw">levels</span>(temp)</code></pre></div>
-<pre><code>## [1] &quot;Larceny.theft&quot;                       
-## [2] &quot;Burglary&quot;                            
-## [3] &quot;Motor.vehicle.theft&quot;                 
-## [4] &quot;Aggravated.assault&quot;                  
-## [5] &quot;Robbery&quot;                             
-## [6] &quot;Legacy.rape&quot;                         
-## [7] &quot;murder.and.nonnegligent.Manslaughter&quot;
-## [8] &quot;Rape&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unique</span>(temp)</code></pre></div>
-<pre><code>## [1] &lt;NA&gt;                Legacy.rape         Rape               
-## [4] Robbery             Aggravated.assault  Burglary           
-## [7] Larceny.theft       Motor.vehicle.theft
-## 8 Levels: Larceny.theft Burglary ... Rape</code></pre>
-</section><section id="reordering-factor-levels---using-another-variable" class="slide level2">
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">=</span> <span class="fu">factor</span>(fbi<span class="sc">$</span>type, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;Larceny&quot;</span>, <span class="st">&quot;burglary&quot;</span>, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;motor_vehicle_theft&quot;</span>, <span class="st">&quot;aggravated_assault&quot;</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;robbery&quot;</span>, <span class="st">&quot;arson&quot;</span>, <span class="st">&quot;rape_legacy&quot;</span>, <span class="st">&quot;rape_revised&quot;</span>, <span class="st">&quot;homicide&quot;</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(temp)</span></code></pre></div>
+<pre><code>## [1] &quot;Larceny&quot;             &quot;burglary&quot;            &quot;motor_vehicle_theft&quot;
+## [4] &quot;aggravated_assault&quot;  &quot;robbery&quot;             &quot;arson&quot;              
+## [7] &quot;rape_legacy&quot;         &quot;rape_revised&quot;        &quot;homicide&quot;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(temp)</span></code></pre></div>
+<pre><code>## [1] homicide            rape_legacy         rape_revised       
+## [4] robbery             aggravated_assault  burglary           
+## [7] &lt;NA&gt;                motor_vehicle_theft arson              
+## 9 Levels: Larceny burglary motor_vehicle_theft aggravated_assault ... homicide</code></pre>
+</section>
+<section id="reordering-factor-levels---using-another-variable"
+class="slide level2">
 <h2>Reordering factor levels - using another variable</h2>
 <p><code>reorder(factor, numbers, function)</code></p>
-<p>reorder levels in factor by values in <code>numbers</code>. Use <code>function</code> to summarise (average is used by default).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(<span class="kw">reorder</span>(fbi<span class="op">$</span>Type, fbi<span class="op">$</span>Count, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))</code></pre></div>
-<pre><code>## [1] &quot;Murder.and.nonnegligent.Manslaughter&quot;
-## [2] &quot;Legacy.rape&quot;                         
-## [3] &quot;Rape&quot;                                
-## [4] &quot;Robbery&quot;                             
-## [5] &quot;Aggravated.assault&quot;                  
-## [6] &quot;Motor.vehicle.theft&quot;                 
-## [7] &quot;Burglary&quot;                            
-## [8] &quot;Larceny.theft&quot;</code></pre>
-<p>missing values in <code>numbers</code>? make sure to use parameter <code>na.rm=TRUE</code>!</p>
-</section><section id="your-turn-1" class="slide level2 white">
-<h2>Your turn</h2>
+<p>reorder levels in factor by values in <code>numbers</code>. Use
+<code>function</code> to summarise (average is used by default).</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(<span class="fu">reorder</span>(fbi<span class="sc">$</span>type, fbi<span class="sc">$</span>count, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;homicide&quot;            &quot;arson&quot;               &quot;rape_legacy&quot;        
+## [4] &quot;rape_revised&quot;        &quot;robbery&quot;             &quot;aggravated_assault&quot; 
+## [7] &quot;motor_vehicle_theft&quot; &quot;burglary&quot;            &quot;larceny&quot;</code></pre>
+<p>missing values in <code>numbers</code>? make sure to use parameter
+<code>na.rm=TRUE</code>!</p>
+</section>
+<section id="your-turn-1" class="slide level2 white">
+<h2 class="white">Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">For this your turn use the <code>fbi</code> object from the <code>classdata</code> package. </span></p>
+<p><span style="color:white">For this your turn use the <code>fbi</code>
+object from the <code>classdata</code> package. </span></p>
 <ul>
-<li><span style="color:white">Introduce a rate of the number of reported offenses by population into the <code>fbi</code> data. You could use the <em>Ames standard</em> to make values comparable to a city of the size of Ames (population ~70,000).</span></li>
-<li><span style="color:white"> Plot boxplots of crime rates by different types of crime. How can you make axis text legible? </span></li>
-<li><span style="color:white"> Reorder the boxplots of crime rates, such that the boxplots are ordered by their medians. </span></li>
-<li><span style="color:white"> For one type of crime (<code>subset</code> or <code>filter</code>) plot boxplots of rates by state, reorder boxplots by median crime rates</span></li>
+<li><span style="color:white">Introduce a rate of the number of reported
+offenses by population into the <code>fbi</code> data. You could use the
+<em>Ames standard</em> to make values comparable to a city of the size
+of Ames (population ~70,000).</span></li>
+<li><span style="color:white"> Plot boxplots of crime rates by different
+types of crime. How can you make axis text legible? </span></li>
+<li><span style="color:white"> Reorder the boxplots of crime rates, such
+that the boxplots are ordered by their medians. </span></li>
+<li><span style="color:white"> For one type of crime
+(<code>subset</code> or <code>filter</code>) plot boxplots of rates by
+state, reorder boxplots by median crime rates</span></li>
 </ul>
-</section><section id="changing-levels-names" class="slide level2">
+</section>
+<section id="changing-levels-names" class="slide level2">
 <h2>Changing Levels’ names</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fbi<span class="op">$</span>Type =<span class="st"> </span><span class="kw">factor</span>(fbi<span class="op">$</span>Type)
-<span class="kw">levels</span>(fbi<span class="op">$</span>Type)</code></pre></div>
-<pre><code>## [1] &quot;Aggravated.assault&quot;                  
-## [2] &quot;Burglary&quot;                            
-## [3] &quot;Larceny.theft&quot;                       
-## [4] &quot;Legacy.rape&quot;                         
-## [5] &quot;Motor.vehicle.theft&quot;                 
-## [6] &quot;Murder.and.nonnegligent.Manslaughter&quot;
-## [7] &quot;Rape&quot;                                
-## [8] &quot;Robbery&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(fbi<span class="op">$</span>Type)[<span class="dv">6</span>] =<span class="st"> &quot;Murder&quot;</span>
-
-<span class="kw">levels</span>(fbi<span class="op">$</span>Type)</code></pre></div>
-<pre><code>## [1] &quot;Aggravated.assault&quot;  &quot;Burglary&quot;            &quot;Larceny.theft&quot;      
-## [4] &quot;Legacy.rape&quot;         &quot;Motor.vehicle.theft&quot; &quot;Murder&quot;             
-## [7] &quot;Rape&quot;                &quot;Robbery&quot;</code></pre>
-</section><section id="read-more-on-factors" class="slide level2">
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fbi<span class="sc">$</span>type <span class="ot">=</span> <span class="fu">factor</span>(fbi<span class="sc">$</span>type)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(fbi<span class="sc">$</span>type)</span></code></pre></div>
+<pre><code>## [1] &quot;aggravated_assault&quot;  &quot;arson&quot;               &quot;burglary&quot;           
+## [4] &quot;homicide&quot;            &quot;larceny&quot;             &quot;motor_vehicle_theft&quot;
+## [7] &quot;rape_legacy&quot;         &quot;rape_revised&quot;        &quot;robbery&quot;</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(fbi<span class="sc">$</span>type)[<span class="dv">6</span>] <span class="ot">=</span> <span class="st">&quot;Murder&quot;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(fbi<span class="sc">$</span>type)</span></code></pre></div>
+<pre><code>## [1] &quot;aggravated_assault&quot; &quot;arson&quot;              &quot;burglary&quot;          
+## [4] &quot;homicide&quot;           &quot;larceny&quot;            &quot;Murder&quot;            
+## [7] &quot;rape_legacy&quot;        &quot;rape_revised&quot;       &quot;robbery&quot;</code></pre>
+</section>
+<section id="read-more-on-factors" class="slide level2">
 <h2>Read more on factors</h2>
 <ul>
-<li>Wickham &amp; Grolemund’s <a href="http://r4ds.had.co.nz/factors.html">chapter on factors</a> in <em>R for Data Science</em></li>
-<li>Roger Peng: <a href="http://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/%22"><em>stringsAsFactors: An unauthorized biography</em></a></li>
-<li>Thomas Lumley: <a href="http://notstatschat.tumblr.com/post/124987394001/stringsasfactors-sigh"><em>stringsAsFactors = &lt;sigh&gt;</em></a></li>
-<li>The <code>forcats</code> package has a lot of additional functions that make working with factors easier.</li>
+<li>Wickham &amp; Grolemund’s
+<a href="http://r4ds.had.co.nz/factors.html">chapter on factors</a> in
+<em>R for Data Science</em></li>
+<li>Roger Peng: <a
+href="http://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/%22"><em>stringsAsFactors:
+An unauthorized biography</em></a></li>
+<li>Thomas Lumley:
+<a href="http://notstatschat.tumblr.com/post/124987394001/stringsasfactors-sigh"><em>stringsAsFactors
+= &lt;sigh&gt;</em></a></li>
+<li>The <code>forcats</code> package has a lot of additional functions
+that make working with factors easier.</li>
 </ul>
 </section>
 
