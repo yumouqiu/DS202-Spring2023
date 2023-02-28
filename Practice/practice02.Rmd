@@ -92,7 +92,7 @@ Upload your answers to the repository. Discuss and refine answers as a team.
 
 ## Your own question? 
 
-1. Discuss a question you want to investigate.
+1. Discuss a question (**one for each group member**) you want to investigate.
 2. Answer this question by graphs.
 3. Conclusions.
 
@@ -105,6 +105,6 @@ In Canvas, submit an RMarkdown file with:
   a. the names of all team members that worked on the document;
   b. a link to the github repo you were working in;
   c. code and answers to all of the questions;
-  d. the question you want to investigate with its answers and conclusions;
+  d. the questions you want to investigate with their answers and conclusions (**one question for each group member**);
   e. one paragraph commenting on the workflow;
   f. a html or pdf file of the final output.

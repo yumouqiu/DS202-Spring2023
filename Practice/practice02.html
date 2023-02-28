@@ -15,26 +15,28 @@
   
   
     <style type="text/css">
-   a.sourceLine { display: inline-block; line-height: 1.25; }
-   a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-   a.sourceLine:empty { height: 1.2em; }
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
    .sourceCode { overflow: visible; }
-   code.sourceCode { white-space: pre; position: relative; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
    div.sourceCode { margin: 1em 0; }
    pre.sourceCode { margin: 0; }
    @media screen {
    div.sourceCode { overflow: auto; }
    }
    @media print {
-   code.sourceCode { white-space: pre-wrap; }
-   a.sourceLine { text-indent: -1em; padding-left: 1em; }
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
    }
-   pre.numberSource a.sourceLine
-     { position: relative; left: -4em; }
-   pre.numberSource a.sourceLine::before
-     { content: attr(data-line-number);
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-       border: none; pointer-events: all; display: inline-block;
+       border: none; display: inline-block;
        -webkit-touch-callout: none; -webkit-user-select: none;
        -khtml-user-select: none; -moz-user-select: none;
        -ms-user-select: none; user-select: none;
@@ -43,9 +45,9 @@
      }
    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
    div.sourceCode
-     {  }
+     {   }
    @media screen {
-   a.sourceLine::before { text-decoration: underline; }
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
    }
    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -79,6 +81,7 @@
   </style>
   
   
+      <script src="practice02_files/header-attrs-2.19/header-attrs.js"></script>
   
 </head>
 
@@ -92,7 +95,7 @@
   
   
 <section id="section" class="slide level2 white">
-<h2></h2>
+<h2 class="white"></h2>
 <p><img src="images/choco.jpeg" class="cover" height=1500></p>
 <p class="white" style="font-size:100px" align="center">
 In-class practice #2<br> chocolate tasting
@@ -102,9 +105,11 @@ In-class practice #2<br> chocolate tasting
 <h2>Outline</h2>
 <ul>
 <li>Find your team members</li>
-<li>Create a repository (one per team) &amp; give access to everybody</li>
+<li>Create a repository (one per team) &amp; give access to
+everybody</li>
 <li>Do a data exploration (on chocolate ratings )</li>
-<li>Create an R markdown file that contains all code to read the data and create the plots</li>
+<li>Create an R markdown file that contains all code to read the data
+and create the plots</li>
 </ul>
 </section>
 <section id="github-repository" class="slide level2">
@@ -112,12 +117,17 @@ In-class practice #2<br> chocolate tasting
 <ol type="1">
 <li>Log into github</li>
 <li>Pick one team member to create a repository called ‘lab2’</li>
-<li>Go into the settings of the repository and add your team members as collaborators</li>
+<li>Go into the settings of the repository and add your team members as
+collaborators</li>
 </ol>
 </section>
 <section id="background" class="slide level2">
 <h2>Background</h2>
-<p>Brady Brelinski, Founding Member of the Manhattan Chocolate Society, obviously likes chocolate. He has assembled a database of ratings for plain dark chocolate bars: <a href="http://flavorsofcacao.com/chocolate_database.html">Flavors of chocolate</a></p>
+<p>Brady Brelinski, Founding Member of the Manhattan Chocolate Society,
+obviously likes chocolate. He has assembled a database of ratings for
+plain dark chocolate bars: <a
+href="http://flavorsofcacao.com/chocolate_database.html">Flavors of
+chocolate</a></p>
 <p>By now, over 1800 different chocolate bars have been rated.</p>
 </section>
 <section id="meaning-of-ratings" class="slide level2">
@@ -126,17 +136,22 @@ In-class practice #2<br> chocolate tasting
 <ul>
 <li>5= Elite (Transcending beyond the ordinary limits)</li>
 <li>4= Premium (Superior flavor development, character and style)</li>
-<li>3= Satisfactory(3.0) to praiseworthy(3.75) (well made with special qualities)</li>
-<li>2= Disappointing (Passable but contains at least one significant flaw)</li>
+<li>3= Satisfactory(3.0) to praiseworthy(3.75) (well made with special
+qualities)</li>
+<li>2= Disappointing (Passable but contains at least one significant
+flaw)</li>
 <li>1= Unpleasant (mostly unpalatable)</li>
 </ul>
 </section>
 <section id="reading-the-data" class="slide level2">
 <h2>Reading the data</h2>
-<p>The file <code>choco.csv</code> at <a href="https://ds202-at-isu.github.io/labs/data/choco.csv" class="uri">https://ds202-at-isu.github.io/labs/data/choco.csv</a> is a web scraping from the chocolate flavor data base.</p>
+<p>The file <code>choco.csv</code> at <a
+href="https://ds202-at-isu.github.io/labs/data/choco.csv"
+class="uri">https://ds202-at-isu.github.io/labs/data/choco.csv</a> is a
+web scraping from the chocolate flavor data base.</p>
 <p>You can load the data into your session using the command below:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">choco &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://ds202-at-isu.github.io/labs/data/choco.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">head</span>(choco)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>choco <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://ds202-at-isu.github.io/labs/data/choco.csv&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(choco)</span></code></pre></div>
 <pre><code>##    Company Specific.Bean.Origin  REF Review.Date Cocoa.Pct Company.Location
 ## 1 A. Morin          Agua Grande 1876        2016        63           France
 ## 2 A. Morin                Kpime 1676        2015        70           France
@@ -157,29 +172,37 @@ In-class practice #2<br> chocolate tasting
 </section>
 <section id="question-set-i" class="slide level2">
 <h2>Question set I</h2>
-<p>Answer each of the following questions using R code to get an answer. When asked for a plot, use the <code>ggplot2</code> package.</p>
+<p>Answer each of the following questions using R code to get an answer.
+When asked for a plot, use the <code>ggplot2</code> package.</p>
 <ol type="1">
 <li>What is the overall number of chocolate bars rated?</li>
-<li>How does the number of ratings depend on the year? Draw a bar chart of the number of reports.</li>
+<li>How does the number of ratings depend on the year? Draw a bar chart
+of the number of reports.</li>
 </ol>
 </section>
 <section id="question-set-ii" class="slide level2">
 <h2>Question set II</h2>
 <ol start="3" type="1">
-<li>For each of the questions below provide at least one graphic as a basis for your answer.
+<li>For each of the questions below provide at least one graphic as a
+basis for your answer.
 <ol type="1">
-<li>How are ratings distributed? Draw a histogram of ratings and describe it. Don’t forget to mention outliers, if there are any.</li>
+<li>How are ratings distributed? Draw a histogram of ratings and
+describe it. Don’t forget to mention outliers, if there are any.</li>
 <li>Do ratings depend on the cocoa percentage of a chocolate bar?</li>
-<li>How do ratings compare across different company locations? Focus on the three locations with the most ratings:</li>
+<li>How do ratings compare across different company locations? Focus on
+the three locations with the most ratings:</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">top3 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(choco, Company.Location <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;U.S.A.&quot;</span>, <span class="st">&quot;France&quot;</span>, <span class="st">&quot;Canada&quot;</span>))</a></code></pre></div></li>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>top3 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(choco, Company.Location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;U.S.A.&quot;</span>, <span class="st">&quot;France&quot;</span>, <span class="st">&quot;Canada&quot;</span>))</span></code></pre></div></li>
 </ol>
-<p>Upload your answers to the repository. Discuss and refine answers as a team.</p>
+<p>Upload your answers to the repository. Discuss and refine answers as
+a team.</p>
 </section>
 <section id="your-own-question" class="slide level2">
 <h2>Your own question?</h2>
 <ol type="1">
-<li>Discuss a question you want to investigate.</li>
+<li>Discuss a question (<strong>one for each group member</strong>) you
+want to investigate.</li>
 <li>Answer this question by graphs.</li>
 <li>Conclusions.</li>
 </ol>
@@ -192,7 +215,8 @@ In-class practice #2<br> chocolate tasting
 <li>the names of all team members that worked on the document;</li>
 <li>a link to the github repo you were working in;</li>
 <li>code and answers to all of the questions;</li>
-<li>the question you want to investigate with its answers and conclusions;</li>
+<li>the questions you want to investigate with their answers and
+conclusions (<strong>one question for each group member</strong>);</li>
 <li>one paragraph commenting on the workflow;</li>
 <li>a html or pdf file of the final output.</li>
 </ol>
