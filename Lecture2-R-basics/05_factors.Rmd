@@ -158,24 +158,24 @@ For one type of crime (`subset` or `filter`) plot boxplots of rates by state, re
 
 ```{r, echo = FALSE, eval = FALSE}
 library(ggplot2)
-fbi$Crime.rate = fbi$count / fbi$population * 70000
-ggplot(data = fbi, aes(x = type, y = Crime.rate)) + geom_boxplot() + coord_flip()
+fbi$crime.rate = fbi$count / fbi$population * 70000
+ggplot(data = fbi, aes(x = type, y = crime.rate)) + geom_boxplot() + coord_flip()
 
 fbi1 = fbi
 fbi1$type = factor(fbi1$type)
 levels(fbi1$type)
-levels(fbi1$type)[c(1, 5, 6)] = c("Assault", "MV.theft", "Murder")
-ggplot(data = fbi1, aes(x = type, y = Crime.rate)) + geom_boxplot() + coord_flip()
+levels(fbi1$type)[c(1, 6)] = c("assault", "MV.theft")
+ggplot(data = fbi1, aes(x = type, y = crime.rate)) + geom_boxplot() + coord_flip()
 
 fbi2 = fbi1
-fbi2$type = factor(fbi2$type, levels = levels(reorder(fbi1$type, fbi1$Crime.rate, median, na.rm=TRUE)))
-ggplot(data = fbi2, aes(x = type, y = Crime.rate)) + geom_boxplot() + coord_flip()
+fbi2$type = factor(fbi2$type, levels = levels(reorder(fbi1$type, fbi1$crime.rate, median, na.rm=TRUE)))
+ggplot(data = fbi2, aes(x = type, y = crime.rate)) + geom_boxplot() + coord_flip()
 
-fbi3 = dplyr::filter(fbi, type == "Burglary")
-mode(fbi3$State)
-fbi3$State = factor(fbi3$State)
-fbi3$State = factor(fbi3$State, levels = levels(reorder(fbi3$State, fbi3$Crime.rate, median, na.rm=TRUE)))
-ggplot(data = fbi3, aes(x = State, y = Crime.rate)) + geom_boxplot() + coord_flip()
+fbi3 = dplyr::filter(fbi, type == "burglary")
+mode(fbi3$state)
+fbi3$state = factor(fbi3$state)
+fbi3$state = factor(fbi3$state, levels = levels(reorder(fbi3$state, fbi3$crime.rate, median, na.rm=TRUE)))
+ggplot(data = fbi3, aes(x = state, y = crime.rate)) + geom_boxplot() + coord_flip()
 ```
 
 ## Changing Levels' names
