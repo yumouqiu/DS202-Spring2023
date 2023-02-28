@@ -186,7 +186,7 @@ levels(fbi$type)
 ```
 
 ```{r}
-levels(fbi$type)[6] = "Murder"
+levels(fbi$type)[4] = "murder"
 
 levels(fbi$type)
 ```
