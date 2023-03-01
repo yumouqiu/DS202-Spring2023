@@ -1,0 +1,115 @@
+---
+title: "DS 202: dplyr functions"
+author: Yumou Qiu
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+## Messy (2)
+
+## separate-1
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+df <- data.frame(x = c("a.b", "a.d", "b.c", NA))
+df
+df %>% separate(x, into = c("A", "B"))
+```
+
+## separate-2
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+df <- data.frame(x = c("a.b", "a,d", "b c", NA))
+df
+df %>% separate(x, into = c("A", "B"))
+```
+
+## separate-3
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+df <- data.frame(x = c("a.b", "a.d", "bc", NA))
+df
+df %>% separate(x, into = c("A", "B"))
+```
+
+## separate-4
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+df <- data.frame(x = c("a.b.c", "a.d; bc", "bc;a", NA))
+df
+df %>% separate(x, into = c("A", "B", "C"))
+```
+
+## Your Turn (5 min)
+
+
+The Iowa Data Portal is a wealth of information on and about the State of Iowa. 
+
+The website 
+[Campaign Expenditures](https://data.iowa.gov/Government/Campaign-Expenditures/3adi-mht4/data) provides data on campaign expenditures. The code below reads the data into an R session.
+
+
+```
+url <- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
+campaign <- readr::read_csv(url)
+```
+
+Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
+
+## Problems with the data
+
+- `Date` is text, in the format of Month/Day/Year (Messy 2)
+- city coordinates are a combination of City name, state, zip code and geographic latitude and longitude. (Messy 2)
+<!--- - expenditure amount is a textual expression, not a number (Messy different) --->
+- Check the help for the function `parse_number` in the `readr` package and use it on the campaign expenditure data if there is a dollar sign.
+
+no Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done.
+
+
+## Your Turn (10 min)
+
+- Use `separate` to split the date variable into year, month and day.
+- Use `separate` again to extract geographic latitude and longitude (Hint - you might need several steps of `separate`)
+- Using `dplyr` functionality answer the following questions:
+
+  1. What is the total amount of campaign expenditure?
+  2. What is the single largest cost in the campaign expenditures?
+  3. What time frame does the campaign expenditure cover?
+
+```{r, echo = FALSE, eval = FALSE}
+campaign = read.csv("data/Iowa_Campaign_Expenditures.csv")
+campaign1 = campaign %>% separate(Date, into = c("month", "day", "year"))
+
+campaign11 = campaign1 %>% separate('City Coordinates', into = c("City1", "State1", "Zip1", "Latitude", "Longitude"))
+campaign12 = campaign1 %>% separate('City Coordinates', into = c("Address", "Location"), sep = "(")
+campaign13 = campaign1 %>% separate('City Coordinates', into = c("Address", "Location"), sep = "\n")
+campaign14 = campaign1 %>% separate('City Coordinates', into = c("Address", "Location"), sep = "\\(")
+campaign15 = campaign1 %>% separate('City Coordinates', into = c("Address", "Location"), sep = "\n\\(")
+
+campaign2 = campaign15 %>% separate(Location, into = c("Latitude", "Longitude"), sep = ",") %>% select(-Address)
+campaign2 = campaign2 %>% separate(Longitude, into = c("Longitude", "drop"), sep = "\\)") %>% select(-drop)
+#as.numeric(campaign2$Latitude)
+#as.numeric(campaign2$Longitude)
+campaign3 = campaign2 %>% mutate(Latitude = as.numeric(campaign2$Latitude), Longitude = as.numeric(campaign2$Longitude))
+
+options(dplyr.width = Inf)
+
+campaign3 %>% summarise(TotalExp = sum(`Expenditure Amount`, na.rm = TRUE), MaxExp = max(`Expenditure Amount`, na.rm = TRUE))
+campaign3 %>% filter(`Expenditure Amount` == max(`Expenditure Amount`, na.rm = TRUE))
+campaign3 %>% group_by(year, month) %>% summarise(TotalExp = sum(`Expenditure Amount`, na.rm = TRUE), MaxExp = max(`Expenditure Amount`, na.rm = TRUE))
+
+as.numeric(campaign3$year) %>% summary()
+
+campaign3 %>% ggplot(aes(x = Longitude, y = Latitude)) + geom_point()
+campaign3 %>% ggplot(aes(x = Longitude, y = Latitude)) + geom_point(aes(color = log(`Expenditure Amount`)))
+
+campaignState = campaign3 %>% count(State)
+sum(campaign3$State == "IA", na.rm = TRUE) / dim(campaign3)[1]
+```

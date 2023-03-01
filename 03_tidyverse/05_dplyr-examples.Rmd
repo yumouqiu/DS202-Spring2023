@@ -1,0 +1,89 @@
+---
+title: "DS 202: dplyr functions"
+author: Yumou Qiu
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+## French fries data
+
+```{r}
+data(french_fries, package="reshape2")
+```
+
+- data from sensory experiment conducted at Iowa State University in 2004
+- investigators were interested in comparing effects of three different fryer oils on taste of fries
+
+```{r}
+french_fries %>% head()
+```
+
+## Did the french fries taste worse over time?
+
+> - How do we define 'tasting well'? 
+>   - Higher values of potato-y and buttery, lower values of grassy, rancid, painty
+> - Compute averages of these scales for each time point
+> - combination of `group_by` and `summarise`
+
+## Did the french fries taste worse over time? (2)
+
+```{r}
+french_fries %>% group_by(time) %>% summarise(
+  m.potato = mean(potato, na.rm=TRUE),
+  m.buttery = mean(buttery, na.rm=TRUE),
+  m.grassy = mean(grassy, na.rm=TRUE),
+  m.rancid = mean(rancid, na.rm=TRUE),
+  m.painty = mean(painty, na.rm=TRUE)
+) %>% head()
+```
+
+## Did the french fries taste worse over time? (3)
+
+```{r, echo=FALSE}
+library(ggplot2)
+
+avgs <- french_fries %>% group_by(time) %>% summarise(
+  m.potato = mean(potato, na.rm=TRUE),
+  m.buttery = mean(buttery, na.rm=TRUE),
+  m.grassy = mean(grassy, na.rm=TRUE),
+  m.rancid = mean(rancid, na.rm=TRUE),
+  m.painty = mean(painty, na.rm=TRUE)
+)
+```
+
+```{r}
+avgs %>% ggplot(aes(x = time)) + 
+  geom_point(aes(y = m.potato)) +
+  geom_point(shape=2, aes(y=m.rancid)) + 
+  ylab("Average")
+```
+
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For this your turn use the `french_fries` data from the `reshape2` package: `data(french_fries, package="reshape2")` </span>
+
+- <span style="color:white">Do ratings of potato-y show a difference between the different oils over time?</span>
+- <span style="color:white">Draw a plot of the average potato-y rating by time, color by treatment.</span>
+- <span style="color:white">How does this plot look like for the rancid rating?</span>
+
+<span style="color:white"><p style="font-size:20px">Solution in `learnr::run_tutorial("dplyr", package="yourturns480")`</p></span>
+
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For this your turn use the `french_fries` data from the `reshape2` package: `data(french_fries, package="reshape2")` </span>
+
+- <span style="color:white">Do ratings of potato-y show a difference between the different oils over time?</span>
+- <span style="color:white">Draw a plot of the average potato-y rating by time, color by treatment.</span>
+- <span style="color:white">How does this plot look like for the rancid rating?</span>
+
+<span style="color:white"><p style="font-size:20px">Solution in `learnr::run_tutorial("dplyr", package="yourturns480")`</p></span>

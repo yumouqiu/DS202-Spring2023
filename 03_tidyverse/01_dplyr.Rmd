@@ -1,0 +1,154 @@
+---
+title: "The dplyr package"
+author: Yumou Qiu
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+## Data management in R: the tidyverse 
+
+<img src="images/tidyverse.jpeg" alt="" width=600>
+
+
+## Outline
+
+- elements of data management: filtering, sorting, and aggregations
+- the pipe operator `%>%`
+- lots of examples
+
+## `tidyverse`
+
+`tidyverse` is a package bundling several other R packages:
+
+- `ggplot2`, `dplyr`, `tidyr`, `purrr`, ...
+- share common data representations and API, i.e. work well together
+- see https://github.com/hadley/tidyverse for more information
+
+Summaries
+
+- numerical summaries - [elements]() of `dplyr` and `tidyr`
+- graphical summaries - [visualizations]() with `ggplot2`
+
+
+## `dplyr` 
+
+There are a couple of primary `dplyr` *verbs*, representing distinct data analysis tasks:
+
+- `filter`: Select specified rows of a data frame, produce subsets
+- `arrange`: Reorder the rows of a data frame
+- `select`: Select particular columns of a data frame
+- `mutate`: Add new or change existing columns of the data frame (as functions of existing columns)
+- `summarize`: Create collapsed summaries of a data frame
+- `group_by`: Introduce structure to a data frame
+
+## Common structure
+
+all functions of the tidyverse have `data` as their first element
+
+Important: do not use `$` notation for variables within these functions, e.g: 
+
+`ggplot(data = fbi, aes(x = Year, y = Count)) + geom_point()`
+
+
+`filter(fbi, Year>=2019, State=="Iowa")`
+
+
+## The pipe operator `%>%`
+
+`f(x) %>% g(y)` is equivalent to `g(f(x), y)`
+
+i.e. the output of one function is used as input to the next function. This function can be the identity
+
+Consequences:
+
+- `x %>% f(y)` is the same as `f(x, y)`
+- statements of the form `k(h(g(f(x, y), z), u), v, w)` become
+`x %>% f(y) %>% g(z) %>% h(u) %>% k(v, w)`
+- read `%>%` as "then do"
+
+## Using the pipe `%>%`
+
+```
+ggplot(data = filter(fbi, Type=="Murder.and.nonnegligent.Manslaughter"), 
+aes(x = Year, y = Count)) + geom_point()
+```
+
+becomes
+
+```
+fbi %>% 
+  filter(Type=="Murder.and.nonnegligent.Manslaughter") %>%
+  ggplot(aes(x = Year, y = Count)) + 
+    geom_point()
+```
+
+## `filter`
+
+select a subset of the observations (horizontal selection):
+
+```{r, message=FALSE}
+library(classdata)
+library(dplyr)
+
+fbi %>% filter(Type=="Burglary", Year==2014) %>% head()
+```
+
+
+
+## `arrange`
+
+`arrange` sorts a data set by the values in one or more variables
+
+Successive variables break ties in previous ones
+
+`desc` stands for descending, otherwise rows are sorted from smallest to largest
+
+```{r, message=FALSE}
+fbi %>% arrange(desc(Year), Type, desc(Count)) %>% head()
+```
+
+## `select`
+
+Select specific variables of a data frame (vertical selection):
+
+```{r}
+fbi %>% arrange(desc(Year), Type, desc(Count)) %>%
+  select(Type, Count, State, Year) %>% head()
+```
+
+## `mutate`
+
+Introduce a new variable into a data set or transform/update an old variable:
+
+```{r}
+fbi %>% mutate(Rate = Count/Population*70000) %>% head()
+```
+
+
+## `summarise`
+
+
+
+summarize observations into a (set of) one-number statistic(s):
+
+
+```{r}
+fbi %>% 
+    summarise(mean_rate = mean(Count/Population*70000, na.rm=TRUE), 
+              sd_rate = sd(Count/Population*70000, na.rm = TRUE))
+```
+
+## `summarise` and `group_by`
+
+```{r}
+fbi %>%
+    group_by(Type) %>%
+    summarise(mean_rate = mean(Count/Population*70000, na.rm=TRUE), 
+              sd_rate = sd(Count/Population*70000, na.rm = TRUE))
+```
+
+

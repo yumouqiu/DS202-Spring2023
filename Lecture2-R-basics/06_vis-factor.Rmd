@@ -27,10 +27,10 @@ Only factor variables can be mapped to `fill`
 ## Example: 
 
 
-```{r, message = FALSE}
+```{r, message = FALSE, warning = FALSE}
 library(classdata)
 library(ggplot2)
-ggplot(fbi, aes(x = Type, fill=Year)) + geom_bar() # nothing happens
+ggplot(fbi, aes(x = type, fill = year)) + geom_bar() # nothing happens
 ```
 
 ##
@@ -38,8 +38,15 @@ ggplot(fbi, aes(x = Type, fill=Year)) + geom_bar() # nothing happens
 Not sensible, but the colors show up:
 
 ```{r}
-ggplot(fbi, aes(x = Type, fill=factor(Year))) + geom_bar() 
-ggplot(fbi, aes(x = Type, fill=factor(Year))) + geom_bar(aes(weight = Count)) 
+ggplot(fbi, aes(x = type, fill=factor(year))) + geom_bar() 
+```
+
+##
+
+More sensible, but too many years:
+
+```{r}
+ggplot(fbi, aes(x = type, fill=factor(year))) + geom_bar(aes(weight = count)) 
 ```
 
 ## Example: Survival on the Titanic
@@ -117,7 +124,7 @@ ggplot(titanic, aes(x = Age, fill=Survived)) + geom_bar(position = "fill")
 
 ## Mosaicplots
 
-```{r, fig.width=10, fig.height = 4, message=FALSE}
+```{r, fig.width=10, fig.height = 4, message = FALSE, warning = FALSE}
 library(ggmosaic)
 ggplot(data = titanic)  + 
   geom_mosaic(aes(x = product(Sex), fill=Survived, weight=1)) +
@@ -135,22 +142,22 @@ How to show the relationship between `class`, `gender` and `survive`?</span>
 <span style="color:white">For the `fbi` data:</span>
 
 - <span style="color:white">Choose `California` and `New York`</span>
-- <span style="color:white">Choose Year `1971` and `2016`</span>
-- <span style="color:white">Compare `State`, `Year` and `Type` by the crime rate</span>
+- <span style="color:white">Choose year `1971` and `2016`</span>
+- <span style="color:white">Compare `State`, `year` and `type` by the crime rate</span>
 - <span style="color:white">Rename and reorder the factors appropriately</span>
 
 ```{r, echo = FALSE, eval = FALSE}
 ggplot(data = titanic) +
   geom_mosaic(aes(x = product(Sex, Class), fill=Survived, weight=1))
 
-crime.compare = dplyr::filter(fbi, Year %in% c(1971, 2016), State %in% c("California", "New York"))
+crime.compare = dplyr::filter(fbi, year %in% c(1971, 2016), state %in% c("California", "New York"))
 
-crime.compare$Type = factor(crime.compare$Type)
-levels(crime.compare$Type)
-levels(crime.compare$Type) = c("AT", "BY", "LT", "LR", "MT", "MR", "RE", "RY")
-crime.compare$Type = factor(crime.compare$Type, levels = c("MR", "RE", "LR", "RY", "LT", "MT", "AT", "BY"))
+crime.compare$type = factor(crime.compare$type)
+levels(crime.compare$type)
+levels(crime.compare$type) = c("AT", "BY", "LT", "LR", "MT", "MR", "RE", "RY")
+crime.compare$type = factor(crime.compare$type, levels = c("MR", "RE", "LR", "RY", "LT", "MT", "AT", "BY"))
 crime.compare$State = factor(crime.compare$State)
 levels(crime.compare$State) = c("CA", "NY")
 ggplot(data = crime.compare) +
-  geom_mosaic(aes(x = product(Year, State), fill = Type, weight = Count / Population))
+  geom_mosaic(aes(x = product(year, State), fill = type, weight = Count / Population))
 ```

@@ -1,0 +1,82 @@
+---
+title: "dplyr examples: group_by and mutate"
+author: Yumou Qiu
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+# FBI data
+
+## `group_by` and `mutate`
+
+### Working with `fbi` in the `classdata` package
+
+<!--- upgrade the package: `devtools::install_github("heike/classdata")` --->
+
+```{r, message=FALSE}
+library(tidyverse)
+library(classdata)
+data("fbi", package="classdata")
+head(fbi)
+```
+
+## `mutate`
+
+- `mutate` allows us to introduce new variables or upgrade existing ones
+- the result from `mutate` are vectors of the same length as the data (sub)set
+
+```{r}
+fbi <- fbi %>% mutate(
+  Rate = Count/Population*70000, Type = factor(Type), Year = factor(Year)
+  )
+```
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For this your turn use the `fbi` data from the `classdata` package </span>
+
+- <span style="color:white">Use `mutate` to reorder types of crimes by (median) rate.</span>
+- <span style="color:white">Plot crime rates by type in side-by-side boxplots. Medians of the boxplots should be ordered.</span><br><br><br><br><br><br><br><br>
+
+```{r, warning = FALSE}
+fbi <- fbi %>% ungroup %>% mutate(
+  Type = reorder(Type, Rate, FUN=median, na.rm=TRUE)
+)
+fbi %>% 
+  ggplot(aes(x = Type, y = Rate)) +
+  geom_boxplot() + coord_flip()
+```
+
+##  `group_by` and `mutate` 
+
+```{r}
+fbi <- fbi %>% group_by(Type) %>% mutate(
+  best = rank(Rate) # ranks from lowest rate to highest rate
+)
+fbi %>% filter(best == 1) %>% select(Type, State, Year, Rate)
+```
+
+
+## Your turn: group_by and mutate {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For this your turn use the `fbi` data from the `classdata` package </span>
+
+- <span style="color:white">Find the ranks for all rates of crime by type of crime and year.</span>
+- <span style="color:white">Focus on the top states. Find a visual that shows how often each state managed to take the top spot since 1961.</span><br><br><br><br><br><br><br><br>
+
+```{r, warning = FALSE}
+fbi <- fbi %>% group_by(Type, Year) %>% mutate(
+  best = rank(Rate, na.last= "keep") # ranks from lowest rate to highest rate
+)
+fbi %>% filter(best <= 3) %>% 
+  ggplot(aes(x = Abb)) +
+  geom_bar(aes(fill=factor(best))) + facet_wrap(~Type, scales="free") + coord_flip()
+```

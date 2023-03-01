@@ -1,0 +1,200 @@
+---
+title: "dplyr examples"
+author: Yumou Qiu
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+## Happy data
+
+## Outline
+
+- cleaning and upgrading the HAPPY data
+- working with `group_by` and `summarise`
+
+## The Happy data from GSS
+
+The General Social Survey (GSS) has been run by NORC every other year since 1972 to keep track of current opinions across the United States. 
+
+An excerpt of the GSS data is available from our course website. 
+Dowload the file [HAPPY.rds](https://github.com/yumouqiu/DS202-Spring2022/blob/main/03_tidyverse/data/HAPPY.rds?raw=true) and put the file into a folder called "data" next to your Rmd file. The following command is going to load the data into your R session:
+
+```{r, message=FALSE}
+library(tidyverse)
+HAPPY <- readRDS("data/HAPPY.rds")
+```
+
+You can find a codebook with explanations for each of the variables at https://gssdataexplorer.norc.org/
+
+## A first look
+
+```{r}
+HAPPY %>% str()
+```
+
+## The variable `HAPPY`
+
+```{r}
+HAPPY %>% 
+  ggplot(aes(x = HAPPY)) + geom_bar()
+```
+
+## Cleaning up `HAPPY`
+
+- make all strings lowercase: `tolower`
+- convert into a factor variable, levels are in right order
+
+```{r}
+HAPPY <- HAPPY %>% mutate(
+  happy = factor(tolower(HAPPY))
+) %>% select(-HAPPY)
+
+levels(HAPPY$happy)
+head(HAPPY)
+```
+
+## Data Cleaning
+
+1. Data cleaning: the values "IAP", "DK" and "NA" all encode missing values. We have to replace all of these instances by the value `NA`. 
+2. Check the type of the variable and cast into the right type.
+3. Bring all levels of factors into a sensible order. 
+
+## Recoding missing values
+
+Object in `replace` does not have to be a variable, a data frame can also be used:
+
+Be careful to use `%in%`. It may not work in data frame.
+```{r}
+HAPPY <- replace(HAPPY, HAPPY %in% c("IAP", "DK", "NA"), NA)
+```
+Instead
+```{r}
+HAPPY <- replace(HAPPY, HAPPY == "IAP", NA)
+HAPPY <- replace(HAPPY, HAPPY == "DK", NA)
+HAPPY <- replace(HAPPY, HAPPY == "NA", NA)
+```
+
+
+the remaining cleaning is just pretty tedious manual work ...
+
+## The variable `AGE`
+
+```{r, warning=FALSE, fig.width=5, fig.height=3.5}
+HAPPY <- HAPPY %>% mutate(
+  age = replace(AGE, AGE == "89 AND OLDER", 89),
+  age = as.numeric(age)
+) %>% select(-AGE)
+
+HAPPY %>% ggplot(aes(x = age)) + geom_histogram(binwidth=1)
+```
+
+## The variable `DEGREE`
+
+```{r, fig.width=5, fig.height = 3.5}
+HAPPY <- HAPPY %>% mutate(
+  degree = factor(tolower(DEGREE)),
+  degree = factor(degree, levels=c("lt high school", "high school", "junior college", "bachelor", "graduate school"))
+) %>% select(-DEGREE)
+
+HAPPY %>% ggplot(aes(x = degree)) + geom_bar()
+```
+
+## Working with `happy`
+
+`happy` data included in the `classdata` package
+
+<!--- upgrade the package: `devtools::install_github("heike/classdata")` --->
+
+```{r, message=FALSE}
+library(classdata)
+data("happy", package="classdata")
+head(happy)
+```
+
+## Summarising Happiness
+
+Use scores for `happy` factor to summarise overall happiness level, i.e. `not too happy` = 1, `pretty happy` = 2, and `very happy` = 3
+
+```{r}
+happy %>% summarise(
+  m.happy = mean(as.numeric(happy), na.rm=TRUE)
+  )
+```
+```{r}
+happy %>% group_by(sex) %>% summarise(
+  m.happy = mean(as.numeric(happy), na.rm=TRUE)
+  )
+```
+
+## Your turn: group_by and summarise {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For this your turn use the `happy` data from the `classdata` package </span>
+
+- <span style="color:white">How do average happiness levels change over age?</span>
+- <span style="color:white">Are Republicans or Democrats happier? Compare average happiness levels over `partyid`.</span>
+- <span style="color:white">How are financial relations associated with average happiness levels? Is this association different for men and women?</span><br><br>
+- <span style="color:white">Find a plot that shows the differences for each one of the summaries.</span>
+
+```{r, eval = FALSE, echo = FALSE}
+happy1 = happy %>% mutate(age = as.factor(age))
+happy.age = happy1 %>% group_by(age) %>% summarise(m.happy.age = mean(as.numeric(happy), na.rm = TRUE))
+happy.age = happy.age %>% mutate(AGE = as.numeric(as.character(age)))
+happy.age %>% ggplot(aes(x = AGE, y = m.happy.age)) + geom_point()
+
+happy %>% group_by(partyid) %>% summarise(m.happy = mean(as.numeric(happy), na.rm = TRUE)) %>% arrange(m.happy)
+
+happy %>% group_by(finrela) %>% summarise(m.happy = mean(as.numeric(happy), na.rm = TRUE)) %>% arrange(m.happy)
+happy.fin.sex = happy %>% group_by(finrela, sex) %>% summarise(m.happy = mean(as.numeric(happy), na.rm = TRUE)) %>% arrange(m.happy)
+#library(ggmosaic)
+#happy.fin.sex %>% ggplot()  + geom_mosaic(aes(x = product(finrela), fill=sex, weight = m.happy))
+happy.fin.sex %>% ggplot(aes(x = finrela, fill = sex)) + geom_bar(aes(weight = m.happy), position = position_dodge())
+```
+
+## Your turn: asking questions {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For this your turn use the `happy` data from the `classdata` package </span>
+
+- <span style="color:white">Investigate what other variable(s) might be associated with happiness. Plot it.</span>
+
+
+```{r, eval = FALSE, echo = FALSE}
+happy.martial.sex = happy %>% group_by(marital, sex) %>% summarise(m.happy = mean(as.numeric(happy), na.rm = TRUE)) %>% arrange(m.happy)
+happy.martial.sex %>% ggplot(aes(x = marital, fill = sex)) + geom_bar(aes(weight = m.happy), position = position_dodge()) + labs(title = "Happiness on martial and gender", y = "Happiness")
+```
+
+
+```{r, eval = FALSE, echo = FALSE}
+happy = happy %>% filter(!is.na(age), !is.na(marital), !is.na(finrela), !is.na(happy))
+happy = happy %>% mutate(agegroup = 1 * (age <= 25) + 2 * (age > 25 & age <= 55) + 3 * (age > 55))
+happy = happy %>% mutate(agegroup = factor(agegroup))
+levels(happy$agegroup) = c("age <= 25", "25 < age <= 55", "age > 55")
+happy.martial.fin.age = happy %>% group_by(marital, agegroup, finrela) %>% summarise(m.happy = mean(as.numeric(happy), na.rm = TRUE), n = n()) %>% arrange(m.happy)
+happy.martial.fin.age %>% ggplot(aes(x = marital, fill = finrela)) + geom_bar(aes(weight = m.happy), position = position_dodge()) + facet_grid(.~agegroup) + labs(title = "Happiness on martial, finance and age", y = "Happiness")
+```
+
+## Helper functions (1)
+
+- `n()` provides the number of rows of a subset:
+```{r}
+happy %>% group_by(sex) %>% summarise(n = n())
+```
+- `tally()` is a combination of `summarise` and `n`
+```{r}
+happy %>% group_by(sex) %>% tally()
+```
+
+## Helper functions (2)
+
+- `count()` is a further shortcut of `group_by` and `tally`:
+```{r}
+happy %>% count(sex, degree)
+```
+

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202 - cleaning data: messy 3</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="07-messy-3_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="07-messy-3_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="07-messy-3_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="07-messy-3_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="07-messy-3_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+    <style type="text/css">
+   div.sourceCode { overflow-x: auto; }
+   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+     margin: 0; padding: 0; vertical-align: baseline; border: none; }
+   table.sourceCode { width: 100%; line-height: 100%; }
+   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+   td.sourceCode { padding-left: 5px; }
+   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code > span.dt { color: #902000; } /* DataType */
+   code > span.dv { color: #40a070; } /* DecVal */
+   code > span.bn { color: #40a070; } /* BaseN */
+   code > span.fl { color: #40a070; } /* Float */
+   code > span.ch { color: #4070a0; } /* Char */
+   code > span.st { color: #4070a0; } /* String */
+   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code > span.ot { color: #007020; } /* Other */
+   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code > span.fu { color: #06287e; } /* Function */
+   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+   code > span.cn { color: #880000; } /* Constant */
+   code > span.sc { color: #4070a0; } /* SpecialChar */
+   code > span.vs { color: #4070a0; } /* VerbatimString */
+   code > span.ss { color: #bb6688; } /* SpecialString */
+   code > span.im { } /* Import */
+   code > span.va { color: #19177c; } /* Variable */
+   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code > span.op { color: #666666; } /* Operator */
+   code > span.bu { } /* BuiltIn */
+   code > span.ex { } /* Extension */
+   code > span.pp { color: #bc7a00; } /* Preprocessor */
+   code > span.at { color: #7d9029; } /* Attribute */
+   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202 - cleaning data: messy 3</h1>
+    <p>Yumou Qiu</p>
+  </header>
+
+  
+  
+<section id="dealing-with-messy-3" class="titleslide slide level1"><h2 class="shout">Dealing with Messy (3)</h2></section><section id="reminder" class="slide level2">
+<h2>Reminder</h2>
+<p>Messy (3): <em>Multiple observational units are stored in the same table.</em></p>
+</section>
+<section id="keys-and-measurements" class="titleslide slide level1"><h2 class="shout">Keys and Measurements</h2></section><section id="finding-your-keys---example-1" class="slide level2">
+<h2>Finding your keys - Example (1)</h2>
+<p>100 patients are randomly assigned to a treatment for heart attack, measured 5 different clinical outcomes.</p>
+</section><section id="finding-your-keys---example-1-1" class="slide level2">
+<h2>Finding your keys - Example (1)</h2>
+<p>100 patients are randomly assigned to a treatment for heart attack, measured 5 different clinical outcomes.</p>
+<ul>
+<li>key: patient ID</li>
+<li>factor variable (design): treatment</li>
+<li>measured variables: 5 clinical outcomes</li>
+</ul>
+</section><section id="finding-your-keys---example-2" class="slide level2">
+<h2>Finding your keys - Example (2)</h2>
+<p>Randomized complete block trial with four fields, four different types of fertilizer, over four years. Recorded total corn yield, and fertilizer run off</p>
+</section><section id="finding-your-keys---example-2-1" class="slide level2">
+<h2>Finding your keys - Example (2)</h2>
+<p>Randomized complete block trial with four fields, four different types of fertilizer, over four years. Recorded total corn yield, and fertilizer run off</p>
+<ul>
+<li>key: fields, types of fertilizer, year</li>
+<li>measurement: total corn yield, fertilizer run off</li>
+</ul>
+</section><section id="finding-your-keys---example-3" class="slide level2">
+<h2>Finding your keys - Example (3)</h2>
+<p>Cluster sample of twenty students in thirty different schools. For each school, recorded distance from ice rink. For each student, asked how often they go ice skating, and whether or not their parents like ice skating</p>
+</section><section id="finding-your-keys---example-3-1" class="slide level2">
+<h2>Finding your keys - Example (3)</h2>
+<p>Cluster sample of twenty students in thirty different schools. For each school, recorded distance from ice rink. For each student, asked how often they go ice skating, and whether or not their parents like ice skating</p>
+<ul>
+<li>key: student ID, school ID</li>
+<li>measurement: distance to rink, #times ice skating, parents’ preference</li>
+</ul>
+</section><section id="finding-your-keys---example-4" class="slide level2">
+<h2>Finding your keys - Example (4)</h2>
+<p>For each person, recorded age, sex, height and target weight, and then at multiple times recorded their weight</p>
+</section><section id="finding-your-keys---example-4-1" class="slide level2">
+<h2>Finding your keys - Example (4)</h2>
+<p>For each person, recorded age, sex, height and target weight, and then at multiple times recorded their weight</p>
+<ul>
+<li>key: <em>patient ID</em>, date</li>
+<li>measurement: <em>age, sex, height, target weight</em>, current weight</li>
+</ul>
+<p><em>only patient ID is needed for variables in italics</em></p>
+</section><section id="messy-3" class="slide level2">
+<h2>Messy (3)</h2>
+<p>Messy (3): <em>Multiple observational units are stored in the same table.</em></p>
+<p>What does that mean? The <em>key is split</em>, i.e. for some values all key variables are necessary, while other values only need some key variables.</p>
+<p><img src="images/normal-not-2.png" /></p>
+</section><section id="why-do-we-need-to-take-care-of-split-keys" class="slide level2">
+<h2>Why do we need to take care of split keys?</h2>
+<ul>
+<li>Data redundancy introduces potential problems (same student <em>should</em> have the same student ID)</li>
+<li>to check data consistency, we split data set into parts - this process is called <em>normalizing</em></li>
+<li>normalization reduces overall data size</li>
+<li>useful way of thinking about objects under study</li>
+</ul>
+</section><section id="tidying-messy-3" class="slide level2">
+<h2>Tidying Messy (3)</h2>
+<p>Splitting into separate datasets:</p>
+<p><img src="images/normal-split.png" /></p>
+</section><section id="example-box-office-gross" class="slide level2">
+<h2>Example: Box office gross</h2>
+<p>The-Numbers website publishes <a href="http://www.the-numbers.com/weekend-box-office-chart">weekly charts</a> of the gross income of all movies playing across the US. A set of cleaned data called <code>box</code> with movies for the last five years is available in the <code>classdata</code> package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># devtools::install_github(&quot;heike/classdata&quot;)</span>
+<span class="kw">library</span>(classdata)
+<span class="kw">head</span>(box, <span class="dv">4</span>)</code></pre></div>
+<pre><code>##   Rank Rank.Last.Week                       Movie        Distributor
+## 1    1              1           Crazy Rich Asians       Warner Bros.
+## 2    2              2                     The Meg       Warner Bros.
+## 3    3             NA       The Happytime Murders  STX Entertainment
+## 4    4              4 Mission: Impossible—Fallout Paramount Pictures
+##      Gross Change Thtrs. Per Thtr. Total.Gross Week       Date
+## 1 24808202     -6   3526      7036    76617149    2 2018-08-24
+## 2 12812615    -39   4031      3179   105083261    3 2018-08-24
+## 3  9532425     NA   3256      2928     9532425    1 2018-08-24
+## 4  8087385    -25   3052      2650   193988045    5 2018-08-24</code></pre>
+<p>What are the key variables? Why is the key split?</p>
+</section><section id="keys-and-measurements-1" class="slide level2">
+<h2>Keys and measurements</h2>
+<ul>
+<li>Key variables: <code>Movie</code> name, <code>Date</code> and <code>Distributor</code>.</li>
+<li>Measurement variables: <code>Gross</code>, <code>Thtrs.</code></li>
+<li>All other variables are derived from these variables</li>
+<li>good practice: re-calculate the derived variabes to check for consistency.</li>
+</ul>
+</section><section id="taking-care-of-the-split-key" class="slide level2">
+<h2>Taking care of the split key</h2>
+<p>Plan: separate movie information from box office information</p>
+<p>Idea for separation: we want to get a set of movies together with their Distributor and ideally their release date (which we do not have).</p>
+<p>Instead of release date we want to get the date of the first time that we see a movie in the boxoffice.</p>
+<p>Let’s also keep track of how many weeks a movie has been released at that time (should be 1 - when will it be different for sure?)</p>
+</section><section id="your-turn" class="slide level2 white">
+<h2>Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white">For this your turn use the <code>box</code> data from the <code>classdata</code> package </span></p>
+<ul>
+<li><span style="color:white">Big goal: we want to create a new dataset <code>movie</code> that consists of movie, distributor, date of first time the movie shows up in the box office, and the number of weeks the movie has been released at that time.</span></li>
+<li><span style="color:white">First: what are the key variables for the new dataset?</span></li>
+<li><span style="color:white">Second: for the key variable(s) use <code>summarize</code> to find the first time a movie shows up in the box office and find the related number of weeks. </span></li>
+</ul>
+<p><br><br><br><br><br><br><br><br></p>
+</section><section id="key-variables" class="slide level2">
+<h2>Key variables</h2>
+<p>Does <code>Movie</code> uniquely describe a movie?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies &lt;-<span class="st"> </span>box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Movie, Distributor) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>()</code></pre></div>
+<p>Does that make a movie unique?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(Movie) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</code></pre></div>
+<pre><code>## # A tibble: 3,473 x 2
+##    Movie                    n
+##    &lt;chr&gt;                &lt;int&gt;
+##  1 Beauty and the Beast     2
+##  2 Blood Feast              2
+##  3 Breathe                  2
+##  4 Champion                 2
+##  5 Concussion               2
+##  6 Entertainment            2
+##  7 Girlhood                 2
+##  8 Gold                     2
+##  9 Holy Hell                2
+## 10 Leviathan                2
+## # ... with 3,463 more rows</code></pre>
+</section><section id="movie-data---take-2" class="slide level2">
+<h2>Movie data - take 2</h2>
+<p>Get the Week info for the first time we see each Movie and Distributor combo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies &lt;-<span class="st"> </span>box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Movie, Distributor) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">firstDate =</span> Date[<span class="kw">which.min</span>(Week)], 
+    <span class="dt">firstWeek =</span> <span class="kw">min</span>(Week, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
+    <span class="dt">theater =</span> Thtrs.[<span class="kw">which.min</span>(Week)])
+<span class="kw">head</span>(movies)</code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+## # Groups:   Movie [6]
+##   Movie                 Distributor          firstDate  firstWeek theater
+##   &lt;chr&gt;                 &lt;chr&gt;                &lt;date&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+## 1 ’71                   Roadside Attractions 2015-02-27         1       4
+## 2 [REC] 4: Apocalypse   Magnolia Pictures    2015-01-02         1       5
+## 3 1,000 Rupee Note      Kino Lorber          2016-09-23         1       1
+## 4 1,000 Times Goodnight Film Movement        2014-10-24         1      24
+## 5 10 Cloverfield Lane   Paramount Pictures   2016-03-11         1    3391
+## 6 10 Days in a Madhouse Cafe Pictures        2015-11-20         2      10</code></pre>
+</section><section id="looking-into-inconsistencies" class="slide level2">
+<h2>Looking into inconsistencies</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Movie) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</code></pre></div>
+<pre><code>## # A tibble: 3,496 x 6
+## # Groups:   Movie [3,473]
+##    Movie             Distributor        firstDate  firstWeek theater     n
+##    &lt;chr&gt;             &lt;chr&gt;              &lt;date&gt;         &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
+##  1 Beauty and the B… Lopert Pictures C… 2016-02-12         1       1     2
+##  2 Beauty and the B… Walt Disney        2017-03-17         1    4210     2
+##  3 Blood Feast       Crimson Forest En… 2018-04-06        42       1     2
+##  4 Blood Feast       Hannover House     2018-04-20        44       3     2
+##  5 Breathe           Bleecker Street    2017-10-13         1       4     2
+##  6 Breathe           Film Movement      2015-09-11         1       1     2
+##  7 Champion          ArtAffects         2017-05-26         2      16     2
+##  8 Champion          Well Go USA        2018-05-11         1       2     2
+##  9 Concussion        Radius             2013-10-04         1       2     2
+## 10 Concussion        Sony Pictures      2015-12-25         1    2841     2
+## # ... with 3,486 more rows</code></pre>
+</section><section id="using-imdb" class="slide level2">
+<h2>Using IMDb</h2>
+<ul>
+<li>Girlhood is the name of two movies - one that was released in 2003, one in 2014; most likely the Oct 4 boxoffice mention is only mistakenly referring to the 2003 movie</li>
+<li>Mama Africa refers to two movies, one released in 2002, one in 2011; likely the duplicate on Jan 19 is erroneous, but we still don’t know which of the two movies is showing (in 1 theater)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Movie<span class="op">==</span><span class="st">&quot;Mama Africa&quot;</span>)</code></pre></div>
+<pre><code>##   Rank Rank.Last.Week       Movie           Distributor Gross Change
+## 1   88             79 Mama Africa ArtMattan Productions   481    -72
+## 2   79             67 Mama Africa ArtMattan Productions  1689    -52
+## 3   67             NA Mama Africa ArtMattan Productions  3495     NA
+## 4   69             NA Mama Africa                        3187     NA
+##   Thtrs. Per Thtr. Total.Gross Week       Date
+## 1      2       241   9.808e-05    3 2018-02-02
+## 2      2       845   8.123e-05    2 2018-01-26
+## 3      1      3495   3.495e-05    1 2018-01-19
+## 4      1      3187   3.187e-05  816 2018-01-19</code></pre>
+</section><section id="section" class="slide level2">
+<h2></h2>
+<ul>
+<li>Normalization helps identify inconsistencies in data</li>
+<li>Checking up on inconsistencies is a lot of manual labor</li>
+</ul>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="07-messy-3_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

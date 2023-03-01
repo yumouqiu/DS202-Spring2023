@@ -33,3 +33,13 @@
 02/22 [Lecture 2-6-Factors](Lecture2-R-basics\05_factors.html)
 
 02/27 [Lecture 2-7-Practice for GGplot](Practice\practice02.html)
+
+### March
+
+03/01 [Lecture 2-8-Factor visualization](Lecture2-R-basics\06_vis-factor.html)
+
+03/06 [Lecture 2-9-Radar plot](Lecture2-R-basics\07_radar-plot.html)
+
+03/08 [Lecture 3-1-dplyr](03_tidyverse\01_dplyr.html)
+
+03/08 [Lecture 3-2-dplyr example 1](03_tidyverse\03_dplyr-examples.html)

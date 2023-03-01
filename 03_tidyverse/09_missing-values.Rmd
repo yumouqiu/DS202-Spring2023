@@ -1,0 +1,74 @@
+---
+title: "DS 202 -  working with missing values"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Working with missing values
+
+
+## Missing values in R
+
+- R allows consistent handling of mising values
+- `NA` is the special code for "not available"
+- `NaN` is the code for "not a number", e.g. in 0/0
+- missing values propagate in calculus, e.g. for any object `x` we get `NA + x = NA`, `NA * x = NA`
+
+
+## Essential functions 
+
+- direct testing for missing values is resulting in an `NA`:
+```{r}
+x <- c(1, NA)
+x == NA
+```
+- instead use function `is.na` for vector `x`:
+```{r}
+is.na(x)
+```
+- `complete.cases` does the same for a data.frame
+
+## Missing values essentials (2)
+
+- DANGER ZONE: `na.omit` removes all instances of mising values in an object (all rows with any missing value in case `x` is a data frame)
+- Many functions have parameter `na.rm`
+
+```{r}
+DF <- data.frame(x = c(1, 2, 3), y = c(0, 10, NA))
+DF
+na.omit(DF)
+```
+
+## Your turn (10 mins) {.white}
+
+<img src="images/blue.jpeg" width="1200" class="cover">
+
+<span style="color:white">Use the `box` data from the package `classdata`</span>
+
+- <span style="color:white">Are there any missing values in the dataset `box`?</span>
+- <span style="color:white">What are the values of `Rank` when `Rank.Last.Week` is missing?</span>
+- <span style="color:white">Why there are many missing in `Rank.Last.Week`?</span>
+- <span style="color:white">What is the dimension of the data set `box`, when removing all missing values with the function `na.omit`?</span>
+- <span style="color:white">Why does the following statement fail? <br>
+`box$Rank.Last.Week <- na.omit(box$Rank.Last.Week)` </span>
+
+```{r, echo=FALSE, eval=FALSE}
+library(classdata)
+sum(is.na(box))
+colSums(is.na(box))
+
+box %>% filter(is.na(Rank.Last.Week) == TRUE) %>% select(Rank, Rank.Last.Week, Week)
+
+dim(box)
+dim(na.omit(box))
+```

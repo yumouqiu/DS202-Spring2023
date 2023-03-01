@@ -15,44 +15,73 @@
   
   
     <style type="text/css">
-   div.sourceCode { overflow-x: auto; }
-   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-     margin: 0; padding: 0; vertical-align: baseline; border: none; }
-   table.sourceCode { width: 100%; line-height: 100%; }
-   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-   td.sourceCode { padding-left: 5px; }
-   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-   code > span.dt { color: #902000; } /* DataType */
-   code > span.dv { color: #40a070; } /* DecVal */
-   code > span.bn { color: #40a070; } /* BaseN */
-   code > span.fl { color: #40a070; } /* Float */
-   code > span.ch { color: #4070a0; } /* Char */
-   code > span.st { color: #4070a0; } /* String */
-   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-   code > span.ot { color: #007020; } /* Other */
-   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-   code > span.fu { color: #06287e; } /* Function */
-   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-   code > span.cn { color: #880000; } /* Constant */
-   code > span.sc { color: #4070a0; } /* SpecialChar */
-   code > span.vs { color: #4070a0; } /* VerbatimString */
-   code > span.ss { color: #bb6688; } /* SpecialString */
-   code > span.im { } /* Import */
-   code > span.va { color: #19177c; } /* Variable */
-   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-   code > span.op { color: #666666; } /* Operator */
-   code > span.bu { } /* BuiltIn */
-   code > span.ex { } /* Extension */
-   code > span.pp { color: #bc7a00; } /* Preprocessor */
-   code > span.at { color: #7d9029; } /* Attribute */
-   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
+   .sourceCode { overflow: visible; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+   }
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {   }
+   @media screen {
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   
   
+      <script src="06_vis-factor_files/header-attrs-2.19/header-attrs.js"></script>
   
 </head>
 
@@ -65,34 +94,53 @@
 
   
   
-<section id="factors-in-visualizations" class="titleslide slide level1"><h2 class="shout">Factors in visualizations</h2></section><section id="visualizing-factors" class="slide level2">
+<section>
+<section id="factors-in-visualizations"
+class="title-slide slide level1">
+<h2>Factors in visualizations</h2>
+
+</section>
+<section id="visualizing-factors" class="slide level2">
 <h2>Visualizing factors</h2>
 <ul>
 <li>visualize factors directly: barcharts</li>
-<li>use factors in aesthetics (<code>colour</code>, <code>fill</code>, <code>shape</code>) or for facetting</li>
+<li>use factors in aesthetics (<code>colour</code>, <code>fill</code>,
+<code>shape</code>) or for facetting</li>
 <li>always make sure that the order in factors is sensible!</li>
 </ul>
-</section><section id="note-factors-for-fill-color" class="slide level2">
+</section>
+<section id="note-factors-for-fill-color" class="slide level2">
 <h2>Note: factors for fill color</h2>
-<p>In area plots (histograms and barcharts for now) use aesthetic <code>fill</code> for showing colored areas.</p>
+<p>In area plots (histograms and barcharts for now) use aesthetic
+<code>fill</code> for showing colored areas.</p>
 <p>Only factor variables can be mapped to <code>fill</code></p>
-</section><section id="example" class="slide level2">
+</section>
+<section id="example" class="slide level2">
 <h2>Example:</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(classdata)
-<span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(fbi, <span class="kw">aes</span>(<span class="dt">x =</span> Type, <span class="dt">fill=</span>Year)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="co"># nothing happens</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classdata)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fbi, <span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">fill =</span> year)) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="co"># nothing happens</span></span></code></pre></div>
 <p><img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-1-1.png" width="768" /></p>
-</section><section id="section" class="slide level2">
+</section>
+<section id="section" class="slide level2">
 <h2></h2>
 <p>Not sensible, but the colors show up:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(fbi, <span class="kw">aes</span>(<span class="dt">x =</span> Type, <span class="dt">fill=</span><span class="kw">factor</span>(Year))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() </code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fbi, <span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">fill=</span><span class="fu">factor</span>(year))) <span class="sc">+</span> <span class="fu">geom_bar</span>() </span></code></pre></div>
 <p><img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#ggplot(fbi, aes(x = Type, fill=factor(Year))) + geom_bar(aes(weight = Count)) </span></code></pre></div>
-</section><section id="example-survival-on-the-titanic" class="slide level2">
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p>More sensible, but too many years:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fbi, <span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">fill=</span><span class="fu">factor</span>(year))) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">weight =</span> count)) </span></code></pre></div>
+<p><img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-3-1.png" width="768" /></p>
+</section>
+<section id="example-survival-on-the-titanic" class="slide level2">
 <h2>Example: Survival on the Titanic</h2>
-<p>The object <code>Titanic</code> is a table of a break down of survival of passengers and crew on board the Titanic by gender and age.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(classdata)
-<span class="kw">head</span>(titanic)</code></pre></div>
+<p>The object <code>Titanic</code> is a table of a break down of
+survival of passengers and crew on board the Titanic by gender and
+age.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classdata)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(titanic)</span></code></pre></div>
 <pre><code>##   Class  Sex   Age Survived
 ## 1   3rd Male Child       No
 ## 2   3rd Male Child       No
@@ -100,76 +148,101 @@
 ## 4   3rd Male Child       No
 ## 5   3rd Male Child       No
 ## 6   3rd Male Child       No</code></pre>
-</section><section id="barcharts-of-all-variables" class="slide level2">
+</section>
+<section id="barcharts-of-all-variables" class="slide level2">
 <h2>Barcharts of all variables</h2>
 <div class="double">
 <p class="double-flow">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x =</span> Survived)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
-<p><img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-4-1.png" width="288" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x =</span> Sex)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
-<img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-4-2.png" width="288" />
-</p>
-<p class="double-flow">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x =</span> Class)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> Survived)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-5-1.png" width="288" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x =</span> Age)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
 <img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-5-2.png" width="288" />
 </p>
+<p class="double-flow">
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> Class)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-6-1.png" width="288" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> Age)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-6-2.png" width="288" />
+</p>
 </div>
-</section><section id="your-turn" class="slide level2 white">
-<h2>Your turn</h2>
+</section>
+<section id="your-turn" class="slide level2 white">
+<h2 class="white">Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">For this your turn use the <code>titanic</code> object from the <code>classdata</code> package. <!--- (you might have to update the package using the command `devtools::install_github("heike/classdata")`) </span>
+<p><span style="color:white">For this your turn use the
+<code>titanic</code> object from the <code>classdata</code> package.
+<!--- (you might have to update the package using the command `devtools::install_github("heike/classdata")`) </span>
 ---></p>
 <ul>
-<li><span style="color:white">Draw a barchart of Gender. Interpret.</span></li>
-<li><span style="color:white">Map survival to fill color in the barchart of Gender. Interpret.</span></li>
-<li><span style="color:white">In the previous barchart change the <code>position</code> parameter to <code>&quot;fill&quot;</code>. Interpret.</span></li>
-<li><span style="color:white">Read up on the <code>position</code> parameter in <code>?geom_bar</code>. Try out other options for <code>position</code>.</span></li>
-<li><span style="color:white">Are there other options for <code>position</code> parameter? Try.</span></li>
+<li><span style="color:white">Draw a barchart of Gender.
+Interpret.</span></li>
+<li><span style="color:white">Map survival to fill color in the barchart
+of Gender. Interpret.</span></li>
+<li><span style="color:white">In the previous barchart change the
+<code>position</code> parameter to <code>"fill"</code>.
+Interpret.</span></li>
+<li><span style="color:white">Read up on the <code>position</code>
+parameter in <code>?geom_bar</code>. Try out other options for
+<code>position</code>.</span></li>
+<li><span style="color:white">Are there other options for
+<code>position</code> parameter? Try.</span></li>
 </ul>
-</section><section id="positionfill" class="slide level2">
-<h2><code>position=&quot;fill&quot;</code></h2>
+</section>
+<section id="positionfill" class="slide level2">
+<h2><code>position="fill"</code></h2>
 <div class="double">
 <p class="double-flow">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x =</span> Survived, <span class="dt">fill=</span>Survived)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&quot;fill&quot;</span>)</code></pre></div>
-<p><img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-7-1.png" width="288" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">fill=</span>Survived)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&quot;fill&quot;</span>)</code></pre></div>
-<img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-7-2.png" width="288" />
-</p>
-<p class="double-flow">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x =</span> Class, <span class="dt">fill=</span>Survived)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&quot;fill&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> Survived, <span class="at">fill=</span>Survived)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
 <p><img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-8-1.png" width="288" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">fill=</span>Survived)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> Sex, <span class="at">fill=</span>Survived)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
 <img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-8-2.png" width="288" />
 </p>
+<p class="double-flow">
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">fill=</span>Survived)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
+<p><img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-9-1.png" width="288" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">fill=</span>Survived)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
+<img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-9-2.png" width="288" />
+</p>
 </div>
-</section><section id="two-and-more-factor-variables" class="slide level2">
+</section>
+<section id="two-and-more-factor-variables" class="slide level2">
 <h2>Two and more factor variables</h2>
 <ul>
 <li>besides facetting and position, use</li>
 <li><em>mosaic plots</em></li>
-<li>there are extension packages for <code>ggplot2</code>, e.g. <code>ggmosaic</code></li>
+<li>there are extension packages for <code>ggplot2</code>,
+e.g. <code>ggmosaic</code></li>
 <li>install <code>ggmosaic</code></li>
-<li>choose <code>n</code> when when asking for <code>compilation</code> during the installing</li>
+<li>choose <code>n</code> when when asking for <code>compilation</code>
+during the installing</li>
 </ul>
-</section><section id="mosaicplots" class="slide level2">
+</section>
+<section id="mosaicplots" class="slide level2">
 <h2>Mosaicplots</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggmosaic)
-<span class="kw">ggplot</span>(<span class="dt">data =</span> titanic)  <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">product</span>(Sex), <span class="dt">fill=</span>Survived, <span class="dt">weight=</span><span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_grid</span>(Age<span class="op">~</span>Class)</code></pre></div>
-<p><img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" /></p>
-</section><section id="your-turn-1" class="slide level2 white">
-<h2>Your turn</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmosaic)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> titanic)  <span class="sc">+</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(Sex), <span class="at">fill=</span>Survived, <span class="at">weight=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(Age<span class="sc">~</span>Class)</span></code></pre></div>
+<p><img src="06_vis-factor_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" /></p>
+</section>
+<section id="your-turn-1" class="slide level2 white">
+<h2 class="white">Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">In the above plots, we cannot see the relationship between <code>class</code> and <code>gender</code> since we make <code>barplot</code> separately for each <code>class</code>. How to show the relationship between <code>class</code>, <code>gender</code> and <code>survive</code>?</span></p>
+<p><span style="color:white">In the above plots, we cannot see the
+relationship between <code>class</code> and <code>gender</code> since we
+make <code>barplot</code> separately for each <code>class</code>. How to
+show the relationship between <code>class</code>, <code>gender</code>
+and <code>survive</code>?</span></p>
 <p><span style="color:white">For the <code>fbi</code> data:</span></p>
 <ul>
-<li><span style="color:white">Choose <code>California</code> and <code>New York</code></span></li>
-<li><span style="color:white">Choose Year <code>1971</code> and <code>2016</code></span></li>
-<li><span style="color:white">Compare <code>State</code>, <code>Year</code> and <code>Type</code> by the crime rate</span></li>
-<li><span style="color:white">Rename and reorder the factors appropriately</span></li>
+<li><span style="color:white">Choose <code>California</code> and
+<code>New York</code></span></li>
+<li><span style="color:white">Choose year <code>1971</code> and
+<code>2016</code></span></li>
+<li><span style="color:white">Compare <code>State</code>,
+<code>year</code> and <code>type</code> by the crime rate</span></li>
+<li><span style="color:white">Rename and reorder the factors
+appropriately</span></li>
 </ul>
 </section>
 
