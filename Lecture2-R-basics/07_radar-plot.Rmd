@@ -132,7 +132,7 @@ ggplot(mean.iris, aes(x = variable, y = value)) +
 
 ## Solution
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo = FALSE}
 library(classdata)
 
 crime.compare = dplyr::filter(fbi, Year %in% c(1971, 2016), State %in% c("California", "New York")) %>% mutate(Abb = as.factor(Abb))
@@ -156,7 +156,7 @@ crime.compare %>% filter(Type != "Legacy.rape", Type != "Rape") %>%
 
 ## Solution
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = FALSE}
 library(classdata)
 
 crime.compare = dplyr::filter(fbi, Year %in% c(1971, 2016), State %in% c("California", "New York")) %>% mutate(Abb = as.factor(Abb))
