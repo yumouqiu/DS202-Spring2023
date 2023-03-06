@@ -142,7 +142,7 @@ How to show the relationship between `class`, `gender` and `survive`?</span>
 <span style="color:white">For the `fbi` data:</span>
 
 - <span style="color:white">Choose `California` and `New York`</span>
-- <span style="color:white">Choose year `1971` and `2016`</span>
+- <span style="color:white">Choose year `1981` and `2016`</span>
 - <span style="color:white">Compare `State`, `year` and `type` by the crime rate</span>
 - <span style="color:white">Rename and reorder the factors appropriately</span>
 
@@ -150,14 +150,14 @@ How to show the relationship between `class`, `gender` and `survive`?</span>
 ggplot(data = titanic) +
   geom_mosaic(aes(x = product(Sex, Class), fill=Survived, weight=1))
 
-crime.compare = dplyr::filter(fbi, year %in% c(1971, 2016), state %in% c("California", "New York"))
+crime.compare = dplyr::filter(fbi, year %in% c(1981, 2016), state %in% c("California", "New York"))
 
 crime.compare$type = factor(crime.compare$type)
 levels(crime.compare$type)
 levels(crime.compare$type) = c("AT", "BY", "LT", "LR", "MT", "MR", "RE", "RY")
 crime.compare$type = factor(crime.compare$type, levels = c("MR", "RE", "LR", "RY", "LT", "MT", "AT", "BY"))
-crime.compare$State = factor(crime.compare$State)
-levels(crime.compare$State) = c("CA", "NY")
+crime.compare$state = factor(crime.compare$state)
+levels(crime.compare$state) = c("CA", "NY")
 ggplot(data = crime.compare) +
-  geom_mosaic(aes(x = product(year, State), fill = type, weight = Count / Population))
+  geom_mosaic(aes(x = product(year, state), fill = type, weight = count / population))
 ```
