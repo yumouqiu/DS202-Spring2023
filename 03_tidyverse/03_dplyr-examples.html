@@ -15,44 +15,73 @@
   
   
     <style type="text/css">
-   div.sourceCode { overflow-x: auto; }
-   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-     margin: 0; padding: 0; vertical-align: baseline; border: none; }
-   table.sourceCode { width: 100%; line-height: 100%; }
-   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-   td.sourceCode { padding-left: 5px; }
-   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-   code > span.dt { color: #902000; } /* DataType */
-   code > span.dv { color: #40a070; } /* DecVal */
-   code > span.bn { color: #40a070; } /* BaseN */
-   code > span.fl { color: #40a070; } /* Float */
-   code > span.ch { color: #4070a0; } /* Char */
-   code > span.st { color: #4070a0; } /* String */
-   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-   code > span.ot { color: #007020; } /* Other */
-   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-   code > span.fu { color: #06287e; } /* Function */
-   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-   code > span.cn { color: #880000; } /* Constant */
-   code > span.sc { color: #4070a0; } /* SpecialChar */
-   code > span.vs { color: #4070a0; } /* VerbatimString */
-   code > span.ss { color: #bb6688; } /* SpecialString */
-   code > span.im { } /* Import */
-   code > span.va { color: #19177c; } /* Variable */
-   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-   code > span.op { color: #666666; } /* Operator */
-   code > span.bu { } /* BuiltIn */
-   code > span.ex { } /* Extension */
-   code > span.pp { color: #bc7a00; } /* Preprocessor */
-   code > span.at { color: #7d9029; } /* Attribute */
-   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
+   .sourceCode { overflow: visible; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+   }
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {   }
+   @media screen {
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   
   
+      <script src="03_dplyr-examples_files/header-attrs-2.19/header-attrs.js"></script>
   
 </head>
 
@@ -65,85 +94,106 @@
 
   
   
-<section id="fbi-data" class="titleslide slide level1"><h2 class="shout">FBI data</h2></section><section id="group_by-and-mutate" class="slide level2">
+<section>
+<section id="fbi-data" class="title-slide slide level1">
+<h2>FBI data</h2>
+
+</section>
+<section id="group_by-and-mutate" class="slide level2">
 <h2><code>group_by</code> and <code>mutate</code></h2>
-<h3 id="working-with-fbi-in-the-classdata-package">Working with <code>fbi</code> in the <code>classdata</code> package</h3>
+<h3 id="working-with-fbi-in-the-classdata-package">Working with
+<code>fbi</code> in the <code>classdata</code> package</h3>
 <!--- upgrade the package: `devtools::install_github("heike/classdata")` --->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(classdata)
-<span class="kw">data</span>(<span class="st">&quot;fbi&quot;</span>, <span class="dt">package=</span><span class="st">&quot;classdata&quot;</span>)
-<span class="kw">head</span>(fbi)</code></pre></div>
-<pre><code>##     State Abb Year Population                                 Type Count
-## 1 Alabama  AL 1961    3302000 Murder.and.nonnegligent.Manslaughter   427
-## 2 Alabama  AL 1962    3358000 Murder.and.nonnegligent.Manslaughter   316
-## 3 Alabama  AL 1963    3347000 Murder.and.nonnegligent.Manslaughter   340
-## 4 Alabama  AL 1964    3407000 Murder.and.nonnegligent.Manslaughter   316
-## 5 Alabama  AL 1965    3462000 Murder.and.nonnegligent.Manslaughter   395
-## 6 Alabama  AL 1966    3517000 Murder.and.nonnegligent.Manslaughter   384
-##   Violent.crime
-## 1          TRUE
-## 2          TRUE
-## 3          TRUE
-## 4          TRUE
-## 5          TRUE
-## 6          TRUE</code></pre>
-</section><section id="mutate" class="slide level2">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classdata)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;fbi&quot;</span>, <span class="at">package=</span><span class="st">&quot;classdata&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fbi)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+##   state   state_id state_abbr  year population type          count violent_crime
+##   &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;      &lt;int&gt;      &lt;int&gt; &lt;chr&gt;         &lt;int&gt; &lt;lgl&gt;        
+## 1 Alabama        2 AL          1983    3959000 homicide        364 TRUE         
+## 2 Alabama        2 AL          1983    3959000 rape_legacy     931 TRUE         
+## 3 Alabama        2 AL          1983    3959000 rape_revised     NA TRUE         
+## 4 Alabama        2 AL          1983    3959000 robbery        3895 TRUE         
+## 5 Alabama        2 AL          1983    3959000 aggravated_a… 11281 TRUE         
+## 6 Alabama        2 AL          1983    3959000 burglary      42485 FALSE</code></pre>
+</section>
+<section id="mutate" class="slide level2">
 <h2><code>mutate</code></h2>
 <ul>
-<li><code>mutate</code> allows us to introduce new variables or upgrade existing ones</li>
-<li>the result from <code>mutate</code> are vectors of the same length as the data (sub)set</li>
+<li><code>mutate</code> allows us to introduce new variables or upgrade
+existing ones</li>
+<li>the result from <code>mutate</code> are vectors of the same length
+as the data (sub)set</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fbi &lt;-<span class="st"> </span>fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
-  <span class="dt">Rate =</span> Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">70000</span>, <span class="dt">Type =</span> <span class="kw">factor</span>(Type), <span class="dt">Year =</span> <span class="kw">factor</span>(Year)
-  )</code></pre></div>
-</section><section id="your-turn" class="slide level2 white">
-<h2>Your turn</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fbi <span class="ot">&lt;-</span> fbi <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> count <span class="sc">/</span> population<span class="sc">*</span><span class="dv">70000</span>, <span class="at">type =</span> <span class="fu">factor</span>(type), <span class="at">year =</span> <span class="fu">factor</span>(year)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+</section>
+<section id="your-turn" class="slide level2 white">
+<h2 class="white">Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">For this your turn use the <code>fbi</code> data from the <code>classdata</code> package </span></p>
+<p><span style="color:white">For this your turn use the <code>fbi</code>
+data from the <code>classdata</code> package </span></p>
 <ul>
-<li><span style="color:white">Use <code>mutate</code> to reorder types of crimes by (median) rate.</span></li>
-<li><span style="color:white">Plot crime rates by type in side-by-side boxplots. Medians of the boxplots should be ordered.</span><br><br><br><br><br><br><br><br></li>
+<li><span style="color:white">Use <code>mutate</code> to reorder types
+of crimes by (median) rate.</span></li>
+<li><span style="color:white">Plot crime rates by type in side-by-side
+boxplots. Medians of the boxplots should be
+ordered.</span><br><br><br><br><br><br><br><br></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fbi &lt;-<span class="st"> </span>fbi <span class="op">%&gt;%</span><span class="st"> </span>ungroup <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
-  <span class="dt">Type =</span> <span class="kw">reorder</span>(Type, Rate, <span class="dt">FUN=</span>median, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
-)
-fbi <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Type, <span class="dt">y =</span> Rate)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</code></pre></div>
-<p><img src="03_dplyr-examples_files/figure-revealjs/unnamed-chunk-3-1.png" width="768" /></p>
-</section><section id="group_by-and-mutate-1" class="slide level2">
+</section>
+<section id="solution" class="slide level2">
+<h2>Solution</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fbi <span class="ot">&lt;-</span> fbi <span class="sc">%&gt;%</span> ungroup <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">reorder</span>(type, rate, <span class="at">FUN=</span>median, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fbi <span class="sc">%&gt;%</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> rate)) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+</section>
+<section id="solution-1" class="slide level2">
+<h2>Solution</h2>
+<p><img src="03_dplyr-examples_files/figure-revealjs/unnamed-chunk-4-1.png" width="768" /></p>
+</section>
+<section id="group_by-and-mutate-1" class="slide level2">
 <h2><code>group_by</code> and <code>mutate</code></h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fbi &lt;-<span class="st"> </span>fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Type) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
-  <span class="dt">best =</span> <span class="kw">rank</span>(Rate) <span class="co"># ranks from lowest rate to highest rate</span>
-)
-fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(best <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Type, State, Year, Rate)</code></pre></div>
-<pre><code>## # A tibble: 8 x 4
-## # Groups:   Type [8]
-##   Type                                 State         Year     Rate
-##   &lt;fct&gt;                                &lt;chr&gt;         &lt;fct&gt;   &lt;dbl&gt;
-## 1 Murder.and.nonnegligent.Manslaughter North Dakota  1967    0.110
-## 2 Robbery                              Vermont       1967    1.34 
-## 3 Aggravated.assault                   Vermont       1962    2.51 
-## 4 Burglary                             Mississippi   1963  130.   
-## 5 Larceny.theft                        West Virginia 1961  205.   
-## 6 Rape                                 Puerto Rico   2013    0.658
-## 7 Legacy.rape                          Puerto Rico   2013    0.503
-## 8 Motor.vehicle.theft                  Vermont       2015   19.9</code></pre>
-</section><section id="your-turn-group_by-and-mutate" class="slide level2 white">
-<h2>Your turn: group_by and mutate</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fbi <span class="ot">&lt;-</span> fbi <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">best =</span> <span class="fu">rank</span>(rate) <span class="co"># ranks from lowest rate to highest rate</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fbi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(best <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(type, state, year, rate)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 4
+## # Groups:   type [8]
+##   type                state        year     rate
+##   &lt;fct&gt;               &lt;chr&gt;        &lt;fct&gt;   &lt;dbl&gt;
+## 1 robbery             North Dakota 1997    4.48 
+## 2 aggravated_assault  North Dakota 1983   21.9  
+## 3 homicide            North Dakota 1994    0.110
+## 4 motor_vehicle_theft Vermont      2016   20.7  
+## 5 rape_legacy         Puerto Rico  2013    0.506
+## 6 rape_revised        Puerto Rico  2013    0.662
+## 7 burglary            Puerto Rico  2020   65.4  
+## 8 larceny             Puerto Rico  2020  184.</code></pre>
+</section>
+<section id="your-turn-group_by-and-mutate" class="slide level2 white">
+<h2 class="white">Your turn: group_by and mutate</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">For this your turn use the <code>fbi</code> data from the <code>classdata</code> package </span></p>
+<p><span style="color:white">For this your turn use the <code>fbi</code>
+data from the <code>classdata</code> package </span></p>
 <ul>
-<li><span style="color:white">Find the ranks for all rates of crime by type of crime and year.</span></li>
-<li><span style="color:white">Focus on the top states. Find a visual that shows how often each state managed to take the top spot since 1961.</span><br><br><br><br><br><br><br><br></li>
+<li><span style="color:white">Find the ranks for all rates of crime by
+type of crime and year.</span></li>
+<li><span style="color:white">Focus on the top states. Find a visual
+that shows how often each state managed to take the top spot since
+1961.</span><br><br><br><br><br><br><br><br></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fbi &lt;-<span class="st"> </span>fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Type, Year) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
-  <span class="dt">best =</span> <span class="kw">rank</span>(Rate, <span class="dt">na.last=</span> <span class="st">&quot;keep&quot;</span>) <span class="co"># ranks from lowest rate to highest rate</span>
-)
-fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(best <span class="op">&lt;=</span><span class="st"> </span><span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Abb)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill=</span><span class="kw">factor</span>(best))) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Type, <span class="dt">scales=</span><span class="st">&quot;free&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</code></pre></div>
-<p><img src="03_dplyr-examples_files/figure-revealjs/unnamed-chunk-5-1.png" width="768" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fbi <span class="ot">&lt;-</span> fbi <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(type, year) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">best =</span> <span class="fu">rank</span>(rate, <span class="at">na.last =</span> <span class="st">&quot;keep&quot;</span>) <span class="co"># ranks from lowest rate to highest rate</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>fbi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(best <span class="sc">&lt;=</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state_abbr)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">factor</span>(best))) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>type, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="03_dplyr-examples_files/figure-revealjs/unnamed-chunk-6-1.png" width="768" /></p>
 </section>
 
   <!--

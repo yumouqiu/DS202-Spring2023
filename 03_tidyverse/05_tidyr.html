@@ -15,44 +15,73 @@
   
   
     <style type="text/css">
-   div.sourceCode { overflow-x: auto; }
-   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-     margin: 0; padding: 0; vertical-align: baseline; border: none; }
-   table.sourceCode { width: 100%; line-height: 100%; }
-   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-   td.sourceCode { padding-left: 5px; }
-   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-   code > span.dt { color: #902000; } /* DataType */
-   code > span.dv { color: #40a070; } /* DecVal */
-   code > span.bn { color: #40a070; } /* BaseN */
-   code > span.fl { color: #40a070; } /* Float */
-   code > span.ch { color: #4070a0; } /* Char */
-   code > span.st { color: #4070a0; } /* String */
-   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-   code > span.ot { color: #007020; } /* Other */
-   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-   code > span.fu { color: #06287e; } /* Function */
-   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-   code > span.cn { color: #880000; } /* Constant */
-   code > span.sc { color: #4070a0; } /* SpecialChar */
-   code > span.vs { color: #4070a0; } /* VerbatimString */
-   code > span.ss { color: #bb6688; } /* SpecialString */
-   code > span.im { } /* Import */
-   code > span.va { color: #19177c; } /* Variable */
-   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-   code > span.op { color: #666666; } /* Operator */
-   code > span.bu { } /* BuiltIn */
-   code > span.ex { } /* Extension */
-   code > span.pp { color: #bc7a00; } /* Preprocessor */
-   code > span.at { color: #7d9029; } /* Attribute */
-   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
+   .sourceCode { overflow: visible; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+   }
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {   }
+   @media screen {
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   
   
+      <script src="05_tidyr_files/header-attrs-2.19/header-attrs.js"></script>
   
 </head>
 
@@ -63,26 +92,38 @@
     <p>Yumou Qiu</p>
   </header>
 
-
   
-<section id="the-tidyr-package" class="titleslide slide level1"><h2 class="shout">The <code>tidyr</code> package</h2></section><section id="what-is-tidy-data" class="slide level2">
+  
+<section>
+<section id="the-tidyr-package" class="title-slide slide level1">
+<h2>The <code>tidyr</code> package</h2>
+
+</section>
+<section id="what-is-tidy-data" class="slide level2">
 <h2>What is tidy data?</h2>
 <blockquote>
-<p>Happy families are all alike; every unhappy family is unhappy in its own way.<br> Leo Tolstoy</p>
+<p>Happy families are all alike; every unhappy family is unhappy in its
+own way.<br> Leo Tolstoy</p>
 </blockquote>
 <ul>
 <li>Resource: follow along tidyr vignette</li>
-<li>available as <code>vignette(&quot;tidy-data&quot;, package=&quot;tidyr&quot;)</code></li>
-<li>vignette is version of the <a href="https://www.jstatsoft.org/article/view/v059i10">tidy data paper</a> with updated code</li>
+<li>available as
+<code>vignette("tidy-data", package="tidyr")</code></li>
+<li>vignette is version of the <a
+href="https://www.jstatsoft.org/article/view/v059i10">tidy data
+paper</a> with updated code</li>
 </ul>
-</section><section id="outline" class="slide level2">
+</section>
+<section id="outline" class="slide level2">
 <h2>Outline</h2>
 <ul>
 <li>Different sources of messiness</li>
 <li>Key-Value pairs</li>
 <li><code>tidyr</code>: <code>spread</code> and <code>gather</code></li>
 </ul>
-</section><section id="data-is-usually-in-a-spreadsheet-format-but" class="slide level2">
+</section>
+<section id="data-is-usually-in-a-spreadsheet-format-but"
+class="slide level2">
 <h2>Data is usually in a spreadsheet format, but …</h2>
 <p>there’s different ways of encoding the same information:</p>
 <p>Option #1</p>
@@ -94,23 +135,32 @@
 <pre><code>##   treatment John.Smith Jane.Doe Mary.Johnson
 ## 1         a         NA        4            6
 ## 2         b         18        1            7</code></pre>
-<p>Neither #1 nor #2 are “clean” versions of the data: observed information is part of the data structure; some implicit information is assumed</p>
-</section><section id="sources-of-messiness" class="slide level2">
+<p>Neither #1 nor #2 are “clean” versions of the data: observed
+information is part of the data structure; some implicit information is
+assumed</p>
+</section>
+<section id="sources-of-messiness" class="slide level2">
 <h2>Sources of Messiness</h2>
 <ol type="1">
-<li>Column headers are values, not variable names.<br> e.g. <em>treatmenta, treatmentb</em></li>
-<li>Multiple variables are stored in one column.<br> e.g. <em>Fall 2015, Spring 2016</em> or <em>“1301 8th St SE, Orange City, Iowa 51041 (42.99755, -96.04149)”, “2102 Durant, Harlan, Iowa 51537 (41.65672, -95.33780)”</em></li>
+<li>Column headers are values, not variable names.<br>
+e.g. <em>treatmenta, treatmentb</em></li>
+<li>Multiple variables are stored in one column.<br> e.g. <em>Fall 2015,
+Spring 2016</em> or <em>“1301 8th St SE, Orange City, Iowa 51041
+(42.99755, -96.04149)”, “2102 Durant, Harlan, Iowa 51537 (41.65672,
+-95.33780)”</em></li>
 <li>Multiple observational units are stored in the same table.</li>
 <li>A single observational unit is stored in multiple tables.</li>
 </ol>
-</section><section id="tidy-data" class="slide level2">
+</section>
+<section id="tidy-data" class="slide level2">
 <h2>Tidy data</h2>
 <ol type="1">
 <li>Each variable forms one column.</li>
 <li>Each observation forms one row.</li>
 <li>Each type of observational unit forms a table.</li>
 </ol>
-</section><section id="clean-version-of-the-example" class="slide level2">
+</section>
+<section id="clean-version-of-the-example" class="slide level2">
 <h2>Clean version of the example</h2>
 <pre><code>##   treatment      patient score
 ## 1         a   John Smith    NA
@@ -120,24 +170,37 @@
 ## 5         a Mary Johnson     6
 ## 6         b Mary Johnson     7</code></pre>
 <ul>
-<li><code>treatment</code> and <code>patient</code> uniquely describe a single row in the dataset.</li>
-<li><code>treatment</code> and <code>patient</code> are <strong>key variables</strong>,</li>
+<li><code>treatment</code> and <code>patient</code> uniquely describe a
+single row in the dataset.</li>
+<li><code>treatment</code> and <code>patient</code> are <strong>key
+variables</strong>,</li>
 <li><code>score</code> is a <strong>measurement variable</strong></li>
-<li>this makes <code>treatment-patient</code> and <code>score</code> a <strong>key-value pair</strong></li>
+<li>this makes <code>treatment-patient</code> and <code>score</code> a
+<strong>key-value pair</strong></li>
 </ul>
-</section><section id="key-value-pairs-kvp" class="slide level2">
+</section>
+<section id="key-value-pairs-kvp" class="slide level2">
 <h2>Key-value pairs (KVP)</h2>
-<p><strong>Key-Value pairs</strong> (KVP) - also <em>attribute-value</em>, <em>field-value</em>, <em>name-value</em>: abstract data representation that allows a lot of flexibility</p>
-<p>One way of telling whether a data set is tidy is to check that all keys for a value are aligned in one row:</p>
+<p><strong>Key-Value pairs</strong> (KVP) - also
+<em>attribute-value</em>, <em>field-value</em>, <em>name-value</em>:
+abstract data representation that allows a lot of flexibility</p>
+<p>One way of telling whether a data set is tidy is to check that all
+keys for a value are aligned in one row:</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><img src="images/kvp-unhappy.png" width=150></td>
-<td style="text-align: left;"><img src="images/kvp-happy.png" width=150></td>
+<td
+style="text-align: left;"><img src="images/kvp-unhappy.png" width=150></td>
+<td
+style="text-align: left;"><img src="images/kvp-happy.png" width=150></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Untidy data</td>
@@ -145,24 +208,36 @@
 </tr>
 </tbody>
 </table>
-</section><section id="tidying-data---plan-of-attack" class="slide level2">
+</section>
+<section id="tidying-data---plan-of-attack" class="slide level2">
 <h2>Tidying data - Plan of attack</h2>
 <p>Very few functions are needed for tidying data:</p>
 <ul>
-<li>Messy (1): <code>tidyr</code> functions <code>gather</code> and <code>spread</code>.<br />
-<code>gather (data, key, value, ...)</code>: take multiple columns and collapse into key-value pairs <br> <code>spread (data, key, value, fill = NA)</code>: spread a key-value pair across multiple columns.</li>
-<li>Messy (2): <code>tidyr</code> function <code>separate (data, col, into, sep = &quot;[^[:alnum:]]+&quot;)</code>: separate one column into multiple columns</li>
-<li>Messy (3): <code>dplyr</code> - some combination of the functions discussed previously</li>
-<li>Messy (4): <code>dplyr</code> functionality <code>join</code> (and friends) to combine multiple data sets</li>
+<li>Messy (1): <code>tidyr</code> functions <code>gather</code> and
+<code>spread</code>.<br />
+<code>gather (data, key, value, ...)</code>: take multiple columns and
+collapse into key-value pairs <br>
+<code>spread (data, key, value, fill = NA)</code>: spread a key-value
+pair across multiple columns.</li>
+<li>Messy (2): <code>tidyr</code> function
+<code>separate (data, col, into, sep = "[^[:alnum:]]+")</code>: separate
+one column into multiple columns</li>
+<li>Messy (3): <code>dplyr</code> - some combination of the functions
+discussed previously</li>
+<li>Messy (4): <code>dplyr</code> functionality <code>join</code> (and
+friends) to combine multiple data sets</li>
 </ul>
-</section><section id="french-fries-data" class="slide level2">
+</section>
+<section id="french-fries-data" class="slide level2">
 <h2>French fries data</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(french_fries, <span class="dt">package=</span><span class="st">&quot;reshape2&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(french_fries, <span class="at">package=</span><span class="st">&quot;reshape2&quot;</span>)</span></code></pre></div>
 <ul>
-<li>data from sensory experiment conducted at Iowa State University in 2004</li>
-<li>investigators were interested in comparing effects of three different fryer oils on taste of fries</li>
+<li>data from sensory experiment conducted at Iowa State University in
+2004</li>
+<li>investigators were interested in comparing effects of three
+different fryer oils on taste of fries</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">french_fries <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>french_fries <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##    time treatment subject rep potato buttery grassy rancid painty
 ## 61    1         1       3   1    2.9     0.0    0.0    0.0    5.5
 ## 25    1         1       3   2   14.0     0.0    0.0    1.1    0.0
@@ -170,10 +245,11 @@
 ## 26    1         1      10   2    9.9     5.9    2.9    2.2    0.0
 ## 63    1         1      15   1    1.2     0.1    0.0    1.1    5.1
 ## 27    1         1      15   2    8.8     3.0    3.6    1.5    2.3</code></pre>
-</section><section id="gather" class="slide level2">
+</section>
+<section id="gather" class="slide level2">
 <h2>Gather</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ffm &lt;-<span class="st"> </span>french_fries <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(<span class="dt">key =</span> scale, <span class="dt">value =</span> score, <span class="dv">5</span><span class="op">:</span><span class="dv">9</span>)
-ffm</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ffm <span class="ot">&lt;-</span> french_fries <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="at">key =</span> scale, <span class="at">value =</span> score, <span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ffm</span></code></pre></div>
 <pre><code>##      time treatment subject rep   scale score
 ## 1       1         1       3   1  potato   2.9
 ## 2       1         1       3   2  potato  14.0
@@ -3655,9 +3731,10 @@ ffm</code></pre></div>
 ## 3478   10         3      78   2  painty   1.4
 ## 3479   10         3      86   1  painty  10.5
 ## 3480   10         3      86   2  painty   9.4</code></pre>
-</section><section id="spread" class="slide level2">
+</section>
+<section id="spread" class="slide level2">
 <h2>Spread</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ffm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(<span class="dt">key =</span> rep, <span class="dt">value =</span> score)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ffm <span class="sc">%&gt;%</span> <span class="fu">spread</span>(<span class="at">key =</span> rep, <span class="at">value =</span> score)</span></code></pre></div>
 <pre><code>##      time treatment subject   scale    1    2
 ## 1       1         1       3 buttery  0.0  0.0
 ## 2       1         1       3  grassy  0.0  0.0
@@ -5399,64 +5476,105 @@ ffm</code></pre></div>
 ## 1738   10         3      86  painty 10.5  9.4
 ## 1739   10         3      86  potato  2.5  2.5
 ## 1740   10         3      86  rancid  7.0  8.2</code></pre>
-</section><section id="section" class="slide level2">
+</section>
+<section id="section" class="slide level2">
 <h2></h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ffm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(<span class="dt">key =</span> rep, <span class="dt">value =</span> score) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">1</span><span class="st">`</span>, <span class="dt">y =</span> <span class="st">`</span><span class="dt">2</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>scale) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">colour =</span> <span class="st">&quot;grey50&quot;</span>)</code></pre></div>
-<pre><code>## Warning: Removed 9 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ffm <span class="sc">%&gt;%</span> <span class="fu">spread</span>(<span class="at">key =</span> rep, <span class="at">value =</span> score) <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">1</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">2</span><span class="st">`</span>)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>scale) <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">colour =</span> <span class="st">&quot;grey50&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 9 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="05_tidyr_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" /></p>
-</section><section id="your-turn" class="slide level2 white">
-<h2>Your turn</h2>
+</section>
+<section id="your-turn" class="slide level2 white">
+<h2 class="white">Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">For this your turn use the <code>french_fries</code> data from the <code>reshape2</code> package: <code>data(&quot;french_fries&quot;, package=&quot;reshape2&quot;)</code> </span></p>
+<p><span style="color:white">For this your turn use the
+<code>french_fries</code> data from the <code>reshape2</code> package:
+<code>data("french_fries", package="reshape2")</code> </span></p>
 <ul>
-<li><span style="color:white">Use <code>gather</code> from the <code>tidyr</code> package to combine the different scales for assessing french fries into a single variable. Call the key-value pair “scale” and “score”. </span></li>
-<li><span style="color:white">Use <code>spread</code> from the <code>tidyr</code> package to get a format in which you can directly compare values from week 1 to week 10. Plot a scatterplot of values in week 1 against week 10. Facet by treatment and scale, color by individuals and use different shapes for the replicates. Is there a pattern visible?</span></li>
+<li><span style="color:white">Use <code>gather</code> from the
+<code>tidyr</code> package to combine the different scales for assessing
+french fries into a single variable. Call the key-value pair “scale” and
+“score”. </span></li>
+<li><span style="color:white">Use <code>spread</code> from the
+<code>tidyr</code> package to get a format in which you can directly
+compare values from week 1 to week 10. Plot a scatterplot of values in
+week 1 against week 10. Facet by treatment and scale, color by
+individuals and use different shapes for the replicates. Is there a
+pattern visible?</span></li>
 </ul>
-</section><section id="your-turn-1" class="slide level2 white">
-<h2>Your turn</h2>
+</section>
+<section id="your-turn-1" class="slide level2 white">
+<h2 class="white">Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">For this your turn use the <code>fbiwide</code> data from the <code>classdata</code> package: <code>data(&quot;fbiwide&quot;, package=&quot;classdata&quot;)</code> </span></p>
+<p><span style="color:white">For this your turn use the
+<code>fbiwide</code> data from the <code>classdata</code> package:
+<code>data("fbiwide", package="classdata")</code> </span></p>
 <ul>
-<li><span style="color:white">Use <code>gather</code> from the <code>tidyr</code> package to combine the variables for the different types of crimes into one variable. Call the key-value pair “Type” and “Incidences”. Compute a crime rate</span></li>
-<li><span style="color:white">Only consider crime rates for Iowa and Minnesota. Use <code>spread</code> to create incidence columns for each of these states. Plot crimes in Iowa against crimes in Minnesota, colour by type of crime. Note: you need to exclude some variables. </span></li>
+<li><span style="color:white">Use <code>gather</code> from the
+<code>tidyr</code> package to combine the variables for the different
+types of crimes into one variable. Call the key-value pair “Type” and
+“Incidences”. Compute a crime rate</span></li>
+<li><span style="color:white">Only consider crime rates for Iowa and
+Minnesota. Use <code>spread</code> to create incidence columns for each
+of these states. Plot crimes in Iowa against crimes in Minnesota, colour
+by type of crime. Note: you need to exclude some variables. </span></li>
 </ul>
-</section><section id="spread-works-as-inverse-of-gather" class="slide level2">
+</section>
+<section id="spread-works-as-inverse-of-gather" class="slide level2">
 <h2>Spread works as inverse of gather</h2>
-<p><img src="images/spread-gather-clean.png" /></p>
-</section><section id="front-part-is-not-identical---not-collapsible" class="slide level2">
+<p><img data-src="images/spread-gather-clean.png" /></p>
+</section>
+<section id="front-part-is-not-identical---not-collapsible"
+class="slide level2">
 <h2>Front part is not identical - not collapsible</h2>
-<p><img src="images/spread-gather-unclean.png" /></p>
-</section><section id="where-spread-is-tricky" class="slide level2">
+<p><img data-src="images/spread-gather-unclean.png" /></p>
+</section>
+<section id="where-spread-is-tricky" class="slide level2">
 <h2>Where <code>spread</code> is tricky</h2>
 <ul>
-<li><code>spread</code> is the (almost) inverse operation of <code>gather</code></li>
-<li>when we use <code>gather</code> the key information is duplicated</li>
-<li>when using <code>spread</code> we need to make sure that the information outside the key and value is identical for all levels (and combinations of levels) of the <code>key</code> variable.</li>
-<li>If the info is not identical across levels, missing values are introduced into the new data set.</li>
+<li><code>spread</code> is the (almost) inverse operation of
+<code>gather</code></li>
+<li>when we use <code>gather</code> the key information is
+duplicated</li>
+<li>when using <code>spread</code> we need to make sure that the
+information outside the key and value is identical for all levels (and
+combinations of levels) of the <code>key</code> variable.</li>
+<li>If the info is not identical across levels, missing values are
+introduced into the new data set.</li>
 </ul>
-</section><section id="spread-in-the-example" class="slide level2">
+</section>
+<section id="spread-in-the-example" class="slide level2">
 <h2><code>spread</code> in the example</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(classdata)
-fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Year<span class="op">==</span><span class="dv">2014</span>, State <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Iowa&quot;</span>, <span class="st">&quot;Minnesota&quot;</span>), Type<span class="op">==</span><span class="st">&quot;Burglary&quot;</span>)</code></pre></div>
-<pre><code>##       State Abb Year Population     Type Count Violent.crime
-## 1      Iowa  IA 2014    3107126 Burglary 14428         FALSE
-## 2 Minnesota  MN 2014    5457173 Burglary 20773         FALSE</code></pre>
-<p>Other state specific values don’t allow spread to collapse the front part and introduce missing values:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Year<span class="op">==</span><span class="dv">2014</span>, State <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Iowa&quot;</span>, <span class="st">&quot;Minnesota&quot;</span>), Type<span class="op">==</span><span class="st">&quot;Burglary&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">spread</span>(State, Count)</code></pre></div>
-<pre><code>##   Abb Year Population     Type Violent.crime  Iowa Minnesota
-## 1  IA 2014    3107126 Burglary         FALSE 14428        NA
-## 2  MN 2014    5457173 Burglary         FALSE    NA     20773</code></pre>
-</section><section id="fixing-spread-in-the-example" class="slide level2">
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classdata)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fbi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2014</span>, state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Iowa&quot;</span>, <span class="st">&quot;Minnesota&quot;</span>), type<span class="sc">==</span><span class="st">&quot;burglary&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 8
+##   state     state_id state_abbr  year population type     count violent_crime
+##   &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;      &lt;int&gt;      &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;lgl&gt;        
+## 1 Iowa            16 IA          2014    3109481 burglary 14363 FALSE        
+## 2 Minnesota       27 MN          2014    5457125 burglary 20773 FALSE</code></pre>
+<p>Other state specific values don’t allow spread to collapse the front
+part and introduce missing values:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fbi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2014</span>, state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Iowa&quot;</span>, <span class="st">&quot;Minnesota&quot;</span>), type<span class="sc">==</span><span class="st">&quot;burglary&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(state, count)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 8
+##   state_id state_abbr  year population type     violent_crime  Iowa Minnesota
+##      &lt;int&gt; &lt;chr&gt;      &lt;int&gt;      &lt;int&gt; &lt;chr&gt;    &lt;lgl&gt;         &lt;int&gt;     &lt;int&gt;
+## 1       16 IA          2014    3109481 burglary FALSE         14363        NA
+## 2       27 MN          2014    5457125 burglary FALSE            NA     20773</code></pre>
+</section>
+<section id="fixing-spread-in-the-example" class="slide level2">
 <h2>fixing <code>spread</code> in the example</h2>
-<p>Negative selection of all state specific variables gets the example to “work”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Year<span class="op">==</span><span class="dv">2014</span>, State <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Iowa&quot;</span>, <span class="st">&quot;Minnesota&quot;</span>), Type<span class="op">==</span><span class="st">&quot;Burglary&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Abb, <span class="op">-</span>Population) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">spread</span>(State, Count)</code></pre></div>
-<pre><code>##   Year     Type Violent.crime  Iowa Minnesota
-## 1 2014 Burglary         FALSE 14428     20773</code></pre>
+<p>Negative selection of all state specific variables gets the example
+to “work”:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fbi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2014</span>, state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Iowa&quot;</span>, <span class="st">&quot;Minnesota&quot;</span>), type<span class="sc">==</span><span class="st">&quot;burglary&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>state_abbr, <span class="sc">-</span>population) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(state, count)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 6
+##   state_id  year type     violent_crime  Iowa Minnesota
+##      &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;lgl&gt;         &lt;int&gt;     &lt;int&gt;
+## 1       16  2014 burglary FALSE         14363        NA
+## 2       27  2014 burglary FALSE            NA     20773</code></pre>
 </section>
 
   <!--

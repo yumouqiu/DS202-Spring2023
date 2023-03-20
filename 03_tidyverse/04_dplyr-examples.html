@@ -15,44 +15,73 @@
   
   
     <style type="text/css">
-   div.sourceCode { overflow-x: auto; }
-   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-     margin: 0; padding: 0; vertical-align: baseline; border: none; }
-   table.sourceCode { width: 100%; line-height: 100%; }
-   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-   td.sourceCode { padding-left: 5px; }
-   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-   code > span.dt { color: #902000; } /* DataType */
-   code > span.dv { color: #40a070; } /* DecVal */
-   code > span.bn { color: #40a070; } /* BaseN */
-   code > span.fl { color: #40a070; } /* Float */
-   code > span.ch { color: #4070a0; } /* Char */
-   code > span.st { color: #4070a0; } /* String */
-   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-   code > span.ot { color: #007020; } /* Other */
-   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-   code > span.fu { color: #06287e; } /* Function */
-   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-   code > span.cn { color: #880000; } /* Constant */
-   code > span.sc { color: #4070a0; } /* SpecialChar */
-   code > span.vs { color: #4070a0; } /* VerbatimString */
-   code > span.ss { color: #bb6688; } /* SpecialString */
-   code > span.im { } /* Import */
-   code > span.va { color: #19177c; } /* Variable */
-   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-   code > span.op { color: #666666; } /* Operator */
-   code > span.bu { } /* BuiltIn */
-   code > span.ex { } /* Extension */
-   code > span.pp { color: #bc7a00; } /* Preprocessor */
-   code > span.at { color: #7d9029; } /* Attribute */
-   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
+   .sourceCode { overflow: visible; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+   }
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {   }
+   @media screen {
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   
   
+      <script src="04_dplyr-examples_files/header-attrs-2.19/header-attrs.js"></script>
   
 </head>
 
@@ -77,19 +106,25 @@
 <section id="potential-traps" class="slide level2">
 <h2>Potential traps</h2>
 <ul>
-<li>using the $ notation in tidyverse can lead to strange behavior and error messages</li>
-<li>don’t forget to save statements back into the dataset (<code>mutate</code>, <code>arrange</code>) or new data objects (<code>summarise</code>, <code>filter</code>)</li>
-<li>when using the pipe <code>%&gt;%</code>: what is output from lhs, first parameter on rhs?</li>
+<li>using the $ notation in tidyverse can lead to strange behavior and
+error messages</li>
+<li>don’t forget to save statements back into the dataset
+(<code>mutate</code>, <code>arrange</code>) or new data objects
+(<code>summarise</code>, <code>filter</code>)</li>
+<li>when using the pipe <code>%&gt;%</code>: what is output from lhs,
+first parameter on rhs?</li>
 </ul>
 </section>
 <section id="french-fries-data" class="slide level2">
 <h2>French fries data</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(french_fries, <span class="dt">package=</span><span class="st">&quot;reshape2&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(french_fries, <span class="at">package=</span><span class="st">&quot;reshape2&quot;</span>)</span></code></pre></div>
 <ul>
-<li>data from sensory experiment conducted at Iowa State University in 2004</li>
-<li>investigators were interested in comparing effects of three different fryer oils on taste of fries</li>
+<li>data from sensory experiment conducted at Iowa State University in
+2004</li>
+<li>investigators were interested in comparing effects of three
+different fryer oils on taste of fries</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">french_fries <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>french_fries <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##    time treatment subject rep potato buttery grassy rancid painty
 ## 61    1         1       3   1    2.9     0.0    0.0    0.0    5.5
 ## 25    1         1       3   2   14.0     0.0    0.0    1.1    0.0
@@ -98,25 +133,30 @@
 ## 63    1         1      15   1    1.2     0.1    0.0    1.1    5.1
 ## 27    1         1      15   2    8.8     3.0    3.6    1.5    2.3</code></pre>
 </section>
-<section id="did-the-french-fries-taste-worse-over-time" class="slide level2">
+<section id="did-the-french-fries-taste-worse-over-time"
+class="slide level2">
 <h2>Did the french fries taste worse over time?</h2>
 <ul>
 <li class="fragment next">How do we define ‘tasting well’?</li>
-<li class="fragment next">Higher values of potato-y and buttery, lower values of grassy, rancid, painty</li>
-<li class="fragment next">Compute averages of these scales for each time point</li>
-<li class="fragment next">combination of <code>group_by</code> and <code>summarise</code></li>
+<li class="fragment next">Higher values of potato-y and buttery, lower values
+of grassy, rancid, painty</li>
+<li class="fragment next">Compute averages of these scales for each time
+point</li>
+<li class="fragment next">combination of <code>group_by</code> and
+<code>summarise</code></li>
 </ul>
 </section>
-<section id="did-the-french-fries-taste-worse-over-time-2" class="slide level2">
+<section id="did-the-french-fries-taste-worse-over-time-2"
+class="slide level2">
 <h2>Did the french fries taste worse over time? (2)</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">french_fries <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(time) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(
-  <span class="dt">m.potato =</span> <span class="kw">mean</span>(potato, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
-  <span class="dt">m.buttery =</span> <span class="kw">mean</span>(buttery, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
-  <span class="dt">m.grassy =</span> <span class="kw">mean</span>(grassy, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
-  <span class="dt">m.rancid =</span> <span class="kw">mean</span>(rancid, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
-  <span class="dt">m.painty =</span> <span class="kw">mean</span>(painty, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
-) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</code></pre></div>
-<pre><code>## # A tibble: 6 x 6
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>french_fries <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(time) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">m.potato =</span> <span class="fu">mean</span>(potato, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">m.buttery =</span> <span class="fu">mean</span>(buttery, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">m.grassy =</span> <span class="fu">mean</span>(grassy, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">m.rancid =</span> <span class="fu">mean</span>(rancid, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">m.painty =</span> <span class="fu">mean</span>(painty, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 6
 ##   time  m.potato m.buttery m.grassy m.rancid m.painty
 ##   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 1         8.56      2.24    0.942     2.36     1.65
@@ -126,24 +166,51 @@
 ## 5 5         7.33      1.64    0.635     3.53     2.02
 ## 6 6         6.67      1.75    0.674     4.08     2.34</code></pre>
 </section>
-<section id="did-the-french-fries-taste-worse-over-time-3" class="slide level2">
+<section id="did-the-french-fries-taste-worse-over-time-3"
+class="slide level2">
 <h2>Did the french fries taste worse over time? (3)</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avgs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y =</span> m.potato)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape=</span><span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">y=</span>m.rancid)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Average&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>avgs <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time)) <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> m.potato)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">2</span>, <span class="fu">aes</span>(<span class="at">y=</span>m.rancid)) <span class="sc">+</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Average&quot;</span>)</span></code></pre></div>
 <p><img src="04_dplyr-examples_files/figure-revealjs/unnamed-chunk-6-1.png" width="768" /></p>
 </section>
 <section id="your-turn" class="slide level2 white">
-<h2>Your turn</h2>
+<h2 class="white">Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">For this your turn use the <code>french_fries</code> data from the <code>reshape2</code> package: <code>data(french_fries, package=&quot;reshape2&quot;)</code> </span></p>
+<p><span style="color:white">For this your turn use the
+<code>french_fries</code> data from the <code>reshape2</code> package:
+<code>data(french_fries, package="reshape2")</code> </span></p>
 <ul>
-<li><span style="color:white">Do ratings of potato-y show a difference between the different oils over time?</span></li>
-<li><span style="color:white">Draw a plot of the average potato-y rating by time, color by treatment.</span></li>
-<li><span style="color:white">How does this plot look like for the rancid rating?</span></li>
+<li><span style="color:white">Do ratings of potato-y show a difference
+between the different oils over time?</span></li>
+<li><span style="color:white">Draw a plot of the average potato-y rating
+by time, color by treatment.</span></li>
+<li><span style="color:white">How does this plot look like for the
+rancid rating?</span></li>
 </ul>
 <!---<span style="color:white"><p style="font-size:20px">Solution in `learnr::run_tutorial("dplyr", package="yourturns480")`</p></span>-->
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>avgs.time.trt <span class="ot">&lt;-</span> french_fries <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(time, treatment) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">m.potato =</span> <span class="fu">mean</span>(potato, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">m.buttery =</span> <span class="fu">mean</span>(buttery, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">m.grassy =</span> <span class="fu">mean</span>(grassy, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">m.rancid =</span> <span class="fu">mean</span>(rancid, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">m.painty =</span> <span class="fu">mean</span>(painty, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;time&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>french_fries <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> potato)) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> treatment))</span></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="04_dplyr-examples_files/figure-revealjs/unnamed-chunk-7-1.png" width="768" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>avgs.time.trt <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> m.potato)) <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> treatment)) <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Average&quot;</span>)</span></code></pre></div>
+<p><img src="04_dplyr-examples_files/figure-revealjs/unnamed-chunk-7-2.png" width="768" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>avgs.time.trt <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> m.rancid)) <span class="sc">+</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> treatment)) <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Average&quot;</span>)</span></code></pre></div>
+<p><img src="04_dplyr-examples_files/figure-revealjs/unnamed-chunk-7-3.png" width="768" /></p>
 </section>
 
   <!--

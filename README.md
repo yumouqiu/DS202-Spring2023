@@ -43,3 +43,20 @@
 03/08 [Lecture 3-1-dplyr](03_tidyverse\01_dplyr.html)
 
 03/08 [Lecture 3-2-dplyr example 1](03_tidyverse\03_dplyr-examples.html)
+
+03/20 [Lecture 3-3-dplyr example 2](03_tidyverse\04_dplyr-examples.html)
+
+03/20 [Lecture 3-4-Practice for dplyr I](Practice\practice03.html)
+
+03/22 [Lecture 3-6-tidyr](03_tidyverse\05_tidyr.html)
+
+03/22 [Lecture 3-7-messy II](03_tidyverse\06_tidyr.html)
+
+03/22 [Lecture 3-5-dplyr example 3](03_tidyverse\02_dplyr-examples.html)
+
+03/29 [Lecture 3-8-messy III](03_tidyverse\07-messy-3.html)
+
+03/29 [Lecture 3-9-messy IV](03_tidyverse\08-messy-4.html)
+
+
+

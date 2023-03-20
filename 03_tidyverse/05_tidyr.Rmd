@@ -150,7 +150,7 @@ ffm %>% spread(key = rep, value = score) %>%
 - <span style="color:white">Use `gather` from the `tidyr` package to combine the different scales for assessing french fries into a single variable. Call the key-value pair "scale" and "score". </span>
 - <span style="color:white">Use `spread` from the `tidyr` package to get a format in which you can directly compare values from week 1 to week 10. Plot a scatterplot of values in week 1 against week 10. Facet by treatment and scale, color by individuals   and use different shapes for the replicates. Is there a pattern visible?</span>
 
-```{r}
+```{r, echo = FALSE, eval = FALSE}
 head(french_fries)
 ff1 = french_fries %>% gather(key = scale, value = score, 5 : 9)
 head(ff1)
@@ -170,13 +170,14 @@ ff2 %>% ggplot(aes(x = `1`, y = `10`)) + geom_point(aes(color = subject, shape =
 - <span style="color:white">Use `gather` from the `tidyr` package to combine the variables for the different types of crimes into one variable. Call the key-value pair "Type" and "Incidences". Compute a crime rate</span>
 - <span style="color:white">Only consider crime rates for Iowa and Minnesota. Use `spread` to create incidence columns for each of these states. Plot crimes in Iowa against crimes in Minnesota, colour by type of crime. Note: you need to exclude some variables. </span>
 
-```{r}
+```{r, echo = FALSE, eval = FALSE}
+library(classdata)
 head(fbiwide)
-fbi1 = fbiwide %>% gather(key = Type, value = Incidences, 6 : 14)
-fbi1 = fbi1 %>% mutate(Rate = Incidences / Population * 70000)
-fbi2 = fbi1 %>% filter(State %in% c("Iowa", "Minnesota"))
-fbi3 = fbi2 %>% select(-Abb, -Population, -Violent.crime, -Incidences) %>% spread(key = State, value = Rate)
-fbi3 %>% ggplot(aes(x = Iowa, y = Minnesota)) + geom_point(aes(color = Type))
+fbi1 = fbiwide %>% gather(key = type, value = incidences, 7 : 16)
+fbi1 = fbi1 %>% mutate(rate = incidences / population * 70000)
+fbi2 = fbi1 %>% filter(state %in% c("Iowa", "Minnesota"))
+fbi3 = fbi2 %>% select(-state_abbr, -state_id, -population, -violent_crime, -incidences) %>% spread(key = state, value = rate)
+fbi3 %>% ggplot(aes(x = Iowa, y = Minnesota)) + geom_point(aes(color = type))
 ```
 
 ## Spread works as inverse of gather
@@ -198,13 +199,13 @@ fbi3 %>% ggplot(aes(x = Iowa, y = Minnesota)) + geom_point(aes(color = Type))
 
 ```{r, message=FALSE, warning=FALSE}
 library(classdata)
-fbi %>% filter(Year==2014, State %in% c("Iowa", "Minnesota"), Type=="Burglary")
+fbi %>% filter(year==2014, state %in% c("Iowa", "Minnesota"), type=="burglary")
 ```
 Other state specific values don't allow spread to collapse the front part and introduce missing values:
 
 ```{r}
-fbi %>% filter(Year==2014, State %in% c("Iowa", "Minnesota"), Type=="Burglary") %>% 
-  spread(State, Count)
+fbi %>% filter(year==2014, state %in% c("Iowa", "Minnesota"), type=="burglary") %>% 
+  spread(state, count)
 ```
 
 ## fixing `spread` in the example
@@ -212,9 +213,9 @@ fbi %>% filter(Year==2014, State %in% c("Iowa", "Minnesota"), Type=="Burglary") 
 Negative selection of all state specific variables gets the example to "work": 
 
 ```{r}
-fbi %>% filter(Year==2014, State %in% c("Iowa", "Minnesota"), Type=="Burglary") %>% 
-  select(-Abb, -Population) %>% 
-  spread(State, Count)
+fbi %>% filter(year==2014, state %in% c("Iowa", "Minnesota"), type=="burglary") %>% 
+  select(-state_abbr, -population) %>% 
+  spread(state, count)
 ```
 
 

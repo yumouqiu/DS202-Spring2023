@@ -31,7 +31,7 @@ head(fbi)
 
 ```{r}
 fbi <- fbi %>% mutate(
-  Rate = Count/Population*70000, Type = factor(Type), Year = factor(Year)
+  rate = count / population*70000, type = factor(type), year = factor(year)
   )
 ```
 
@@ -44,22 +44,34 @@ fbi <- fbi %>% mutate(
 - <span style="color:white">Use `mutate` to reorder types of crimes by (median) rate.</span>
 - <span style="color:white">Plot crime rates by type in side-by-side boxplots. Medians of the boxplots should be ordered.</span><br><br><br><br><br><br><br><br>
 
-```{r, warning = FALSE}
+## Solution
+
+```{r, warning = FALSE, eval = FALSE}
 fbi <- fbi %>% ungroup %>% mutate(
-  Type = reorder(Type, Rate, FUN=median, na.rm=TRUE)
+  type = reorder(type, rate, FUN=median, na.rm=TRUE)
 )
 fbi %>% 
-  ggplot(aes(x = Type, y = Rate)) +
+  ggplot(aes(x = type, y = rate)) +
+  geom_boxplot() + coord_flip()
+```
+## Solution 
+
+```{r, warning = FALSE, echo = FALSE}
+fbi <- fbi %>% ungroup %>% mutate(
+  type = reorder(type, rate, FUN=median, na.rm=TRUE)
+)
+fbi %>% 
+  ggplot(aes(x = type, y = rate)) +
   geom_boxplot() + coord_flip()
 ```
 
 ##  `group_by` and `mutate` 
 
 ```{r}
-fbi <- fbi %>% group_by(Type) %>% mutate(
-  best = rank(Rate) # ranks from lowest rate to highest rate
+fbi <- fbi %>% group_by(type) %>% mutate(
+  best = rank(rate) # ranks from lowest rate to highest rate
 )
-fbi %>% filter(best == 1) %>% select(Type, State, Year, Rate)
+fbi %>% filter(best == 1) %>% select(type, state, year, rate)
 ```
 
 
@@ -73,10 +85,10 @@ fbi %>% filter(best == 1) %>% select(Type, State, Year, Rate)
 - <span style="color:white">Focus on the top states. Find a visual that shows how often each state managed to take the top spot since 1961.</span><br><br><br><br><br><br><br><br>
 
 ```{r, warning = FALSE}
-fbi <- fbi %>% group_by(Type, Year) %>% mutate(
-  best = rank(Rate, na.last= "keep") # ranks from lowest rate to highest rate
+fbi <- fbi %>% group_by(type, year) %>% mutate(
+  best = rank(rate, na.last = "keep") # ranks from lowest rate to highest rate
 )
 fbi %>% filter(best <= 3) %>% 
-  ggplot(aes(x = Abb)) +
-  geom_bar(aes(fill=factor(best))) + facet_wrap(~Type, scales="free") + coord_flip()
+  ggplot(aes(x = state_abbr)) +
+  geom_bar(aes(fill=factor(best))) + facet_wrap(~type, scales="free") + coord_flip()
 ```

@@ -30,13 +30,13 @@ knitr::opts_chunk$set(echo = TRUE)
 - Link the repository to Rstudio
 - Do a data exploration (on happiness)
 - Create an R markdown file that contains all code to read the data and create the plots
-- Homework 6
+- Homework 7
 
 
 ## github repository
 
 1. Log into github 
-2. Create a repository called 'Homework 6'. Make sure to initialize the repo with a README file. 
+2. Create a repository called 'Homework 7'. Make sure to initialize the repo with a README file. 
 3. Go into the settings of the repository and add your team members as collaborators
 
 ## Cloning the repo
@@ -140,7 +140,7 @@ Each member should study a different question (choose different variables to inv
 
 Upload your answers and the dataset to the repository. Discuss and refine answers as a team.
 
-## Submission (Homework 6)
+## Submission (Homework 7)
 
 In Canvas, submit an RMarkdown file (and the knitted html document) with: 
 
@@ -151,6 +151,6 @@ In Canvas, submit an RMarkdown file (and the knitted html document) with:
   e. you can upload the data file, but you don't have to
 
 
-Due date: Next Wed at 11:59 pm to submit the RMmarkdown file.
+Due date: Next Monday at 11:59 pm to submit the RMmarkdown file.
 
 
