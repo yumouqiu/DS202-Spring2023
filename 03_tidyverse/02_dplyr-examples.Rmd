@@ -21,7 +21,7 @@ output:
 The General Social Survey (GSS) has been run by NORC every other year since 1972 to keep track of current opinions across the United States. 
 
 An excerpt of the GSS data is available from our course website. 
-Dowload the file [HAPPY.rds](https://github.com/yumouqiu/DS202-Spring2022/blob/main/03_tidyverse/data/HAPPY.rds?raw=true) and put the file into a folder called "data" next to your Rmd file. The following command is going to load the data into your R session:
+Dowload the file [HAPPY.rds](https://github.com/yumouqiu/DS202-Spring2023/blob/main/03_tidyverse/data/HAPPY.rds) and put the file into a folder called "data" next to your Rmd file. The following command is going to load the data into your R session:
 
 ```{r, message=FALSE}
 library(tidyverse)

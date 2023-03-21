@@ -106,7 +106,7 @@ head(happy)
 Unfortunately, the dataset ends in 2006. So today's activity is all about updating the dataset to the data from 2016.
 
 An excerpt of the GSS data is available from our course website. 
-Dowload the file [HAPPY.rds](https://github.com/yumouqiu/DS202-Spring2022/blob/main/03_tidyverse/data/HAPPY.rds?raw=true) and put the file into a folder called "data" next to your Rmd file. The following command is going to load the data into your R session:
+Dowload the file [HAPPY.rds](https://github.com/yumouqiu/DS202-Spring2023/blob/main/03_tidyverse/data/HAPPY.rds) and put the file into a folder called "data" next to your Rmd file. The following command is going to load the data into your R session:
 
 ```{r}
 HAPPY <- readRDS("data/HAPPY.rds")
