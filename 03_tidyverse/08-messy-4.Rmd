@@ -35,7 +35,7 @@ LahmanData
 
 The Lahman database consists of 24 data frames that are linked by `playerID`. <br>
 This is clean, but not very readable. <br>
-The `Master` table includes names and other attributes for each player. <br>
+The `People` table includes names and other attributes for each player. <br>
 *Joining* multiple tables helps us to bring together (pieces of) information from multiple sources.
 
 ## Example: Hall of Fame
@@ -51,15 +51,15 @@ HallOfFame %>% filter(yearID==2017)
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
-<span style="color:white">For this your turn use the `HallOfFame` and `Master` data from the `Lahman` package </span>
+<span style="color:white">For this your turn use the `HallOfFame` and `People` data from the `Lahman` package </span>
 
-- <span style="color:white">Identify all players who were inducted in the Hall of Fame in 2017, by filtering the `Master` data for their player IDs. </span>
+- <span style="color:white">Identify all players who were inducted in the Hall of Fame in 2017, by filtering the `People` data for their player IDs. </span>
 
 </br></br></br></br></br></br>
 
 ```{r echo = FALSE}
 HallOfFame2017 = HallOfFame %>% filter(yearID == 2017, inducted == "Y") 
-Master %>% filter(playerID %in% HallOfFame2017$playerID)
+People %>% filter(playerID %in% HallOfFame2017$playerID)
 ```
 
 ## Joins - general idea
@@ -143,24 +143,24 @@ anti_join(df2, df1, by="id") # no values for id in df1
 <img src="images/blue.jpeg" width="1200" class="cover">
 
 - <span style="color:white">Load the `Lahman` package into your R session.</span>
-- <span style="color:white">Join (relevant pieces of) the `Master` data set and the `HallOfFame` data.</span>
+- <span style="color:white">Join (relevant pieces of) the `People` data set and the `HallOfFame` data.</span>
 - <span style="color:white">Find all Hall of Famers who were alive as of 2017.</span>
 - <span style="color:white">How many attempts at being inducted to the HoF does Sammy Sosa have already?</span>
 
-```{r, echo = FALSE}
-dim(Master)
+```{r, echo = FALSE, eval = FALSE}
+dim(People)
 dim(HallOfFame)
 
-sum(!(HallOfFame$playerID %in% Master$playerID))
+sum(!(HallOfFame$playerID %in% People$playerID))
 
-HallOfFameMaster = left_join(HallOfFame, Master, by = "playerID")
-anti_join(HallOfFame, Master, by = "playerID")
-Master[4637, ]
+HallOfFamePeople = left_join(HallOfFame, People, by = "playerID")
+anti_join(HallOfFame, People, by = "playerID")
+People[4637, ]
 
-summary(HallOfFameMaster$deathYear)
-HallOfFameMaster1 = HallOfFameMaster %>% filter(is.na(deathYear) == TRUE)
-HallOfFameMaster2 = HallOfFameMaster %>% filter(nameFirst == "Sammy")
-HallOfFameMaster3 = HallOfFameMaster %>% group_by(playerID) %>% summarise(NumberOfTry = n(), FinalInducted = max(as.numeric(inducted)) - 1)
+summary(HallOfFamePeople$deathYear)
+HallOfFamePeople1 = HallOfFamePeople %>% filter(is.na(deathYear) == TRUE)
+HallOfFamePeople2 = HallOfFamePeople %>% filter(nameFirst == "Sammy")
+HallOfFamePeople3 = HallOfFamePeople %>% group_by(playerID) %>% summarise(NumberOfTry = n(), FinalInducted = max(as.numeric(inducted)) - 1)
 
-HallOfFameMasterFinal = left_join(HallOfFameMaster3, Master %>% select(playerID, nameFirst, nameLast, deathDate, birthDate), by = "playerID")
+HallOfFamePeopleFinal = left_join(HallOfFamePeople3, People %>% select(playerID, nameFirst, nameLast, deathDate, birthDate), by = "playerID")
 ```
