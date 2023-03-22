@@ -182,11 +182,13 @@ fbi3 %>% ggplot(aes(x = Iowa, y = Minnesota)) + geom_point(aes(color = type))
 
 ## Spread works as inverse of gather
 
-![](images/spread-gather-clean.png)
+<img src="images/spread-gather-clean.png" width=550>
+
 
 ## Front part is not identical - not collapsible
 
-![](images/spread-gather-unclean.png)
+<img src="images/spread-gather-unclean.png" width=550>
+
 
 ## Where `spread` is tricky
 
