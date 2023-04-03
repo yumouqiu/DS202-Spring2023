@@ -56,7 +56,10 @@
 
 03/29 [Lecture 3-8-messy III](03_tidyverse\07-messy-3.html)
 
-03/29 [Lecture 3-9-messy IV](03_tidyverse\08-messy-4.html)
+### April
 
+04/03 [Lecture 3-9-messy IV](03_tidyverse\08-messy-4.html)
 
+04/05 [Lecture 3-10-missing values](03_tidyverse\09_missing-values.html)
 
+04/10 [Lecture 3-11-Practice for dplyr II](Practice\practice04.html)

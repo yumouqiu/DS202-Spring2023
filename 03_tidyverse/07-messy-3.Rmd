@@ -155,7 +155,7 @@ movies %>% count(Movie) %>% arrange(desc(n))
 
 Get the Week info  for the first time we see  each Movie and Distributor combo:
 
-```{r}
+```{r, warning = FALSE, message = FALSE}
 movies <- box %>% group_by(Movie, Distributor) %>% 
   summarise(
     firstDate = Date[which.min(Week)], 
@@ -173,8 +173,8 @@ movies %>% group_by(Movie) %>% mutate(n = n()) %>% arrange(desc(n))
 
 ## Using IMDb
 
-- Girlhood is the name of two movies - one that was released in 2003, one in 2014; most likely the Oct 4 boxoffice mention is only mistakenly referring to the 2003 movie
-- Mama Africa refers to two movies, one released in 2002, one in 2011; likely the duplicate  on Jan 19 is erroneous, but we still don't know which of the two movies is showing (in 1 theater)
+- Girlhood is the name of ``two'' movies in the data - one that was released in 2015-04-10, one in 2015-01-30; most likely they are the same movie, but the distributor of the 2015-04-10 release is missing.  
+- Errors for the movie Mama Africa 
 
 ```{r}
 box %>% filter(Movie=="Mama Africa")
