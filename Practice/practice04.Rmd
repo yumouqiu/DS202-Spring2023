@@ -97,7 +97,7 @@ av.neat = left_join(av1, av2, by = c("Name.Alias", "time"))
 ```
 
 
-```{r}
+```{r, eval=FALSE, echo=FALSE}
 av.neat %>% group_by(time) %>% summarise(total.num = n(),
                                          real.death = sum(death == "YES"), 
                                          fake.death = sum(death == "NO"), 
