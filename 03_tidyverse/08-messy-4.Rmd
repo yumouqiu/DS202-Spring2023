@@ -155,12 +155,18 @@ sum(!(HallOfFame$playerID %in% People$playerID))
 
 HallOfFamePeople = left_join(HallOfFame, People, by = "playerID")
 anti_join(HallOfFame, People, by = "playerID")
-People[4637, ]
 
 summary(HallOfFamePeople$deathYear)
-HallOfFamePeople1 = HallOfFamePeople %>% filter(is.na(deathYear) == TRUE)
-HallOfFamePeople2 = HallOfFamePeople %>% filter(nameFirst == "Sammy")
-HallOfFamePeople3 = HallOfFamePeople %>% group_by(playerID) %>% summarise(NumberOfTry = n(), FinalInducted = max(as.numeric(inducted)) - 1)
+
+HallOfFamePeople1 = HallOfFamePeople %>% filter(deathYear >= 2017 | is.na(deathYear))
+HallOfFamePeople2 = HallOfFamePeople1 %>% group_by(playerID) %>% 
+  summarise(n = n(), 
+            year.max = yearID[which.max(yearID)], 
+            inducted.final =  inducted[which.max(yearID)], 
+            nameFirst = nameFirst[which.max(yearID)],
+            nameGiven = nameGiven[which.max(yearID)])
+
+HallOfFamePeople3 = HallOfFamePeople %>% filter(nameFirst == "Sammy")
 
 HallOfFamePeopleFinal = left_join(HallOfFamePeople3, People %>% select(playerID, nameFirst, nameLast, deathDate, birthDate), by = "playerID")
 ```
