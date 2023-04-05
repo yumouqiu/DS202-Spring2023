@@ -62,4 +62,14 @@
 
 04/05 [Lecture 3-10-missing values](03_tidyverse\09_missing-values.html)
 
-04/10 [Lecture 3-11-Practice for dplyr II](Practice\practice04.html)
+04/05 [Lecture 3-11-Practice for dplyr II](Practice\practice04.html)
+
+04/10 [Lecture 4-1-time](04_date-time-space\01_date-and-time.html)
+
+04/10 [Lecture 4-2-time series](04_date-time-space\02_time-series.html)
+
+04/12 [Lecture 4-3-layers](04_date-time-space\03_layers.html)
+
+04/17 [Lecture 4-4-maps](04_date-time-space\04_maps.html)
+
+04/19 [Lecture 4-5-Practice for time series data](Practice\practice05.html)

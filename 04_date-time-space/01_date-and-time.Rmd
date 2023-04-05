@@ -1,0 +1,140 @@
+---
+title: "DS 202 - Date and Time"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+```
+
+## Working with date and time
+
+
+## `lubridate` package
+
+- package for working with dates and times
+- defines different classes of time: instants, periods, intervals, durations
+- defines converter and accessor functions, enables time calculus
+
+## Converter functions and instants in time
+
+- time instants: one (absolute) moment in time, e.g. `now()`, `Jan-1-2000`
+- easy-to-use converter functions: 
+    - date: `ymd`, `mdy`, `dmy`, ...
+    - time: `hm`, `hms`, ...
+    - date & time: `ymd_hms`, `mdy_hm`, ...
+- order of letters determines how strings are parsed
+- separators are automatically determined, then assumed to be the same
+
+```{r message=FALSE}
+mdy("03-01-2018")
+dmy("03-01-2018")
+```
+
+## Your Turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Create date objects for today's date by typing the date in text format and converting it with one of the `lubridate` converter functions. </span>
+- <span style="color:white">Try different formats of writing the date and compare the end results.</span>
+
+
+
+## Accessor functions
+
+
+- accessor functions: `year`, `month`, `week`, `wday`, `mday`, `yday`, `hour`, `minute`, ...
+- accessor functions can also be used for setting elements of date and time, e.g. `hour(x) <- 12`
+
+Examples:
+
+```{r}
+month(now())
+wday(now(), label = TRUE)
+```
+
+## Intervals and Durations
+
+- Intervals have a *start* and an *end* date/time: absolute difference
+- Durations are potentially of relative length (months, leap year, leap second, ...)
+
+```{r}
+end_date <- now()
+span <- end_date - years(1)
+span
+end_date - days(10)
+```
+
+
+## Example: Movies
+
+The date variable can be treated as numeric variables.
+
+```{r, message=FALSE}
+library(classdata)
+summary(box$Date) # date variable: allows date calculus
+```
+
+
+## Example: Movies (cont'd)
+
+The date variable can be treated as numeric variables.
+
+```{r, fig.height = 3.25}
+library(tidyverse)
+
+box %>% ggplot(aes(x = Date)) + geom_histogram(binwidth=7)
+```
+
+## Example: Movies (cont'd)
+
+Is there a seasonal effect in the number of movies in the box office?
+
+```{r, fig.height = 3.25}
+library(lubridate)
+
+box %>% ggplot(aes(x = month(Date, label=TRUE))) + geom_bar()
+```
+
+## Your Turn (10 min) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">inspect the `budget` data set from the `classdata` package,
+</span>
+- <span style="color:white">make sure the variable `Release Date` is a date format,
+</span>
+- <span style="color:white">plot a histogram of the variable.
+</span>
+- <span style="color:white">merge (`join`) budget and box office data (by movie name) 
+</span>
+- <span style="color:white">is the time between the release of a movie and the date is equal to the number of weeks in theaters?
+</span>
+
+```{r, echo=F, eval=FALSE}
+str(budget)
+summary(budget$ReleaseDate)
+budget %>% ggplot(aes(x = ReleaseDate)) + geom_histogram()
+
+budget %>% ggplot(aes(x = month(ReleaseDate, label=TRUE))) + geom_bar()
+
+boxbudget1 = left_join(box, budget, by = "Movie")
+dim(anti_join(box, budget, by = "Movie"))
+dim(anti_join(budget, box, by = "Movie"))
+boxbudget = inner_join(box, budget, by = "Movie")
+
+#boxbudget$Diff = week(boxbudget$Date) - week(boxbudget$ReleaseDate) Not right, why?
+#boxbudget$Diff = (boxbudget$Date - boxbudget$ReleaseDate) / 7 Seems right, but the format is not good
+boxbudget$Diff = as.duration(boxbudget$Date - boxbudget$ReleaseDate) / dweeks(1)
+```
+
+
+

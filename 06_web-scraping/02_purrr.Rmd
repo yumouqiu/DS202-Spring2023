@@ -1,0 +1,167 @@
+---
+title: "DS 202 - Web Scraping"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+```{r setup, include=FALSE, message=FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Web Scraping with R
+
+
+## Automating the process
+
+- functions in R
+- loops in R
+
+## Functions in R
+
+- Have been using functions a lot, now we want to write them ourselves!
+- Idea: avoid repetitive coding (errors will creep in)
+- Instead: extract common core, wrap it in a function, make it reusable
+
+## Structure of functions
+
+- Name
+- Input arguments
+    - names, 
+    - default values
+- Body
+- Output values
+
+## A first function
+
+```{r}
+mymean <- function(x) {
+	return(sum(x)/length(x))
+}
+```
+
+```{r}
+mymean(1:15)
+mymean(c(1:15, NA))
+```
+
+## A first function (2)
+
+```{r}
+mymean <- function(x, na.rm = F) {
+	if (na.rm == T) x <- na.omit(x)
+	
+	return(sum(x)/length(x))
+}
+
+mymean(1:15)
+mymean(c(1:15, NA), na.rm=T)
+```
+
+
+
+## Your Turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at https://www.the-numbers.com/weekend-box-office-chart
+</span>
+
+- <span style="color:white">Use `rvest` to download the box office gross in that week.
+</span>
+- <span style="color:white">Write a function that uses the url as input argument, scrapes the data, cleans it up, and returns the cleaned data.
+</span>
+
+## Your turn - solution
+
+```{r warning = FALSE, message = FALSE}
+url <- "https://www.the-numbers.com/weekend-box-office-chart"
+
+boxoffice_scraper <- function(url) {
+  library(rvest)
+  library(tidyverse)
+  html <- read_html(url)
+  tables <- html %>% html_table(fill=TRUE)
+  box <- tables[[2]]
+  names(box)[1:2] <- c("Rank", "Rank.Last.Week")
+  box <- box %>% mutate(
+    Gross = parse_number(Gross),
+    Thtrs. = parse_number(Theaters)
+  )
+  return(box)  
+}
+```
+
+## Now try it out
+
+```{r, cache =TRUE, message=FALSE}
+box <- boxoffice_scraper("https://www.the-numbers.com/weekend-box-office-chart")
+head(box)
+```
+
+
+## Get the previous week
+
+```{r, message= FALSE}
+library(rvest)
+url <- "https://www.the-numbers.com/weekend-box-office-chart"
+html <- read_html(url)
+html %>% html_nodes(".previous a")
+html %>% html_nodes(".previous a") %>% html_attr("href")
+newurl <- html %>% html_nodes(".previous a") %>% html_attr("href")
+
+newhtml <- read_html(paste0("https://www.the-numbers.com/", newurl))
+```
+... could use this in a recursive algorithm.
+
+# Always scrape responsibly!
+
+## Loops in R
+
+For-loop: 
+
+```
+for (i in 1:n) {
+  # expression to be run for each i
+  
+}
+```
+but: for-loops need a lot of overhead
+
+## Another example
+
+Clean up career statistics into a function that returns dataset:
+
+```{r}
+bb_scraper <- function(url) {
+  library(rvest)
+  html <- read_html(url)
+
+  names <- html %>% html_nodes("span strong") %>% html_text()
+  values <- html %>% html_nodes(".stats_pullout p") %>% html_text() 
+  player <- html %>% html_nodes("h1") %>% html_text()
+  position <- html %>% html_nodes("h1+ p") %>% html_text()
+  names <- trimws(names)
+  player <- trimws(player)
+  position <- trimws(position)
+  data.frame(player=player, position=position, 
+             statistics=names[-1],  values=parse_number(values)[-1])
+}
+```
+
+## Now try it out
+
+```{r}
+bb_scraper("http://www.baseball-reference.com/players/a/aardsda01.shtml")
+```
+
+
+## Your Turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">Write your own loop function using `for (i in 1 : n){}` to extract the same information.

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202 - Maps</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="04_maps_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="04_maps_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="04_maps_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="04_maps_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="04_maps_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+    <style type="text/css">
+   div.sourceCode { overflow-x: auto; }
+   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+     margin: 0; padding: 0; vertical-align: baseline; border: none; }
+   table.sourceCode { width: 100%; line-height: 100%; }
+   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+   td.sourceCode { padding-left: 5px; }
+   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code > span.dt { color: #902000; } /* DataType */
+   code > span.dv { color: #40a070; } /* DecVal */
+   code > span.bn { color: #40a070; } /* BaseN */
+   code > span.fl { color: #40a070; } /* Float */
+   code > span.ch { color: #4070a0; } /* Char */
+   code > span.st { color: #4070a0; } /* String */
+   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code > span.ot { color: #007020; } /* Other */
+   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code > span.fu { color: #06287e; } /* Function */
+   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+   code > span.cn { color: #880000; } /* Constant */
+   code > span.sc { color: #4070a0; } /* SpecialChar */
+   code > span.vs { color: #4070a0; } /* VerbatimString */
+   code > span.ss { color: #bb6688; } /* SpecialString */
+   code > span.im { } /* Import */
+   code > span.va { color: #19177c; } /* Variable */
+   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code > span.op { color: #666666; } /* Operator */
+   code > span.bu { } /* BuiltIn */
+   code > span.ex { } /* Extension */
+   code > span.pp { color: #bc7a00; } /* Preprocessor */
+   code > span.at { color: #7d9029; } /* Attribute */
+   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202 - Maps</h1>
+    <p>Yumou Qiu</p>
+  </header>
+
+  
+  
+<section id="drawing-maps" class="titleslide slide level1"><h2 class="shout">Drawing maps</h2></section><section id="outline" class="slide level2">
+<h2>Outline</h2>
+<ul>
+<li>package <code>maps</code></li>
+<li>what is a map</li>
+<li>maps and map data in ggplot</li>
+<li>drawing choropleth maps</li>
+</ul>
+</section><section id="maps-are" class="slide level2">
+<h2>Maps are …</h2>
+<div class="double">
+<p class="double-flow">
+<ul>
+<li>… points in latitude and longitude</li>
+</ul>
+<img src="04_maps_files/figure-revealjs/unnamed-chunk-1-1.png" width="288" />
+</p>
+<p class="double-flow">
+<ul>
+<li>that are connected in the ‘right’ order (determined by order in the data frame)</li>
+</ul>
+<img src="04_maps_files/figure-revealjs/unnamed-chunk-2-1.png" width="288" />
+</p>
+</div>
+</section><section id="maps" class="slide level2">
+<h2>Maps …</h2>
+<div class="double">
+<p class="double-flow">
+<ul>
+<li>use <code>group</code> parameter to distinguish between different regions</li>
+</ul>
+<img src="04_maps_files/figure-revealjs/unnamed-chunk-3-1.png" width="288" />
+</p>
+<p class="double-flow">
+<ul>
+<li>are usually filled in</li>
+</ul>
+<p><img src="04_maps_files/figure-revealjs/unnamed-chunk-4-1.png" width="288" /></p>
+</p>
+</div>
+</section><section id="map-data" class="slide level2">
+<h2>map data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)
+<span class="kw">head</span>(states)</code></pre></div>
+<pre><code>##        long      lat group order  region subregion
+## 1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;
+## 2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;
+## 3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;
+## 4 -87.53076 30.33239     1     4 alabama      &lt;NA&gt;
+## 5 -87.57087 30.32665     1     5 alabama      &lt;NA&gt;
+## 6 -87.58806 30.32665     1     6 alabama      &lt;NA&gt;</code></pre>
+</section><section id="maps-in-code-1" class="slide level2">
+<h2>Maps in code (1)</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="04_maps_files/figure-revealjs/unnamed-chunk-6-1.png" width="768" /></p>
+</section><section id="maps-in-code-2" class="slide level2">
+<h2>Maps in code (2)</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> group))</code></pre></div>
+<p><img src="04_maps_files/figure-revealjs/unnamed-chunk-7-1.png" width="768" /></p>
+</section><section id="maps-in-code-3" class="slide level2">
+<h2>Maps in code (3)</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">group =</span> group))</code></pre></div>
+<p><img src="04_maps_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" /></p>
+</section><section id="maps-in-code-4" class="slide level2">
+<h2>Maps in code (4)</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">group =</span> group, <span class="dt">fill=</span>lat))</code></pre></div>
+<p><img src="04_maps_files/figure-revealjs/unnamed-chunk-9-1.png" width="768" /></p>
+</section><section id="your-turn-6-mins" class="slide level2 white">
+<h2>Your Turn (6 mins)</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<ul>
+<li><span style="color:white">Use ggplot2 and pull out map data for all US counties: <code>counties &lt;- map_data(&quot;county&quot;)</code> </span></li>
+<li><span style="color:white">Draw a map of counties (polygons &amp; path geom) </span></li>
+<li><span style="color:white">Colour all counties called “story” </span></li>
+<li><span style="color:white">Advanced: What county names are used often? </span></li>
+</ul>
+</section><section id="choropleth-maps" class="slide level2">
+<h2>Choropleth maps</h2>
+<ul>
+<li>choropleth maps are thematic maps: areas are shaded in proportion to the values of a variable</li>
+<li>join datasets: content and map</li>
+</ul>
+</section><section id="join-content-and-map" class="slide level2">
+<h2>Join content and map</h2>
+<p>Content:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(fbi, <span class="dt">package=</span><span class="st">&quot;classdata&quot;</span>)
+fbi14 &lt;-<span class="st"> </span>fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Year <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>)
+<span class="kw">head</span>(fbi14)</code></pre></div>
+<pre><code>##        State Abb Year Population                                 Type
+## 1    Alabama  AL 2014    4849377 Murder.and.nonnegligent.Manslaughter
+## 2     Alaska  AK 2014     736732 Murder.and.nonnegligent.Manslaughter
+## 3    Arizona  AZ 2014    6731484 Murder.and.nonnegligent.Manslaughter
+## 4   Arkansas  AR 2014    2966369 Murder.and.nonnegligent.Manslaughter
+## 5 California  CA 2014   38802500 Murder.and.nonnegligent.Manslaughter
+## 6   Colorado  CO 2014    5355866 Murder.and.nonnegligent.Manslaughter
+##   Count Violent.crime
+## 1   276          TRUE
+## 2    41          TRUE
+## 3   319          TRUE
+## 4   165          TRUE
+## 5  1699          TRUE
+## 6   151          TRUE</code></pre>
+</section><section id="join-content-and-map-1" class="slide level2">
+<h2>Join content and map</h2>
+<p>Map:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(states)</code></pre></div>
+<pre><code>##        long      lat group order  region subregion
+## 1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;
+## 2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;
+## 3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;
+## 4 -87.53076 30.33239     1     4 alabama      &lt;NA&gt;
+## 5 -87.57087 30.32665     1     5 alabama      &lt;NA&gt;
+## 6 -87.58806 30.32665     1     6 alabama      &lt;NA&gt;</code></pre>
+</section><section id="prepare-for-join" class="slide level2">
+<h2>Prepare for join</h2>
+<ul>
+<li>combine fbi and states by state name, but we need to make the spelling the same</li>
+<li>for simplification, introduce new variable with all lower case letters</li>
+<li>generally, content data is more important, but we will see missing states on the map: <code>anti_join</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fbi14<span class="op">$</span>region &lt;-<span class="st"> </span><span class="kw">tolower</span>(fbi14<span class="op">$</span>State)
+
+nomatch1 &lt;-<span class="st"> </span>fbi14 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(states, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)
+<span class="co"># States for which we do not have map data</span>
+<span class="kw">unique</span>(nomatch1<span class="op">$</span>State)</code></pre></div>
+<pre><code>## [1] &quot;Alaska&quot;      &quot;Hawaii&quot;      &quot;Puerto Rico&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nomatch2 &lt;-<span class="st"> </span>states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(fbi14, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)
+<span class="co"># States for which we do not have crime data</span>
+<span class="kw">unique</span>(nomatch2<span class="op">$</span>State)</code></pre></div>
+<pre><code>## NULL</code></pre>
+</section><section id="join-and-map" class="slide level2">
+<h2>Join and Map</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fbi.map &lt;-<span class="st"> </span>fbi14 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(states, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)
+fbi.map <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Type<span class="op">==</span><span class="st">&quot;Burglary&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">fill=</span>Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">70000</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">group=</span>group))</code></pre></div>
+<p><img src="04_maps_files/figure-revealjs/unnamed-chunk-13-1.png" width="864" /></p>
+</section><section id="your-turn" class="slide level2 white">
+<h2>Your Turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<ul>
+<li><span style="color:white">Draw a choropleth map of the rate of motor vehicle thefts in 2012 across the US. </span></li>
+<li><span style="color:white"><code>scale_fill_gradient2</code> allows you to set a color scheme with two main colors. Read up on it and change the scheme in the first choropleth map. </span></li>
+</ul>
+</section><section id="geographic-data-in-layers" class="slide level2">
+<h2>Geographic data in layers</h2>
+<ul>
+<li>For data collected with GPS coordinates we can use maps as background layers</li>
+<li>e.g. campaign expenditures</li>
+<li>In that situation, we do not need to join the map information and the content data, but use layers with separate data sets of the form</li>
+</ul>
+<pre><code>map %&gt;% ggplot(aes(x = long, y = lat)) + 
+  geom_polygon(aes(group = group)) +
+  geom_point(aes(x=longitude, y = latitude), data = content) </code></pre>
+</section><section id="fars-data" class="slide level2">
+<h2>FARS data</h2>
+<ul>
+<li>US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base (fatal accident report system, <a href="http://www.nhtsa.gov/FARS" class="uri">http://www.nhtsa.gov/FARS</a>)</li>
+<li>FARS consists of 20+ tables consisting of various aspects of each accident Documentation at</li>
+<li><a href="https://www-fars.nhtsa.dot.gov/Main/index.aspx" class="uri">https://www-fars.nhtsa.dot.gov/Main/index.aspx</a></li>
+<li>three of the main tables are <code>accident</code>, <code>person</code>, and <code>vehicle</code></li>
+</ul>
+</section><section id="data" class="slide level2">
+<h2>Data</h2>
+<ul>
+<li>Data of all accidents are available at:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/DS202-at-ISU/labs/master/data/fars2016/accident.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+<span class="kw">names</span>(acc)</code></pre></div>
+<pre><code>##  [1] &quot;STATE&quot;      &quot;ST_CASE&quot;    &quot;VE_TOTAL&quot;   &quot;VE_FORMS&quot;   &quot;PVH_INVL&quot;  
+##  [6] &quot;PEDS&quot;       &quot;PERNOTMVIT&quot; &quot;PERMVIT&quot;    &quot;PERSONS&quot;    &quot;COUNTY&quot;    
+## [11] &quot;CITY&quot;       &quot;DAY&quot;        &quot;MONTH&quot;      &quot;YEAR&quot;       &quot;DAY_WEEK&quot;  
+## [16] &quot;HOUR&quot;       &quot;MINUTE&quot;     &quot;NHS&quot;        &quot;RUR_URB&quot;    &quot;FUNC_SYS&quot;  
+## [21] &quot;RD_OWNER&quot;   &quot;ROUTE&quot;      &quot;TWAY_ID&quot;    &quot;TWAY_ID2&quot;   &quot;MILEPT&quot;    
+## [26] &quot;LATITUDE&quot;   &quot;LONGITUD&quot;   &quot;SP_JUR&quot;     &quot;HARM_EV&quot;    &quot;MAN_COLL&quot;  
+## [31] &quot;RELJCT1&quot;    &quot;RELJCT2&quot;    &quot;TYP_INT&quot;    &quot;WRK_ZONE&quot;   &quot;REL_ROAD&quot;  
+## [36] &quot;LGT_COND&quot;   &quot;WEATHER1&quot;   &quot;WEATHER2&quot;   &quot;WEATHER&quot;    &quot;SCH_BUS&quot;   
+## [41] &quot;RAIL&quot;       &quot;NOT_HOUR&quot;   &quot;NOT_MIN&quot;    &quot;ARR_HOUR&quot;   &quot;ARR_MIN&quot;   
+## [46] &quot;HOSP_HR&quot;    &quot;HOSP_MN&quot;    &quot;CF1&quot;        &quot;CF2&quot;        &quot;CF3&quot;       
+## [51] &quot;FATALS&quot;     &quot;DRUNK_DR&quot;</code></pre>
+</section><section id="your-turn-1" class="slide level2 white">
+<h2>Your Turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<ul>
+<li><span style="color:white">Use the accident data to plot the geographic location of all accidents in the US in 2016. </span></li>
+<li><span style="color:white"> Plot accidents on a map of the US (use the map of the US as first layer) </span></li>
+<li><span style="color:white">Why would it be tricky to plot a choropleth map of the number of accidents by state? </span></li>
+</ul>
+</section><section id="your-turn-2" class="slide level2 white">
+<h2>Your Turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<ul>
+<li><span style="color:white">The numbers for each state (<code>STATE</code>) are so-called fips codes. </span></li>
+<li><span style="color:white">Sketch out the steps necessary to draw a choropleth map of the rate of fatal accidents by state. </span></li>
+</ul>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="04_maps_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

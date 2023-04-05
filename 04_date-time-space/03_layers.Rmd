@@ -1,0 +1,125 @@
+---
+title: "DS 202 - Layers"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+```
+
+# Layers in `ggplot2`
+
+## Outline
+
+- grammar of graphics, again
+- layer specifications
+
+## Grammar of Graphics
+
+A graphical representation (plot) consists of:
+
+1. **mappings** (`aes`):  data variables are mapped to graphical elements
+2. **layers**:  geometric elements (`geoms`, such as points, lines, rectangles, text, ...) and statistical transformations (`stats`, are identity, counts, bins, ...)
+3. **scales**: map values in the data space to values in an aesthetic space (e.g. color, size, shape, but also position)
+4. **coordinate system** (`coord`): normally Cartesian, but pie charts use e.g. polar coordinates
+5. **facetting**: for small multiples (subsets) and their arrangement
+6. **theme**: fine-tune display items, such as font and its size, color of background, margins, ...
+
+## Previous example
+
+```{r, fig.width=9.5, fig.height = 3}
+data(nasa, package="GGally")
+nasa %>% filter(id=="1-1") %>%
+  ggplot(aes(x = time, y= temperature)) + geom_point()
+```
+
+## Adding a line
+
+```{r, fig.width=9.5, fig.height = 3}
+nasa %>% filter(id=="1-1") %>%
+  ggplot(aes(x = time, y= temperature)) + geom_point() +
+  geom_smooth(method="lm")
+```
+
+## Adding an additional text
+
+```{r, fig.width=9.5, fig.height = 3}
+nasa %>% filter(id=="1-1") %>%
+  ggplot(aes(x = time, y= temperature)) + geom_point() +
+  geom_smooth(method="lm") +
+  geom_text(aes(x = time, y= temperature, label=id), colour="darkorange", 
+            data=nasa %>% filter(id=="1-1", time==50))
+```
+
+## Layers
+
+each layer has several parts, the two most important are:
+
+- mapping: using the `aes()` function, we specify mappings between variables and aesthetics of the chart
+- `data`: the dataset used in the layer 
+
+`ggplot` is the layer that sets the defaults, <br>
+`geom_XXX` creates a layer: for each aspect it either uses the default or has to specify its own
+
+## Default versus Layer Specification
+
+```{r, fig.width=9.5, fig.height = 3, message = FALSE}
+nasa %>% filter(id=="1-1") %>%
+  ggplot(aes(x = time, y= temperature)) + geom_point() +
+  geom_smooth(method="lm") +
+  geom_text(aes(x = time, y= temperature, label=id, colour=id),  
+            data=nasa %>% filter(id=="1-1", time==50))
+```
+
+##
+
+```{r, fig.width=9.5, fig.height = 3, message = FALSE}
+nasa %>% filter(id=="1-1") %>%
+  ggplot(aes(x = time, y= temperature, colour=id)) + geom_point() +
+  geom_smooth(method="lm") +
+  geom_text(aes(x = time, y= temperature, label=id), 
+            data=nasa %>% filter(id=="1-1", time==50))
+```
+
+
+
+## Your Turn (6 mins) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+
+- <span style="color:white">Load the `box` data from the package `classdata`, need to adjust the total gross.
+</span>
+- <span style="color:white">Plot a time line for each movie: plot total gross by week that the movie is out. 
+</span>
+- <span style="color:white">Label the three movies with the highest total gross.
+</span>
+- <span style="color:white">Color the label of these three movies with a color of your choice.
+</span>
+
+```{r}
+data(box, package="classdata")
+
+box_summary <- box %>% group_by(Movie, Distributor) %>%
+  summarize(
+    Date = max(Date),
+    Week = max(Week),
+    Max.Gross = max(Total.Gross),
+    First.Gross = min(Total.Gross)
+  )
+
+box %>% filter(Total.Gross > 1 * 10^8 & Week < 100) %>%
+  ggplot(aes(x = Week, y = Total.Gross, 
+        group = interaction(Movie, Distributor))) + 
+  geom_line() + 
+  geom_text(aes(x = Week, y = Max.Gross, label = Movie, color = Movie), 
+        data = box_summary %>% arrange(desc(Max.Gross)) %>% head(3))
+```

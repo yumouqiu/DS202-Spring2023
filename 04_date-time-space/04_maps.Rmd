@@ -1,0 +1,324 @@
+---
+title: "DS 202 - Maps"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+library(maps)
+```
+
+# Drawing maps
+
+## Outline
+
+- package `maps`
+- what is a map
+- maps and map data in ggplot
+- drawing choropleth maps
+
+## Maps are ...
+
+
+<div class="double">
+<p class="double-flow">
+- ... points in latitude and longitude
+
+```{r, echo=FALSE, warning = FALSE, message=FALSE, fig.width=3, fig.height = 2}
+library(ggplot2)
+iowa <- map_data("state") %>% filter(region=="iowa")
+iowa %>% ggplot(aes(x = long, y = lat)) + geom_point()
+```
+</p><p class="double-flow">
+- that are connected in the 'right' order (determined by order in the data frame)
+
+```{r, echo=FALSE, warning = FALSE, message=FALSE, fig.width=3, fig.height = 2}
+library(ggplot2)
+iowa <- map_data("state") %>% filter(region=="iowa")
+iowa %>% ggplot(aes(x = long, y = lat)) + geom_point() + geom_path()
+```
+</p>
+</div>
+
+## Maps ...
+
+
+<div class="double">
+<p class="double-flow">
+- use  `group` parameter to distinguish between different regions
+
+```{r, echo=FALSE, warning = FALSE, message=FALSE, fig.width=3, fig.height = 4}
+iowa <- map_data("state") %>% filter(region %in% c("iowa", "florida"))
+iowa %>% ggplot(aes(x = long, y = lat)) + geom_path(aes(group=region))
+```
+</p><p class="double-flow">
+- are usually filled in
+
+```{r, echo=FALSE, warning = FALSE, message=FALSE, fig.width=3, fig.height = 4}
+iowa <- map_data("state") %>% filter(region %in% c("iowa", "florida"))
+iowa %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group=region))
+```
+
+</p>
+</div>
+
+## map data
+
+```{r}
+states <- map_data("state")
+head(states)
+```
+
+## Maps in code (1)
+
+
+```{r,  warning = FALSE, message=FALSE, fig.width=8, fig.height = 5}
+states %>% ggplot(aes(x = long, y = lat)) + geom_point()
+```
+
+## Maps in code (2)
+
+
+```{r,  warning = FALSE, message=FALSE, fig.width=8, fig.height = 5}
+states %>% ggplot(aes(x = long, y = lat)) + geom_path(aes(group = group))
+```
+
+## Maps in code (3)
+
+```{r, warning = FALSE, message=FALSE, fig.width=8, fig.height = 5}
+states %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group))
+```
+
+## Maps in code (4)
+
+```{r, warning = FALSE, message=FALSE, fig.width=8, fig.height = 5}
+states %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group, fill=lat))
+```
+
+
+
+
+## Your Turn (6 mins) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Use ggplot2 and pull out map data for all
+US counties: ```counties <- map_data("county")```
+</span>
+- <span style="color:white">Draw a map of counties (polygons & path geom)
+</span>
+- <span style="color:white">Colour all counties called "story"
+</span>
+- <span style="color:white">Advanced: What county names are used often?
+</span>
+
+```{r, warning = FALSE, message=FALSE, fig.width=8, fig.height = 5}
+counties <- map_data("county")
+counties %>% ggplot(aes(x = long, y = lat)) + geom_path(aes(group = group))
+counties %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group))
+
+counties$Story = (counties$subregion == "story") 
+counties %>% ggplot(aes(x = long, y = lat, fill = Story)) + geom_polygon(aes(group = group))
+
+counties %>% group_by(subregion) %>% summarise(n = length(unique(group))) %>% arrange(desc(n))
+
+# "washington" is the most common name for counties
+
+counties = counties %>% mutate(washington = (subregion == "washington"))
+counties %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group, fill = washington))
+```
+
+## Choropleth maps
+
+- choropleth maps are thematic maps: areas are shaded in proportion to the values of a variable
+- join datasets: content and map
+
+## Join content and map 
+
+Content:
+```{r}
+data(fbi, package="classdata")
+fbi14 <- fbi %>% filter(Year == 2014)
+head(fbi14)
+```
+
+## Join content and map
+
+Map:
+```{r}
+head(states)
+```
+
+## Prepare for join
+
+- combine fbi and states by state name, but we need to make the spelling the same
+- for simplification, introduce new variable with all lower case letters
+- generally, content data is more important, but we will see missing states on the map: `anti_join`
+
+```{r}
+fbi14$region <- tolower(fbi14$State)
+
+nomatch1 <- fbi14 %>% anti_join(states, by="region")
+# States for which we do not have map data
+unique(nomatch1$State)
+
+
+nomatch2 <- states %>% anti_join(fbi14, by="region")
+# States for which we do not have crime data
+unique(nomatch2$State)
+```
+
+## Join and Map
+
+```{r, fig.width=9, fig.height = 4.5}
+fbi.map <- fbi14 %>% left_join(states, by="region")
+fbi.map %>% filter(Type=="Burglary") %>% 
+  ggplot(aes(x = long, y = lat, fill=Count/Population*70000)) +
+  geom_polygon(aes(group=group))
+```
+
+## Your Turn  {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Draw a choropleth map of the rate of motor vehicle thefts in 2012 across the US.
+</span>
+- <span style="color:white">`scale_fill_gradient2` allows you to set a color scheme with two main colors. Read up on it and change the scheme in the first choropleth map.
+</span>
+
+```{r, fig.width=9, fig.height = 4.5}
+fbi12 <- fbi %>% filter(Year == 2012)
+fbi12$region <- tolower(fbi12$State)
+
+fbi.map12 <- fbi12 %>% left_join(states, by="region")
+fbi.map12 %>% filter(Type=="Motor.vehicle.theft") %>% 
+  ggplot(aes(x = long, y = lat)) +
+  geom_polygon(aes(group=group, fill=Count/Population*70000)) + 
+  scale_fill_gradient2()
+```
+
+## Geographic data in layers
+
+- For data collected with GPS coordinates we can use maps as background layers
+- e.g. campaign expenditures
+- In that situation, we do not need to join the map information and the content data, but use layers with separate data sets of the form
+
+```
+map %>% ggplot(aes(x = long, y = lat)) + 
+  geom_polygon(aes(group = group)) +
+  geom_point(aes(x=longitude, y = latitude), data = content) 
+```
+
+## FARS data
+
+- US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base (fatal accident report system, http://www.nhtsa.gov/FARS)
+- FARS consists of 20+ tables consisting of various aspects of each accident
+Documentation at
+- https://www-fars.nhtsa.dot.gov/Main/index.aspx
+- three of the main tables are `accident`, `person`, and `vehicle`
+
+## Data 
+
+- Data of all accidents are available at:
+
+```{r}
+getwd()
+acc <- read.csv("/Users/yumouqiu/DS202-Spring2022/Practice/data/fars2016/accident.csv", stringsAsFactors = FALSE)
+names(acc)
+```
+
+## Your Turn  {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Use the accident data to plot the geographic location of all accidents in the US in 2016.
+</span>
+- <span style="color:white"> Plot accidents on a map of the US (use the map of the US as first layer)
+</span>
+- <span style="color:white">Why would it be tricky to plot a choropleth map of the number of accidents by state?
+</span>
+
+```{r}
+acc %>% filter(YEAR == 2016, LONGITUD < 0) %>% ggplot(aes(x = LONGITUD, y = LATITUDE)) + geom_point()
+
+states %>% ggplot(aes(x = long, y = lat)) + 
+  geom_path(aes(group = group)) +
+  geom_point(aes(x = LONGITUD, y = LATITUDE), size = 0.05, color = 'red', data = acc %>% filter(YEAR == 2016, LONGITUD < 0, LONGITUD > -130)) 
+
+states %>% ggplot(aes(x = long, y = lat)) + 
+  geom_path(aes(group = group)) +
+  geom_point(aes(x = LONGITUD, y = LATITUDE), size = 0.05, color = 'red', data = acc %>% filter(YEAR == 2016, LONGITUD < 0, LONGITUD > -130, DRUNK_DR == 1)) + 
+  geom_point(aes(x = LONGITUD, y = LATITUDE), size = 0.05, color = 'blue', data = acc %>% filter(YEAR == 2016, LONGITUD < 0, LONGITUD > -130, DRUNK_DR == 0))
+```
+
+## Your Turn  {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">The numbers for each state (`STATE`) are so-called fips codes. 
+</span>
+- <span style="color:white">Sketch out the steps necessary to draw a choropleth map of the rate of fatal accidents by state.
+</span>
+
+```{r}
+# 1. Relate the fips code to state name. Copy and paste the fips name with state name to an excel file, save it as .csv file and read into R;
+# 2. Combine acc with StateNames by the filp code;
+# 3. Summarize the fatal rate by states
+# 4. Join the content data (acc2) with the map data (states)
+
+StateNames = read.csv("StateNames.csv", head = FALSE)
+acc1 = acc %>% left_join(StateNames, by = c("STATE" = "V2"))
+
+acc2 = acc1 %>% group_by(V1) %>% summarise(total.acc = n(), total.fatal = sum(FATALS))
+```
+
+```{r}
+# Solutions
+
+library(tidyverse)
+library(maps)
+
+states <- map_data("state")
+acc <- read.csv("/Users/yumouqiu/DS202-Spring2022/Practice/data/fars2016/accident.csv", stringsAsFactors = FALSE)
+
+acc2016 = acc %>% filter(YEAR == 2016) %>% 
+  filter(abs(LONGITUD) < 300, abs(LATITUDE) < 300)
+acc2016 %>% ggplot(aes(x = LONGITUD, y = LATITUDE)) + 
+  geom_point()
+
+acc2016.mainland = acc %>% filter(YEAR == 2016) %>% 
+  filter(abs(LONGITUD) < 130, LATITUDE < 50)
+acc2016.mainland %>% ggplot(aes(x = LONGITUD, y = LATITUDE)) + 
+  geom_point()
+
+acc2016.mainland1 = acc2016.mainland %>% 
+  mutate(drunk = (DRUNK_DR > 0))
+states %>% ggplot(aes(x = long, y = lat)) + 
+  geom_path(aes(group = group)) + 
+  geom_point(data = acc2016.mainland1 %>% filter(FATALS >= 3), 
+             aes(x = LONGITUD, y = LATITUDE, col = drunk), size = 0.5)
+
+state.code = read.csv("/Users/yumouqiu/DS202-Spring2022/04_date-time-space/StateNames.csv")
+names(state.code)[1] = "region"
+state.code$region = tolower(state.code$region)
+
+acc2016.mainland2 = left_join(acc2016.mainland1, state.code, 
+                              by = c("STATE" = "code"))
+
+acc2016.state = acc2016.mainland2 %>% group_by(region) %>%
+  summarise(n = n()) %>% ungroup()
+
+states.acc = left_join(states, acc2016.state, by = "region")
+states.acc %>% ggplot(aes(x = long, y = lat)) + 
+  geom_polygon(aes(group = group, fill = n)) + 
+  scale_fill_gradient(low = "#BF1E14", high = "#46302E")
+
+```

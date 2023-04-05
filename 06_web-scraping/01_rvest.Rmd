@@ -1,0 +1,168 @@
+---
+title: "DS 202 - Web Scraping"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+```{r setup, include=FALSE, message=FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Web Scraping with R
+
+
+## The `rvest` package
+
+`read_html` gets *all* the information from a URL
+
+```{r warning = FALSE, message = FALSE}
+library(rvest)
+url <- "https://www.the-numbers.com/weekend-box-office-chart"
+html <- read_html(url)
+html
+```
+
+## Get a *table* from an online source
+
+`html_table` extracts all tables from the sourced html into a list of data frames:
+
+```{r}
+tables <- html %>% html_table(fill=TRUE)
+length(tables)
+```
+## Lists
+
+- are most general form of objects in R
+- `length()` accesses the number of items in a list
+- `[[ ]]` accesses each item
+
+```{r}
+dim(tables[[1]])
+dim(tables[[2]])
+
+head(tables[[2]])
+```
+
+##
+
+Most tables need a bit of clean-up:
+
+```{r}
+names(tables[[2]])
+
+names(tables[[2]])[1:2] <- c("Rank", "Rank.Last.Week")
+str(tables[[2]])
+box <- tables[[2]] %>% mutate(
+  Gross = parse_number(Gross),
+  Thtrs. = parse_number(Thtrs.)
+)
+head(box)
+```
+
+## Your Turn (6 mins) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at https://www.the-numbers.com/weekend-box-office-chart
+</span>
+
+- <span style="color:white">Pick the week that you were last in the movies.
+</span>
+- <span style="color:white">Use `rvest` to download the box office gross in that week.
+</span>
+- <span style="color:white">Clean up the data (name all the variables, numbers should be numbers).
+</span>
+
+## Beyond tables
+
+Sometimes data on the web is not structured as nicely ... e.g. let's assume we want to get a list of all recently active baseball players from [Baseball reference](http://www.baseball-reference.com/players/)
+
+## Cascading Style Sheets (CSS)
+
+- [css](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) is a language that describes the style of an HTML document.
+
+<img src="images/css-selectors-lrg.png" height=100, width=600>
+
+- Example: (https://www.w3schools.com/css/tryit.asp?filename=trycss_default)
+- play [the game](http://flukeout.github.io/)
+
+## SelectorGadget
+
+- SelectorGadget is a javascript bookmarklet to determine the [css](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) selectors of pieces of a website we want to extract.
+- Read up on the [SelectorGadget](http://selectorgadget.com/) link: install it for your machine by installing the Chrome extension, then click on it to use it.
+- When SelectorGadget is active, pieces of the website are highlighted in orange/green/red.
+- Use SelectorGadget on http://www.baseball-reference.com/players/.
+- read more details on `vignette("selectorgadget")`
+
+## SelectorGadget Result
+
+```{r}
+url <- "http://www.baseball-reference.com/players/a/"
+html <- read_html(url)
+html %>% html_nodes("#div_players_ a") %>% head()
+```
+
+## Example
+
+We want to get access to pieces of the links:
+
+`html_text` allows us to get text out, `html_attr` let's us access an attribute of an html node, `html_attrs` extracts all attributes of an html node:
+
+
+```{r}
+html %>% html_nodes("#div_players_ a") %>% html_text() %>% head()
+html %>% html_nodes("#div_players_ a") %>% html_attr(name="href") %>% head()
+```
+
+
+## How to use the href?
+
+```{r}
+h1 = html %>% html_nodes("#div_players_ a") %>% html_attr(name="href")
+length(h1)
+h1[1]
+
+h0 = "http://www.baseball-reference.com"
+url.player = paste(h0, h1[1], sep = "")
+url.player
+```
+
+## Your Turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">Use the SelectorGadget on the website for [David Aardsma](http://www.baseball-reference.com/players/a/aardsda01.shtml)
+</span>
+
+- <span style="color:white">Find the css description to extract his career statistics and load them into your R session.
+</span>
+- <span style="color:white">Does the same code work to extract career statistics for (some of) the other players?
+</span>
+- <span style="color:white">What other information do we need to know? and how can we get to that?
+</span>
+
+## Your Turn  - Solution
+
+```{r}
+url <- "http://www.baseball-reference.com/players/a/aardsda01.shtml"
+html <- read_html(url)
+# good first start, but not good for further processing
+h2 = html %>% html_nodes(".stats_pullout p , h4")
+
+h3 = html %>% html_nodes(".p3 p , .p2 p , .p1 p , .stats_pullout strong , h4")
+```
+
+## Your Turn  - Solution (2)
+
+```{r}
+# better: pull out individual vectors
+html %>% html_nodes("h4") %>% html_text()
+html %>% html_nodes(".stats_pullout p") %>% html_text() 
+```
+
+

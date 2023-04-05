@@ -1,0 +1,234 @@
+---
+title: "DS 202 - Date and Time"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+```
+
+## Visualizing time: time series
+
+## NASA data
+
+- `nasa` is a data set in the `GGally` package
+- it consists of atmospheric measurements across a grid of locations in Middle America
+
+```{r}
+data(nasa, package="GGally")
+head(nasa)
+```
+
+## Time series
+
+- for each observational unit we have multiple measurements:
+
+```{r, fig.width = 7, fig.height = 3}
+library(tidyverse)
+nasa %>% filter(x == 1, y == 1) %>%
+  ggplot(aes(x = time, y = temperature)) + geom_point()
+```
+
+## Time series (2)
+
+- for each observational unit we have multiple measurements,
+- which we connect by a line:
+
+```{r, fig.width = 7, fig.height = 3}
+nasa %>% filter(x == 1, y == 1) %>%
+  ggplot(aes(x = time, y = temperature)) + geom_line()
+```
+
+## Time series (3)
+
+- for each observational unit we have multiple measurements,
+- which we connect by a line.
+- Each observational unit forms a group, we only connect points within a group by a line.
+
+```{r, fig.width = 7, fig.height = 3}
+nasa %>% filter(x == 1, y %in% c(1, 10)) %>%
+  ggplot(aes(x = time, y = temperature, group=id, color = id)) + geom_line()
+```
+
+## Your Turn (6 mins) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+
+- <span style="color:white">Load the `nasa` data from the package `GGally`,
+</span>
+- <span style="color:white">for one location, draw a time line of Ozone over the time frame (`time`).
+</span>
+- <span style="color:white">Plot separate lines for each of the years, i.e. put `month` on the x-axis and `ozone` on the y-axis for the same location. Is there a seasonal pattern apparent?
+</span>
+- <span style="color:white">Pick a location with x in 1:10 and y in 7:10. Plot temperature over time. Comment on the result.
+</span>
+
+```{r, echo=FALSE, eval=FALSE}
+nasa %>% filter(x == 1, y %in% c(1, 10)) %>%
+  ggplot(aes(x = time, y = ozone, group = id, color = id)) + geom_line()
+
+nasa %>% filter(x == 1, y == 1) %>%
+  ggplot(aes(x = month(date, label = TRUE), y = ozone, group = year(date), color = year(date))) + geom_line()
+
+nasa %>% filter(x %in% c(1 : 10), y %in% c(7 : 10)) %>%
+  ggplot(aes(x = time, y = ozone, group = id, color = id)) + geom_line()
+```
+
+## Box office gross
+
+- variables encoded as dates and times work with `ggplot2`
+
+```{r, eval = FALSE}
+data(box, package="classdata")
+box %>% filter(Movie == "The Avengers: Age of Ultron") %>%
+  ggplot(aes(x = Date, y = Total.Gross)) + geom_line()
+```
+
+## Box office gross
+
+```{r, echo = FALSE}
+data(box, package="classdata")
+box %>% filter(Movie == "The Avengers: Age of Ultron") %>%
+  ggplot(aes(x = Date, y = Total.Gross)) + geom_line()
+```
+
+
+## Your Turn (6 mins) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+
+- <span style="color:white">Load the `box` data from the package `classdata`,
+</span>
+- <span style="color:white">For each movie and distributor, find the (1) highest total gross, (2) the last date (and week) the movie was shown in theaters, (3) the gross the movie made in the first week it was released.
+</span>
+
+```{r, echo=FALSE, eval=FALSE}
+box_summary <- box %>% group_by(Movie, Distributor) %>%
+  summarize(
+    Date = max(Date),
+    Week = max(Week),
+    Max.Thtrs = max(Thtrs.),
+    Final.Gross = max(Total.Gross, na.rm=TRUE),
+    First.Gross = min(Total.Gross, na.rm=TRUE)
+  )
+
+box_summary.clean1 = box_summary %>% filter(Week < 50)
+box_summary.clean1 = box_summary.clean1 %>% arrange(desc(Final.Gross)) 
+
+
+box1 = box_summary %>% filter(year(Date) < 2018)
+box2 = box_summary %>% filter(year(Date) >= 2018)
+
+box$Total.Gross.adjust = box$Total.Gross * 10^8 * (log(box$Total.Gross) < 5) + box$Total.Gross * (log(box$Total.Gross) >= 5) 
+
+box_summary <- box %>% group_by(Movie, Distributor) %>%
+  summarize(
+    Date = max(Date),
+    Week = max(Week),
+    Max.Gross.adjust = max(Total.Gross.adjust),
+    First.Gross.adjust = min(Total.Gross.adjust)
+  )
+```
+
+## Box office gross (2)
+
+- We would like to label some of the highest grossing movies
+
+```{r, eval = FALSE}
+box %>% filter(Thtrs. > 100) %>%
+  ggplot(aes(x = Date, y = log(Total.Gross), 
+             group = interaction(Movie, Distributor))) + geom_line()
+```
+
+## Box office gross (2)
+
+```{r, echo = FALSE}
+box %>% filter(Thtrs. > 100) %>%
+  ggplot(aes(x = Date, y = log(Total.Gross), 
+             group = interaction(Movie, Distributor))) + geom_line()
+```
+
+## Labelling 
+
+- `geom_text` needs aesthetics `x`, `y` and `label`
+
+```{r, eval = FALSE}
+box_summary <- box %>% group_by(Movie, Distributor) %>%
+  summarize(
+    Date = max(Date),
+    Week = max(Week),
+    Max.Gross = max(Total.Gross, na.rm=TRUE),
+    First.Gross = min(Total.Gross, na.rm=TRUE)
+  )
+
+box %>% filter(Thtrs. > 100) %>%
+  ggplot(aes(x = Date, y = Total.Gross, 
+             group = interaction(Movie, Distributor))) + geom_line() +
+  geom_text(aes(x = Date, y = Max.Gross, label = Movie), 
+            data = box_summary %>% filter(Max.Gross > 2.5e8))
+```
+
+## Labelling 
+
+```{r, echo = FALSE}
+box_summary <- box %>% group_by(Movie, Distributor) %>%
+  summarize(
+    Date = max(Date),
+    Week = max(Week),
+    Max.Gross = max(Total.Gross, na.rm=TRUE),
+    First.Gross = min(Total.Gross, na.rm=TRUE)
+  )
+
+box %>% filter(Thtrs. > 100) %>%
+  ggplot(aes(x = Date, y = Total.Gross, 
+             group = interaction(Movie, Distributor))) + geom_line() +
+  geom_text(aes(x = Date, y = Max.Gross, label = Movie), 
+            data = box_summary %>% filter(Max.Gross > 2.5e8))
+```
+
+## Labelling - less overlap
+
+- `geom_text_repel` from the `ggrepel` package
+
+```{r, eval = FALSE}
+box %>% filter(Thtrs. > 100) %>%
+  ggplot(aes(x = Date, y = Total.Gross, 
+             group = interaction(Movie, Distributor))) + geom_line() +
+  ggrepel::geom_text_repel(aes(x = Date, y = Max.Gross, label = Movie), 
+            data = box_summary %>% filter(Max.Gross > 2.5e8), colour="grey50")
+```
+
+## Labelling - less overlap
+
+```{r, echo = FALSE}
+box %>% filter(Thtrs. > 100) %>%
+  ggplot(aes(x = Date, y = Total.Gross, 
+             group = interaction(Movie, Distributor))) + geom_line() +
+  ggrepel::geom_text_repel(aes(x = Date, y = Max.Gross, label = Movie), 
+            data = box_summary %>% filter(Max.Gross > 2.5e8), colour="grey50")
+```
+
+<!--
+## Box office gross (3)
+
+
+```{r}
+box %>% filter(Week <= 5) %>%
+  mutate(Year = year(Date)) %>%
+  ggplot(aes(x = Week, y = Total.Gross, 
+             group = interaction(Movie, Distributor))) + geom_line() +
+  facet_grid(.~Year)
+```
+
+-->
+
