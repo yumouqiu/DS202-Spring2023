@@ -78,12 +78,15 @@ av = read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/ave
 names(av)
 
 av0 = av %>% filter(Name.Alias != "")
+
 av1 = av0 %>% gather(key = time, value = death, c(11, 13, 15, 17, 19)) %>% 
   select(Name.Alias, time, death) %>%
   mutate(time = parse_number(time))
+
 av2 = av0 %>% gather(key = time, value = return, c(12, 14, 16, 18, 20)) %>% 
   select(Name.Alias, time, return) %>%
   mutate(time = parse_number(time))
+
 av.neat = left_join(av1, av2, by = c("Name.Alias", "time"))
 
 av0 = av0 %>% filter(Name.Alias != "Vance Astrovik")

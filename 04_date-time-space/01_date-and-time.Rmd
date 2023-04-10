@@ -134,6 +134,12 @@ boxbudget = inner_join(box, budget, by = "Movie")
 #boxbudget$Diff = week(boxbudget$Date) - week(boxbudget$ReleaseDate) Not right, why?
 #boxbudget$Diff = (boxbudget$Date - boxbudget$ReleaseDate) / 7 Seems right, but the format is not good
 boxbudget$Diff = as.duration(boxbudget$Date - boxbudget$ReleaseDate) / dweeks(1)
+
+boxbudget = boxbudget %>% mutate(diff.week = as.duration(Date - ReleaseDate) / dweeks(1)) 
+
+boxbudget %>% mutate(diff = diff.week - Week) %>% arrange(diff) %>% View()
+
+
 ```
 
 
