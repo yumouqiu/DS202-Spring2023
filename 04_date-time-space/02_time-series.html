@@ -15,26 +15,28 @@
   
   
     <style type="text/css">
-   a.sourceLine { display: inline-block; line-height: 1.25; }
-   a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-   a.sourceLine:empty { height: 1.2em; }
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
    .sourceCode { overflow: visible; }
-   code.sourceCode { white-space: pre; position: relative; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
    div.sourceCode { margin: 1em 0; }
    pre.sourceCode { margin: 0; }
    @media screen {
    div.sourceCode { overflow: auto; }
    }
    @media print {
-   code.sourceCode { white-space: pre-wrap; }
-   a.sourceLine { text-indent: -1em; padding-left: 1em; }
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
    }
-   pre.numberSource a.sourceLine
-     { position: relative; left: -4em; }
-   pre.numberSource a.sourceLine::before
-     { content: attr(data-line-number);
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-       border: none; pointer-events: all; display: inline-block;
+       border: none; display: inline-block;
        -webkit-touch-callout: none; -webkit-user-select: none;
        -khtml-user-select: none; -moz-user-select: none;
        -ms-user-select: none; user-select: none;
@@ -43,9 +45,9 @@
      }
    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
    div.sourceCode
-     {  }
+     {   }
    @media screen {
-   a.sourceLine::before { text-decoration: underline; }
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
    }
    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -79,6 +81,7 @@
   </style>
   
   
+      <script src="02_time-series_files/header-attrs-2.19/header-attrs.js"></script>
   
 </head>
 
@@ -97,11 +100,13 @@
 <section id="nasa-data" class="slide level2">
 <h2>NASA data</h2>
 <ul>
-<li><code>nasa</code> is a data set in the <code>GGally</code> package</li>
-<li>it consists of atmospheric measurements across a grid of locations in Middle America</li>
+<li><code>nasa</code> is a data set in the <code>GGally</code>
+package</li>
+<li>it consists of atmospheric measurements across a grid of locations
+in Middle America</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">data</span>(nasa, <span class="dt">package=</span><span class="st">&quot;GGally&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">head</span>(nasa)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(nasa, <span class="at">package=</span><span class="st">&quot;GGally&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(nasa)</span></code></pre></div>
 <pre><code>##   time y x   lat      long       date cloudhigh cloudlow cloudmid ozone
 ## 1    1 1 1 -21.2 -113.8000 1995-01-01       0.5     31.0      2.0   260
 ## 2    1 1 2 -21.2 -111.2957 1995-01-01       1.5     31.5      2.5   260
@@ -122,9 +127,9 @@
 <ul>
 <li>for each observational unit we have multiple measurements:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">nasa <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, y <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> temperature)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nasa <span class="sc">%&gt;%</span> <span class="fu">filter</span>(x <span class="sc">==</span> <span class="dv">1</span>, y <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> temperature)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="02_time-series_files/figure-revealjs/unnamed-chunk-2-1.png" width="672" /></p>
 </section>
 <section id="time-series-2" class="slide level2">
@@ -133,8 +138,8 @@
 <li>for each observational unit we have multiple measurements,</li>
 <li>which we connect by a line:</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">nasa <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, y <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> temperature)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nasa <span class="sc">%&gt;%</span> <span class="fu">filter</span>(x <span class="sc">==</span> <span class="dv">1</span>, y <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> temperature)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="02_time-series_files/figure-revealjs/unnamed-chunk-3-1.png" width="672" /></p>
 </section>
 <section id="time-series-3" class="slide level2">
@@ -142,41 +147,53 @@
 <ul>
 <li>for each observational unit we have multiple measurements,</li>
 <li>which we connect by a line.</li>
-<li>Each observational unit forms a group, we only connect points within a group by a line.</li>
+<li>Each observational unit forms a group, we only connect points within
+a group by a line.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">nasa <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, y <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> temperature, <span class="dt">group=</span>id, <span class="dt">color =</span> id)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nasa <span class="sc">%&gt;%</span> <span class="fu">filter</span>(x <span class="sc">==</span> <span class="dv">1</span>, y <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> temperature, <span class="at">group=</span>id, <span class="at">color =</span> id)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="02_time-series_files/figure-revealjs/unnamed-chunk-4-1.png" width="672" /></p>
 </section>
 <section id="your-turn-6-mins" class="slide level2 white">
-<h2>Your Turn (6 mins)</h2>
+<h2 class="white">Your Turn (6 mins)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
-<li><span style="color:white">Load the <code>nasa</code> data from the package <code>GGally</code>, </span></li>
-<li><span style="color:white">for one location, draw a time line of Ozone over the time frame (<code>time</code>). </span></li>
-<li><span style="color:white">Plot separate lines for each of the years, i.e. put <code>month</code> on the x-axis and <code>ozone</code> on the y-axis for the same location. Is there a seasonal pattern apparent? </span></li>
-<li><span style="color:white">Pick a location with x in 1:10 and y in 7:10. Plot temperature over time. Comment on the result. </span></li>
+<li><span style="color:white">Load the <code>nasa</code> data from the
+package <code>GGally</code>, </span></li>
+<li><span style="color:white">for one location, draw a time line of
+Ozone over the time frame (<code>time</code>). </span></li>
+<li><span style="color:white">Plot separate lines for each of the years,
+i.e. put <code>month</code> on the x-axis and <code>ozone</code> on the
+y-axis for the same location. Is there a seasonal pattern apparent?
+</span></li>
+<li><span style="color:white">Pick a location with x in 1:10 and y in
+7:10. Plot temperature over time. Comment on the result. </span></li>
 </ul>
 </section>
 <section id="box-office-gross" class="slide level2">
 <h2>Box office gross</h2>
 <ul>
-<li>variables encoded as dates and times work with <code>ggplot2</code></li>
+<li>variables encoded as dates and times work with
+<code>ggplot2</code></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">data</span>(box, <span class="dt">package=</span><span class="st">&quot;classdata&quot;</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Movie <span class="op">==</span><span class="st"> &quot;The Avengers: Age of Ultron&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Total.Gross)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(box, <span class="at">package=</span><span class="st">&quot;classdata&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>box <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Movie <span class="sc">==</span> <span class="st">&quot;The Avengers: Age of Ultron&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Total.Gross)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 </section>
 <section id="box-office-gross-1" class="slide level2">
 <h2>Box office gross</h2>
 <p><img src="02_time-series_files/figure-revealjs/unnamed-chunk-7-1.png" width="768" /></p>
 </section>
 <section id="your-turn-6-mins-1" class="slide level2 white">
-<h2>Your Turn (6 mins)</h2>
+<h2 class="white">Your Turn (6 mins)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
-<li><span style="color:white">Load the <code>box</code> data from the package <code>classdata</code>, </span></li>
-<li><span style="color:white">For each movie and distributor, find the (1) highest total gross, (2) the last date (and week) the movie was shown in theaters, (3) the gross the movie made in the first week it was released. </span></li>
+<li><span style="color:white">Load the <code>box</code> data from the
+package <code>classdata</code>, </span></li>
+<li><span style="color:white">For each movie and distributor, find the
+(1) highest total gross, (2) the last date (and week) the movie was
+shown in theaters, (3) the gross the movie made in the first week it was
+released. </span></li>
 </ul>
 </section>
 <section id="box-office-gross-2" class="slide level2">
@@ -184,9 +201,9 @@
 <ul>
 <li>We would like to label some of the highest grossing movies</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Thtrs. <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> <span class="kw">log</span>(Total.Gross), </a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">             <span class="dt">group =</span> <span class="kw">interaction</span>(Movie, Distributor))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>box <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Thtrs. <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> <span class="fu">log</span>(Total.Gross), </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="fu">interaction</span>(Movie, Distributor))) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 </section>
 <section id="box-office-gross-2-1" class="slide level2">
 <h2>Box office gross (2)</h2>
@@ -195,21 +212,22 @@
 <section id="labelling" class="slide level2">
 <h2>Labelling</h2>
 <ul>
-<li><code>geom_text</code> needs aesthetics <code>x</code>, <code>y</code> and <code>label</code></li>
+<li><code>geom_text</code> needs aesthetics <code>x</code>,
+<code>y</code> and <code>label</code></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">box_summary &lt;-<span class="st"> </span>box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Movie, Distributor) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="dt">Date =</span> <span class="kw">max</span>(Date),</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">    <span class="dt">Week =</span> <span class="kw">max</span>(Week),</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">    <span class="dt">Max.Gross =</span> <span class="kw">max</span>(Total.Gross, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">    <span class="dt">First.Gross =</span> <span class="kw">min</span>(Total.Gross, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">  )</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9">box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Thtrs. <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Total.Gross, </a>
-<a class="sourceLine" id="cb8-11" data-line-number="11">             <span class="dt">group =</span> <span class="kw">interaction</span>(Movie, Distributor))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Max.Gross, <span class="dt">label =</span> Movie), </a>
-<a class="sourceLine" id="cb8-13" data-line-number="13">            <span class="dt">data =</span> box_summary <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Max.Gross <span class="op">&gt;</span><span class="st"> </span><span class="fl">2.5e8</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>box_summary <span class="ot">&lt;-</span> box <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Movie, Distributor) <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date =</span> <span class="fu">max</span>(Date),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Week =</span> <span class="fu">max</span>(Week),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max.Gross =</span> <span class="fu">max</span>(Total.Gross, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">First.Gross =</span> <span class="fu">min</span>(Total.Gross, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>box <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Thtrs. <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Total.Gross, </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="fu">interaction</span>(Movie, Distributor))) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Max.Gross, <span class="at">label =</span> Movie), </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> box_summary <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Max.Gross <span class="sc">&gt;</span> <span class="fl">2.5e8</span>))</span></code></pre></div>
 </section>
 <section id="labelling-1" class="slide level2">
 <h2>Labelling</h2>
@@ -218,13 +236,14 @@
 <section id="labelling---less-overlap" class="slide level2">
 <h2>Labelling - less overlap</h2>
 <ul>
-<li><code>geom_text_repel</code> from the <code>ggrepel</code> package</li>
+<li><code>geom_text_repel</code> from the <code>ggrepel</code>
+package</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Thtrs. <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Total.Gross, </a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">             <span class="dt">group =</span> <span class="kw">interaction</span>(Movie, Distributor))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span>ggrepel<span class="op">::</span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Max.Gross, <span class="dt">label =</span> Movie), </a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">            <span class="dt">data =</span> box_summary <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Max.Gross <span class="op">&gt;</span><span class="st"> </span><span class="fl">2.5e8</span>), <span class="dt">colour=</span><span class="st">&quot;grey50&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>box <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Thtrs. <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Total.Gross, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="fu">interaction</span>(Movie, Distributor))) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  ggrepel<span class="sc">::</span><span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Max.Gross, <span class="at">label =</span> Movie), </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> box_summary <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Max.Gross <span class="sc">&gt;</span> <span class="fl">2.5e8</span>), <span class="at">colour=</span><span class="st">&quot;grey50&quot;</span>)</span></code></pre></div>
 </section>
 <section id="labelling---less-overlap-1" class="slide level2">
 <h2>Labelling - less overlap</h2>
