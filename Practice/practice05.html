@@ -16,6 +16,7 @@
   
   
   
+      <script src="practice05_files/header-attrs-2.19/header-attrs.js"></script>
   
 </head>
 
@@ -35,23 +36,38 @@
 <h2>Outline</h2>
 <ul>
 <li>Find your team members</li>
-<li>Create an R markdown file that contains all code to read the data and create the plots</li>
+<li>Create an R markdown file that contains all code to read the data
+and create the plots</li>
 <li>Homework 10 submit!</li>
 </ul>
 </section>
 <section id="fars-data" class="slide level2">
 <h2>FARS data</h2>
 <ul>
-<li>US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base (fatal accident report system, <a href="http://www.nhtsa.gov/FARS" class="uri">http://www.nhtsa.gov/FARS</a>)</li>
-<li>FARS consists of 20+ tables consisting of various aspects of each accident Documentation at</li>
-<li><a href="https://www-fars.nhtsa.dot.gov/Main/index.aspx" class="uri">https://www-fars.nhtsa.dot.gov/Main/index.aspx</a></li>
-<li>three of the main tables are <a href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/accident.csv">accident</a>, <a href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/person.csv">person</a>, and <a href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/vehicle.csv">vehicle</a>, stored in the <a href="https://github.com/yumouqiu/DS202-Spring2022/tree/main/Practice/data/fars2016">data foler</a> of our Github page.</li>
+<li>US Department of transportation is keeping a record of every
+accident that results in a fatality in the FARS Data base (fatal
+accident report system, <a href="http://www.nhtsa.gov/FARS"
+class="uri">http://www.nhtsa.gov/FARS</a>)</li>
+<li>FARS consists of 20+ tables consisting of various aspects of each
+accident Documentation at</li>
+<li><a href="https://www-fars.nhtsa.dot.gov/Main/index.aspx"
+class="uri">https://www-fars.nhtsa.dot.gov/Main/index.aspx</a></li>
+<li>three of the main tables are <a
+href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2023/main/Practice/data/fars2016/accident.csv">accident</a>,
+<a
+href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2023/main/Practice/data/fars2016/person.csv">person</a>,
+and <a
+href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2023/main/Practice/data/fars2016/vehicle.csv">vehicle</a>,
+stored in the <a
+href="https://github.com/yumouqiu/DS202-Spring2023/tree/main/Practice/data/fars2016">data
+foler</a> of our Github page.</li>
 </ul>
 </section>
 <section id="data-background-2" class="slide level2">
 <h2>Data Background (2)</h2>
 <ul>
-<li>Data of the three main tables is made available from our website.</li>
+<li>Data of the three main tables is made available from our
+website.</li>
 <li>Load the accident data, plot latitude and longitude on a map.</li>
 <li>Variable names of the <code>accident.csv</code>:</li>
 </ul>
@@ -70,22 +86,30 @@
 <section id="part-one-accident-data" class="slide level2">
 <h2>Part one: Accident data</h2>
 <ul>
-<li>are there some days of the week where more accidents happen than on others (use variable DAY_WEEK)?</li>
+<li>are there some days of the week where more accidents happen than on
+others (use variable DAY_WEEK)?</li>
 <li>what time of the day do accidents happen (use variable HOUR)?</li>
-<li>what is the number of accidents with at least one drunk driver (use variable DRUNK_DR)?</li>
+<li>what is the number of accidents with at least one drunk driver (use
+variable DRUNK_DR)?</li>
 </ul>
 </section>
 <section id="part-two-connecting-data" class="slide level2">
 <h2>Part two: Connecting data</h2>
 <ul>
-<li>Connect to the <a href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/person.csv">person table</a>. Identify drivers (PER_TYP == 1, see fars manual ) and subset on them.</li>
-<li>Join accident and driver table (work out which variable(s) to use)</li>
-<li>Tally the number of accidents by day of the week (DAY_WEEK), hour of the day (HOUR) and gender (SEX). Visualize the results!</li>
+<li>Connect to the <a
+href="https://raw.githubusercontent.com/yumouqiu/DS202-Spring2023/main/Practice/data/fars2016/person.csv">person
+table</a>. Identify drivers (PER_TYP == 1, see fars manual ) and subset
+on them.</li>
+<li>Join accident and driver table (work out which variable(s) to
+use)</li>
+<li>Tally the number of accidents by day of the week (DAY_WEEK), hour of
+the day (HOUR) and gender (SEX). Visualize the results!</li>
 </ul>
 </section>
 <section id="submission" class="slide level2">
 <h2>Submission</h2>
-<p>In Canvas, submit an RMarkdown file (and the knitted html document) with:</p>
+<p>In Canvas, submit an RMarkdown file (and the knitted html document)
+with:</p>
 <ol type="a">
 <li>the names of all team members that worked on the document.</li>
 <li>a link to the github repo you were working in.</li>

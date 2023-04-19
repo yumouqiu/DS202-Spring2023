@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = TRUE)
 - FARS consists of 20+ tables consisting of various aspects of each accident
 Documentation at
 - https://www-fars.nhtsa.dot.gov/Main/index.aspx
-- three of the main tables are [accident](https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/accident.csv), [person](https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/person.csv), and [vehicle](https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/vehicle.csv), stored in the [data foler](https://github.com/yumouqiu/DS202-Spring2022/tree/main/Practice/data/fars2016) of our Github page.
+- three of the main tables are [accident](https://raw.githubusercontent.com/yumouqiu/DS202-Spring2023/main/Practice/data/fars2016/accident.csv), [person](https://raw.githubusercontent.com/yumouqiu/DS202-Spring2023/main/Practice/data/fars2016/person.csv), and [vehicle](https://raw.githubusercontent.com/yumouqiu/DS202-Spring2023/main/Practice/data/fars2016/vehicle.csv), stored in the [data foler](https://github.com/yumouqiu/DS202-Spring2023/tree/main/Practice/data/fars2016) of our Github page.
 
 ## Data Background (2)
 
@@ -48,45 +48,13 @@ names(acc)
 - what time of the day do accidents happen (use variable HOUR)?
 - what is the number of accidents with at least one drunk driver (use variable DRUNK_DR)?
 
-```{r}
-
-acc %>% ggplot(aes(x = DAY_WEEK)) + geom_bar() + xlab("Day of the Week") + ylab("Count") + ggtitle("Accidents per Day of the Week") + scale_x_discrete(limits = c("1", "2", "3", "4", "5", "6", "7"))
-DWcount = count(acc, acc$DAY_WEEK)
-DWcount
-
-acc %>% filter(HOUR <= 24) %>% ggplot(aes(x = HOUR)) + geom_bar() + xlab("Hour") + ylab("Count") + ggtitle("Accidents per Hour")
-Hcount = count(acc, acc$HOUR) %>% arrange(desc(n))
-Hcount
-
-acc %>% filter(DRUNK_DR >= 1) %>% ggplot(aes(x = DRUNK_DR)) + geom_bar()
-Dcount = acc %>% filter(DRUNK_DR >= 1) %>% count(DRUNK_DR)
-Dcount
-sum(Dcount$n)
-
-```
 
 ## Part two: Connecting data
 
-- Connect to the [person table](https://raw.githubusercontent.com/yumouqiu/DS202-Spring2022/main/Practice/data/fars2016/person.csv). Identify drivers (PER_TYP == 1, see fars manual ) and subset on them.
+- Connect to the [person table](https://raw.githubusercontent.com/yumouqiu/DS202-Spring2023/main/Practice/data/fars2016/person.csv). Identify drivers (PER_TYP == 1, see fars manual ) and subset on them.
 - Join accident and driver table (work out which variable(s) to use)
 - Tally the number of accidents by day of the week (DAY_WEEK), hour of the day (HOUR) and gender (SEX). Visualize the results!
 
-
-```{r}
-person <- read.csv("data/fars2016/person.csv")
-
-person1 = person %>% filter(PER_TYP ==1)
-
-accidentjoin2 = left_join(person1, acc, by = c("STATE", "ST_CASE"))
-
-
-accidentjoin2 %>% filter(SEX == c(1,2)) %>% ggplot(aes(x = DAY_WEEK, fill = as.factor(HOUR.x))) + geom_bar() + facet_grid(~SEX) + scale_x_discrete(limits = c("1", "2", "3", "4", "5", "6", "7")) + xlab("Day of Week") + ylab("Count") + guides(fill=guide_legend("Hour"))
-
-accidentjoin2 %>% count(DAY_WEEK)
-accidentjoin2 %>% count(HOUR.x)
-accidentjoin2 %>% count(SEX)
-head(accidentjoin2)
-```
 
 ## Submission
 
