@@ -15,44 +15,73 @@
   
   
     <style type="text/css">
-   div.sourceCode { overflow-x: auto; }
-   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-     margin: 0; padding: 0; vertical-align: baseline; border: none; }
-   table.sourceCode { width: 100%; line-height: 100%; }
-   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-   td.sourceCode { padding-left: 5px; }
-   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-   code > span.dt { color: #902000; } /* DataType */
-   code > span.dv { color: #40a070; } /* DecVal */
-   code > span.bn { color: #40a070; } /* BaseN */
-   code > span.fl { color: #40a070; } /* Float */
-   code > span.ch { color: #4070a0; } /* Char */
-   code > span.st { color: #4070a0; } /* String */
-   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-   code > span.ot { color: #007020; } /* Other */
-   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-   code > span.fu { color: #06287e; } /* Function */
-   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-   code > span.cn { color: #880000; } /* Constant */
-   code > span.sc { color: #4070a0; } /* SpecialChar */
-   code > span.vs { color: #4070a0; } /* VerbatimString */
-   code > span.ss { color: #bb6688; } /* SpecialString */
-   code > span.im { } /* Import */
-   code > span.va { color: #19177c; } /* Variable */
-   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-   code > span.op { color: #666666; } /* Operator */
-   code > span.bu { } /* BuiltIn */
-   code > span.ex { } /* Extension */
-   code > span.pp { color: #bc7a00; } /* Preprocessor */
-   code > span.at { color: #7d9029; } /* Attribute */
-   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
+   .sourceCode { overflow: visible; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+   }
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {   }
+   @media screen {
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   
   
+      <script src="04_maps_files/header-attrs-2.19/header-attrs.js"></script>
   
 </head>
 
@@ -65,7 +94,12 @@
 
   
   
-<section id="drawing-maps" class="titleslide slide level1"><h2 class="shout">Drawing maps</h2></section><section id="outline" class="slide level2">
+<section>
+<section id="drawing-maps" class="title-slide slide level1">
+<h2>Drawing maps</h2>
+
+</section>
+<section id="outline" class="slide level2">
 <h2>Outline</h2>
 <ul>
 <li>package <code>maps</code></li>
@@ -73,7 +107,8 @@
 <li>maps and map data in ggplot</li>
 <li>drawing choropleth maps</li>
 </ul>
-</section><section id="maps-are" class="slide level2">
+</section>
+<section id="maps-are" class="slide level2">
 <h2>Maps are …</h2>
 <div class="double">
 <p class="double-flow">
@@ -84,17 +119,20 @@
 </p>
 <p class="double-flow">
 <ul>
-<li>that are connected in the ‘right’ order (determined by order in the data frame)</li>
+<li>that are connected in the ‘right’ order (determined by order in the
+data frame)</li>
 </ul>
 <img src="04_maps_files/figure-revealjs/unnamed-chunk-2-1.png" width="288" />
 </p>
 </div>
-</section><section id="maps" class="slide level2">
+</section>
+<section id="maps" class="slide level2">
 <h2>Maps …</h2>
 <div class="double">
 <p class="double-flow">
 <ul>
-<li>use <code>group</code> parameter to distinguish between different regions</li>
+<li>use <code>group</code> parameter to distinguish between different
+regions</li>
 </ul>
 <img src="04_maps_files/figure-revealjs/unnamed-chunk-3-1.png" width="288" />
 </p>
@@ -105,10 +143,11 @@
 <p><img src="04_maps_files/figure-revealjs/unnamed-chunk-4-1.png" width="288" /></p>
 </p>
 </div>
-</section><section id="map-data" class="slide level2">
+</section>
+<section id="map-data" class="slide level2">
 <h2>map data</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)
-<span class="kw">head</span>(states)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">&quot;state&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states)</span></code></pre></div>
 <pre><code>##        long      lat group order  region subregion
 ## 1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;
 ## 2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;
@@ -116,61 +155,69 @@
 ## 4 -87.53076 30.33239     1     4 alabama      &lt;NA&gt;
 ## 5 -87.57087 30.32665     1     5 alabama      &lt;NA&gt;
 ## 6 -87.58806 30.32665     1     6 alabama      &lt;NA&gt;</code></pre>
-</section><section id="maps-in-code-1" class="slide level2">
+</section>
+<section id="maps-in-code-1" class="slide level2">
 <h2>Maps in code (1)</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>states <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="04_maps_files/figure-revealjs/unnamed-chunk-6-1.png" width="768" /></p>
-</section><section id="maps-in-code-2" class="slide level2">
+</section>
+<section id="maps-in-code-2" class="slide level2">
 <h2>Maps in code (2)</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> group))</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>states <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat)) <span class="sc">+</span> <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">group =</span> group))</span></code></pre></div>
 <p><img src="04_maps_files/figure-revealjs/unnamed-chunk-7-1.png" width="768" /></p>
-</section><section id="maps-in-code-3" class="slide level2">
+</section>
+<section id="maps-in-code-3" class="slide level2">
 <h2>Maps in code (3)</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">group =</span> group))</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>states <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat)) <span class="sc">+</span> <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">group =</span> group))</span></code></pre></div>
 <p><img src="04_maps_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" /></p>
-</section><section id="maps-in-code-4" class="slide level2">
+</section>
+<section id="maps-in-code-4" class="slide level2">
 <h2>Maps in code (4)</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">group =</span> group, <span class="dt">fill=</span>lat))</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>states <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat)) <span class="sc">+</span> <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">group =</span> group, <span class="at">fill=</span>lat))</span></code></pre></div>
 <p><img src="04_maps_files/figure-revealjs/unnamed-chunk-9-1.png" width="768" /></p>
-</section><section id="your-turn-6-mins" class="slide level2 white">
-<h2>Your Turn (6 mins)</h2>
+</section>
+<section id="your-turn-6-mins" class="slide level2 white">
+<h2 class="white">Your Turn (6 mins)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
-<li><span style="color:white">Use ggplot2 and pull out map data for all US counties: <code>counties &lt;- map_data(&quot;county&quot;)</code> </span></li>
-<li><span style="color:white">Draw a map of counties (polygons &amp; path geom) </span></li>
-<li><span style="color:white">Colour all counties called “story” </span></li>
-<li><span style="color:white">Advanced: What county names are used often? </span></li>
+<li><span style="color:white">Use ggplot2 and pull out map data for all
+US counties: <code>counties &lt;- map_data("county")</code> </span></li>
+<li><span style="color:white">Draw a map of counties (polygons &amp;
+path geom) </span></li>
+<li><span style="color:white">Colour all counties called “story”
+</span></li>
+<li><span style="color:white">Advanced: What county names are used
+often? </span></li>
 </ul>
-</section><section id="choropleth-maps" class="slide level2">
+</section>
+<section id="choropleth-maps" class="slide level2">
 <h2>Choropleth maps</h2>
 <ul>
-<li>choropleth maps are thematic maps: areas are shaded in proportion to the values of a variable</li>
+<li>choropleth maps are thematic maps: areas are shaded in proportion to
+the values of a variable</li>
 <li>join datasets: content and map</li>
 </ul>
-</section><section id="join-content-and-map" class="slide level2">
+</section>
+<section id="join-content-and-map" class="slide level2">
 <h2>Join content and map</h2>
 <p>Content:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(fbi, <span class="dt">package=</span><span class="st">&quot;classdata&quot;</span>)
-fbi14 &lt;-<span class="st"> </span>fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Year <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>)
-<span class="kw">head</span>(fbi14)</code></pre></div>
-<pre><code>##        State Abb Year Population                                 Type
-## 1    Alabama  AL 2014    4849377 Murder.and.nonnegligent.Manslaughter
-## 2     Alaska  AK 2014     736732 Murder.and.nonnegligent.Manslaughter
-## 3    Arizona  AZ 2014    6731484 Murder.and.nonnegligent.Manslaughter
-## 4   Arkansas  AR 2014    2966369 Murder.and.nonnegligent.Manslaughter
-## 5 California  CA 2014   38802500 Murder.and.nonnegligent.Manslaughter
-## 6   Colorado  CO 2014    5355866 Murder.and.nonnegligent.Manslaughter
-##   Count Violent.crime
-## 1   276          TRUE
-## 2    41          TRUE
-## 3   319          TRUE
-## 4   165          TRUE
-## 5  1699          TRUE
-## 6   151          TRUE</code></pre>
-</section><section id="join-content-and-map-1" class="slide level2">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(fbi, <span class="at">package=</span><span class="st">&quot;classdata&quot;</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fbi20 <span class="ot">&lt;-</span> fbi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fbi20)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+##   state   state_id state_abbr  year population type          count violent_crime
+##   &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;      &lt;int&gt;      &lt;int&gt; &lt;chr&gt;         &lt;int&gt; &lt;lgl&gt;        
+## 1 Alabama        2 AL          2020    4921532 homicide        471 TRUE         
+## 2 Alabama        2 AL          2020    4921532 rape_legacy      NA TRUE         
+## 3 Alabama        2 AL          2020    4921532 rape_revised   1608 TRUE         
+## 4 Alabama        2 AL          2020    4921532 robbery        2666 TRUE         
+## 5 Alabama        2 AL          2020    4921532 aggravated_a… 17577 TRUE         
+## 6 Alabama        2 AL          2020    4921532 burglary      19660 FALSE</code></pre>
+</section>
+<section id="join-content-and-map-1" class="slide level2">
 <h2>Join content and map</h2>
 <p>Map:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(states)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states)</span></code></pre></div>
 <pre><code>##        long      lat group order  region subregion
 ## 1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;
 ## 2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;
@@ -178,62 +225,85 @@ fbi14 &lt;-<span class="st"> </span>fbi <span class="op">%&gt;%</span><span clas
 ## 4 -87.53076 30.33239     1     4 alabama      &lt;NA&gt;
 ## 5 -87.57087 30.32665     1     5 alabama      &lt;NA&gt;
 ## 6 -87.58806 30.32665     1     6 alabama      &lt;NA&gt;</code></pre>
-</section><section id="prepare-for-join" class="slide level2">
+</section>
+<section id="prepare-for-join" class="slide level2">
 <h2>Prepare for join</h2>
 <ul>
-<li>combine fbi and states by state name, but we need to make the spelling the same</li>
-<li>for simplification, introduce new variable with all lower case letters</li>
-<li>generally, content data is more important, but we will see missing states on the map: <code>anti_join</code></li>
+<li>combine fbi and states by state name, but we need to make the
+spelling the same</li>
+<li>for simplification, introduce new variable with all lower case
+letters</li>
+<li>generally, content data is more important, but we will see missing
+states on the map: <code>anti_join</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fbi14<span class="op">$</span>region &lt;-<span class="st"> </span><span class="kw">tolower</span>(fbi14<span class="op">$</span>State)
-
-nomatch1 &lt;-<span class="st"> </span>fbi14 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(states, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)
-<span class="co"># States for which we do not have map data</span>
-<span class="kw">unique</span>(nomatch1<span class="op">$</span>State)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fbi20<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">tolower</span>(fbi20<span class="sc">$</span>state)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>nomatch1 <span class="ot">&lt;-</span> fbi20 <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(states, <span class="at">by=</span><span class="st">&quot;region&quot;</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># States for which we do not have map data</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(nomatch1<span class="sc">$</span>state)</span></code></pre></div>
 <pre><code>## [1] &quot;Alaska&quot;      &quot;Hawaii&quot;      &quot;Puerto Rico&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nomatch2 &lt;-<span class="st"> </span>states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(fbi14, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)
-<span class="co"># States for which we do not have crime data</span>
-<span class="kw">unique</span>(nomatch2<span class="op">$</span>State)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nomatch2 <span class="ot">&lt;-</span> states <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(fbi20, <span class="at">by=</span><span class="st">&quot;region&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># States for which we do not have crime data</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(nomatch2<span class="sc">$</span>State)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-</section><section id="join-and-map" class="slide level2">
+</section>
+<section id="join-and-map" class="slide level2">
 <h2>Join and Map</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fbi.map &lt;-<span class="st"> </span>fbi14 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(states, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)
-fbi.map <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Type<span class="op">==</span><span class="st">&quot;Burglary&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">fill=</span>Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">70000</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">group=</span>group))</code></pre></div>
-<p><img src="04_maps_files/figure-revealjs/unnamed-chunk-13-1.png" width="864" /></p>
-</section><section id="your-turn" class="slide level2 white">
-<h2>Your Turn</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fbi.map <span class="ot">&lt;-</span> fbi20 <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(states, <span class="at">by=</span><span class="st">&quot;region&quot;</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fbi.map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(type<span class="sc">==</span><span class="st">&quot;burglary&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">fill =</span> count <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">70000</span>)) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">group=</span>group))</span></code></pre></div>
+<p><img src="04_maps_files/figure-revealjs/unnamed-chunk-14-1.png" width="864" /></p>
+</section>
+<section id="your-turn" class="slide level2 white">
+<h2 class="white">Your Turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
-<li><span style="color:white">Draw a choropleth map of the rate of motor vehicle thefts in 2012 across the US. </span></li>
-<li><span style="color:white"><code>scale_fill_gradient2</code> allows you to set a color scheme with two main colors. Read up on it and change the scheme in the first choropleth map. </span></li>
+<li><span style="color:white">Draw a choropleth map of the rate of motor
+vehicle thefts in 2019 across the US. </span></li>
+<li><span style="color:white"><code>scale_fill_gradient2</code> allows
+you to set a color scheme with two main colors. Read up on it and change
+the scheme in the first choropleth map. </span></li>
 </ul>
-</section><section id="geographic-data-in-layers" class="slide level2">
+</section>
+<section id="geographic-data-in-layers" class="slide level2">
 <h2>Geographic data in layers</h2>
 <ul>
-<li>For data collected with GPS coordinates we can use maps as background layers</li>
+<li>For data collected with GPS coordinates we can use maps as
+background layers</li>
 <li>e.g. campaign expenditures</li>
-<li>In that situation, we do not need to join the map information and the content data, but use layers with separate data sets of the form</li>
+<li>In that situation, we do not need to join the map information and
+the content data, but use layers with separate data sets of the
+form</li>
 </ul>
 <pre><code>map %&gt;% ggplot(aes(x = long, y = lat)) + 
   geom_polygon(aes(group = group)) +
   geom_point(aes(x=longitude, y = latitude), data = content) </code></pre>
-</section><section id="fars-data" class="slide level2">
+</section>
+<section id="fars-data" class="slide level2">
 <h2>FARS data</h2>
 <ul>
-<li>US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base (fatal accident report system, <a href="http://www.nhtsa.gov/FARS" class="uri">http://www.nhtsa.gov/FARS</a>)</li>
-<li>FARS consists of 20+ tables consisting of various aspects of each accident Documentation at</li>
-<li><a href="https://www-fars.nhtsa.dot.gov/Main/index.aspx" class="uri">https://www-fars.nhtsa.dot.gov/Main/index.aspx</a></li>
-<li>three of the main tables are <code>accident</code>, <code>person</code>, and <code>vehicle</code></li>
+<li>US Department of transportation is keeping a record of every
+accident that results in a fatality in the FARS Data base (fatal
+accident report system, <a href="http://www.nhtsa.gov/FARS"
+class="uri">http://www.nhtsa.gov/FARS</a>)</li>
+<li>FARS consists of 20+ tables consisting of various aspects of each
+accident Documentation at</li>
+<li><a href="https://www-fars.nhtsa.dot.gov/Main/index.aspx"
+class="uri">https://www-fars.nhtsa.dot.gov/Main/index.aspx</a></li>
+<li>three of the main tables are <code>accident</code>,
+<code>person</code>, and <code>vehicle</code></li>
 </ul>
-</section><section id="data" class="slide level2">
+</section>
+<section id="data" class="slide level2">
 <h2>Data</h2>
 <ul>
 <li>Data of all accidents are available at:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/DS202-at-ISU/labs/master/data/fars2016/accident.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
-<span class="kw">names</span>(acc)</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;/Users/yumouqiu/Documents/DS202-Spring2023/04_date-time-space&quot;</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>acc <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/yumouqiu/DS202-Spring2023/main/Practice/data/fars2016/accident.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(acc)</span></code></pre></div>
 <pre><code>##  [1] &quot;STATE&quot;      &quot;ST_CASE&quot;    &quot;VE_TOTAL&quot;   &quot;VE_FORMS&quot;   &quot;PVH_INVL&quot;  
 ##  [6] &quot;PEDS&quot;       &quot;PERNOTMVIT&quot; &quot;PERMVIT&quot;    &quot;PERSONS&quot;    &quot;COUNTY&quot;    
 ## [11] &quot;CITY&quot;       &quot;DAY&quot;        &quot;MONTH&quot;      &quot;YEAR&quot;       &quot;DAY_WEEK&quot;  
@@ -245,20 +315,27 @@ fbi.map <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">
 ## [41] &quot;RAIL&quot;       &quot;NOT_HOUR&quot;   &quot;NOT_MIN&quot;    &quot;ARR_HOUR&quot;   &quot;ARR_MIN&quot;   
 ## [46] &quot;HOSP_HR&quot;    &quot;HOSP_MN&quot;    &quot;CF1&quot;        &quot;CF2&quot;        &quot;CF3&quot;       
 ## [51] &quot;FATALS&quot;     &quot;DRUNK_DR&quot;</code></pre>
-</section><section id="your-turn-1" class="slide level2 white">
-<h2>Your Turn</h2>
+</section>
+<section id="your-turn-1" class="slide level2 white">
+<h2 class="white">Your Turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
-<li><span style="color:white">Use the accident data to plot the geographic location of all accidents in the US in 2016. </span></li>
-<li><span style="color:white"> Plot accidents on a map of the US (use the map of the US as first layer) </span></li>
-<li><span style="color:white">Why would it be tricky to plot a choropleth map of the number of accidents by state? </span></li>
+<li><span style="color:white">Use the accident data to plot the
+geographic location of all accidents in the US in 2016. </span></li>
+<li><span style="color:white"> Plot accidents on a map of the US (use
+the map of the US as first layer) </span></li>
+<li><span style="color:white">Why would it be tricky to plot a
+choropleth map of the number of accidents by state? </span></li>
 </ul>
-</section><section id="your-turn-2" class="slide level2 white">
-<h2>Your Turn</h2>
+</section>
+<section id="your-turn-2" class="slide level2 white">
+<h2 class="white">Your Turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
-<li><span style="color:white">The numbers for each state (<code>STATE</code>) are so-called fips codes. </span></li>
-<li><span style="color:white">Sketch out the steps necessary to draw a choropleth map of the rate of fatal accidents by state. </span></li>
+<li><span style="color:white">The numbers for each state
+(<code>STATE</code>) are so-called fips codes. </span></li>
+<li><span style="color:white">Sketch out the steps necessary to draw a
+choropleth map of the rate of fatal accidents by state. </span></li>
 </ul>
 </section>
 

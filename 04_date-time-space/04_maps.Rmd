@@ -120,7 +120,7 @@ US counties: ```counties <- map_data("county")```
 - <span style="color:white">Advanced: What county names are used often?
 </span>
 
-```{r, warning = FALSE, message=FALSE, fig.width=8, fig.height = 5}
+```{r, warning = FALSE, message=FALSE, fig.width=8, fig.height = 5, echo = FALSE, eval = FALSE}
 counties <- map_data("county")
 counties %>% ggplot(aes(x = long, y = lat)) + geom_path(aes(group = group))
 counties %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group))
@@ -146,8 +146,8 @@ counties %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group, fi
 Content:
 ```{r}
 data(fbi, package="classdata")
-fbi14 <- fbi %>% filter(Year == 2014)
-head(fbi14)
+fbi20 <- fbi %>% filter(year == 2020)
+head(fbi20)
 ```
 
 ## Join content and map
@@ -164,14 +164,14 @@ head(states)
 - generally, content data is more important, but we will see missing states on the map: `anti_join`
 
 ```{r}
-fbi14$region <- tolower(fbi14$State)
+fbi20$region <- tolower(fbi20$state)
 
-nomatch1 <- fbi14 %>% anti_join(states, by="region")
+nomatch1 <- fbi20 %>% anti_join(states, by="region")
 # States for which we do not have map data
-unique(nomatch1$State)
+unique(nomatch1$state)
 
 
-nomatch2 <- states %>% anti_join(fbi14, by="region")
+nomatch2 <- states %>% anti_join(fbi20, by="region")
 # States for which we do not have crime data
 unique(nomatch2$State)
 ```
@@ -179,9 +179,9 @@ unique(nomatch2$State)
 ## Join and Map
 
 ```{r, fig.width=9, fig.height = 4.5}
-fbi.map <- fbi14 %>% left_join(states, by="region")
-fbi.map %>% filter(Type=="Burglary") %>% 
-  ggplot(aes(x = long, y = lat, fill=Count/Population*70000)) +
+fbi.map <- fbi20 %>% left_join(states, by="region")
+fbi.map %>% filter(type=="burglary") %>% 
+  ggplot(aes(x = long, y = lat, fill = count / population * 70000)) +
   geom_polygon(aes(group=group))
 ```
 
@@ -189,19 +189,19 @@ fbi.map %>% filter(Type=="Burglary") %>%
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
-- <span style="color:white">Draw a choropleth map of the rate of motor vehicle thefts in 2012 across the US.
+- <span style="color:white">Draw a choropleth map of the rate of motor vehicle thefts in 2019 across the US.
 </span>
 - <span style="color:white">`scale_fill_gradient2` allows you to set a color scheme with two main colors. Read up on it and change the scheme in the first choropleth map.
 </span>
 
-```{r, fig.width=9, fig.height = 4.5}
-fbi12 <- fbi %>% filter(Year == 2012)
-fbi12$region <- tolower(fbi12$State)
+```{r, fig.width=9, fig.height = 4.5, echo = FALSE, eval = FALSE}
+fbi19 <- fbi %>% filter(year == 2019)
+fbi19$region <- tolower(fbi19$state)
 
-fbi.map12 <- fbi12 %>% left_join(states, by="region")
-fbi.map12 %>% filter(Type=="Motor.vehicle.theft") %>% 
+fbi.map19 <- fbi19 %>% left_join(states, by="region")
+fbi.map19 %>% filter(type == "motor_vehicle_theft") %>% 
   ggplot(aes(x = long, y = lat)) +
-  geom_polygon(aes(group=group, fill=Count/Population*70000)) + 
+  geom_polygon(aes(group=group, fill = count / population * 70000)) + 
   scale_fill_gradient2()
 ```
 
@@ -231,7 +231,7 @@ Documentation at
 
 ```{r}
 getwd()
-acc <- read.csv("/Users/yumouqiu/DS202-Spring2022/Practice/data/fars2016/accident.csv", stringsAsFactors = FALSE)
+acc <- read.csv("https://raw.githubusercontent.com/yumouqiu/DS202-Spring2023/main/Practice/data/fars2016/accident.csv", stringsAsFactors = FALSE)
 names(acc)
 ```
 
@@ -246,7 +246,7 @@ names(acc)
 - <span style="color:white">Why would it be tricky to plot a choropleth map of the number of accidents by state?
 </span>
 
-```{r}
+```{r, echo = FALSE, eval = FALSE}
 acc %>% filter(YEAR == 2016, LONGITUD < 0) %>% ggplot(aes(x = LONGITUD, y = LATITUDE)) + geom_point()
 
 states %>% ggplot(aes(x = long, y = lat)) + 
@@ -268,26 +268,20 @@ states %>% ggplot(aes(x = long, y = lat)) +
 - <span style="color:white">Sketch out the steps necessary to draw a choropleth map of the rate of fatal accidents by state.
 </span>
 
-```{r}
+```{r, echo = FALSE, eval = FALSE}
 # 1. Relate the fips code to state name. Copy and paste the fips name with state name to an excel file, save it as .csv file and read into R;
 # 2. Combine acc with StateNames by the filp code;
 # 3. Summarize the fatal rate by states
 # 4. Join the content data (acc2) with the map data (states)
 
-StateNames = read.csv("StateNames.csv", head = FALSE)
-acc1 = acc %>% left_join(StateNames, by = c("STATE" = "V2"))
+StateNames = read.csv("StateNames.csv", head = TRUE)
+acc1 = acc %>% left_join(StateNames, by = c("STATE" = "code"))
 
-acc2 = acc1 %>% group_by(V1) %>% summarise(total.acc = n(), total.fatal = sum(FATALS))
+acc2 = acc1 %>% group_by(State) %>% summarise(total.acc = n(), total.fatal = sum(FATALS))
 ```
 
-```{r}
+```{r, echo = FALSE, eval = FALSE}
 # Solutions
-
-library(tidyverse)
-library(maps)
-
-states <- map_data("state")
-acc <- read.csv("/Users/yumouqiu/DS202-Spring2022/Practice/data/fars2016/accident.csv", stringsAsFactors = FALSE)
 
 acc2016 = acc %>% filter(YEAR == 2016) %>% 
   filter(abs(LONGITUD) < 300, abs(LATITUDE) < 300)
@@ -306,14 +300,10 @@ states %>% ggplot(aes(x = long, y = lat)) +
   geom_point(data = acc2016.mainland1 %>% filter(FATALS >= 3), 
              aes(x = LONGITUD, y = LATITUDE, col = drunk), size = 0.5)
 
-state.code = read.csv("/Users/yumouqiu/DS202-Spring2022/04_date-time-space/StateNames.csv")
-names(state.code)[1] = "region"
-state.code$region = tolower(state.code$region)
-
-acc2016.mainland2 = left_join(acc2016.mainland1, state.code, 
+acc2016.mainland2 = left_join(acc2016.mainland1, StateNames, 
                               by = c("STATE" = "code"))
 
-acc2016.state = acc2016.mainland2 %>% group_by(region) %>%
+acc2016.state = acc2016.mainland2 %>% group_by(State) %>%
   summarise(n = n()) %>% ungroup()
 
 states.acc = left_join(states, acc2016.state, by = "region")

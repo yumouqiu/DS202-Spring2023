@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202 - Data Exploration</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="final-project_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="final-project_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="final-project_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="final-project_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="final-project_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+  
+  
+      <script src="final-project_files/header-attrs-2.19/header-attrs.js"></script>
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202 - Data Exploration</h1>
+    <p>Yumou Qiu</p>
+  </header>
+
+  
+  
+<section id="final-project" class="slide level2">
+<h2>Final Project</h2>
+<ul>
+<li><strong>find the question and the data</strong></li>
+<li><strong>work individually or work in a group (maximum 2
+members)</strong></li>
+<li><strong>planning an exploration: start simple</strong></li>
+</ul>
+</section>
+<section id="marginal-distributionsdensities" class="slide level2">
+<h2>Marginal Distributions/Densities</h2>
+<ul>
+<li>make yourself familiar with the data</li>
+<li>think about expectations you have for each variable</li>
+<li>find (visual) summaries of each data variable using bar charts,
+histograms, boxplots</li>
+<li>use different plots to see different aspects</li>
+<li>see whether expectations match</li>
+</ul>
+</section>
+<section id="follow-up" class="slide level2">
+<h2>Follow-up</h2>
+<ul>
+<li>follow up on cases where expectations do not match and try to
+identify a reason for why your expectations are not met: are there
+outliers? data entry errors? data encoding problems?</li>
+<li>problems need to be addressed individually, document your
+approach</li>
+<li>what else needs to be changed: are variables in the right format?
+factors are factors, date information is in date format? Are levels in
+the correct order? Are level names textual information rather than
+cryptic numbers? Do variable names to be changed for convenience?</li>
+</ul>
+<p>Write an R script to keep track of all the changes, make sure that
+you document each step</p>
+</section>
+<section id="visual-summary" class="slide level2">
+<h2>Visual summary</h2>
+<ul>
+<li>For each relevant variable provide one chart as a visual
+summary</li>
+<li>Document your expectation and describe what you see in the plot (2
+sentence summary: what is the structure of the plot, which variable is
+shown, what is the main finding? )</li>
+<li>Emphasize your main finding by adding extras, e.g. label outliers,
+color groups, add a trend line, …</li>
+</ul>
+</section>
+<section id="investigate-relationships" class="slide level2">
+<h2>Investigate relationships</h2>
+</section>
+<section id="expanding-complexity" class="slide level2">
+<h2>Expanding complexity</h2>
+<ul>
+<li>Investigate two-way relationships</li>
+<li>scatterplots for two numeric variables: numeric vs. numeric</li>
+<li>side-by-side boxplots or facetted plots for numeric/categorical
+pair: numeric vs. categorical</li>
+<li>barchart with facetting or other aesthetic (filling e.g.) for two
+categorical variables: relationship among categorical</li>
+</ul>
+</section>
+<section id="repeat-the-above-process" class="slide level2">
+<h2>Repeat the above process</h2>
+<ul>
+<li>What is your expectation for the relationship?</li>
+<li>Is or in how-far is your expectation met?</li>
+<li>Follow up on cases/situations where your expectation is not
+met.</li>
+</ul>
+</section>
+<section id="include-the-next-variable" class="slide level2">
+<h2>Include the next variable</h2>
+<ul>
+<li>include another variable into the relationship.</li>
+<li>focus on describing ‘what does this finding mean?’</li>
+</ul>
+<p>… for data sets with a lot of variables this approach gets unwieldy,
+because it grows multiplicatively. In those cases we need to focus on
+some lines of investigations.</p>
+</section>
+<section id="requirements" class="slide level2">
+<h2>Requirements</h2>
+<ul>
+<li>Clear statement of research question, and where you get the
+data;</li>
+<li>Data cleaning into an analysis format;</li>
+<li>Plots should include different color and use facet function;</li>
+<li>Plot polishing;</li>
+<li>Analysis results and conclusions;</li>
+<li>Individual work: at least 5 variables, 100 observations and 4 out of
+the 8 Candidate plots;</li>
+<li>Group work: at least 10 variables, 100 observations and 6 out of the
+8 Candidate plots.</li>
+</ul>
+<p>Candidate plots: scatter plot, line plot, time series plot, boxplot,
+barplot, histogram, mosaic plot, map plot.</p>
+</section>
+<section id="submission-for-the-plan-homework-11" class="slide level2">
+<h2>Submission for the plan (Homework 11)</h2>
+<p>In Canvas, submit an RMarkdown file (and the knitted html document)
+with:</p>
+<ol type="a">
+<li>the names of all team members that worked on the final project;</li>
+<li>an overview of the data set you are working with for the final
+project;</li>
+<li>a discussion of cleaning steps that are necessary to get the data
+into the right shape.</li>
+</ol>
+</section>
+<section id="submission-for-the-final-project" class="slide level2">
+<h2>Submission for the final project</h2>
+<p>In Canvas, submit the files:</p>
+<ol type="a">
+<li>the data you analyze;</li>
+<li>Rmarkdown file (and the knitted html document) with the codes for
+cleaning the data, making the plots and your investigation; explanation
+for each step of the analysis; and the conclusions.</li>
+<li>I should be able to reproduce all the results using the submitted
+data and the Rmarkdown file.</li>
+</ol>
+<p><strong>Due: May 11 at 11:59pm</strong></p>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="final-project_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

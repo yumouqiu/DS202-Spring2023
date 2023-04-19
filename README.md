@@ -66,10 +66,20 @@
 
 04/10 [Lecture 4-1-time](04_date-time-space\01_date-and-time.html)
 
-04/10 [Lecture 4-2-time series](04_date-time-space\02_time-series.html)
+04/12 [Lecture 4-2-time series](04_date-time-space\02_time-series.html)
 
-04/12 [Lecture 4-3-layers](04_date-time-space\03_layers.html)
+04/17 [Lecture 4-3-layers](04_date-time-space\03_layers.html)
 
-04/17 [Lecture 4-4-maps](04_date-time-space\04_maps.html)
+04/19 [Lecture 4-4-maps](04_date-time-space\04_maps.html)
 
-04/19 [Lecture 4-5-Practice for time series data](Practice\practice05.html)
+04/24 [Lecture 4-5-Practice for time series data](Practice\practice05.html)
+
+04/26 [Lecture 5-1-polishing](05_plot-elements\01_polishing-plots.html)
+
+### May
+
+05/01 [Lecture 6-1-web scraping I](06_web-scraping\01_rvest.html)
+
+05/03 [Lecture 6-2-web scraping II](06_web-scraping\02_purrr.html)
+
+## [Final Project](Final_project\final-project.html)

@@ -1,0 +1,99 @@
+---
+title: "DS 202 - Data Exploration"
+author: "Yumou Qiu"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+```
+
+## Final Project
+
+- **find the question and the data**
+- **work individually or work in a group (maximum 2 members)**
+- **planning an exploration: start simple**
+
+## Marginal Distributions/Densities
+
+- make yourself familiar with the data
+- think about expectations you have for each variable
+- find (visual) summaries of each data variable using bar charts, histograms, boxplots
+- use different plots to see different aspects
+- see whether expectations match
+
+## Follow-up
+
+- follow up on cases where expectations do not match and try to identify a reason for why your expectations are not met: are there outliers? data entry errors? data encoding problems?
+- problems need to be addressed individually, document your approach
+- what else needs to be changed: are variables in the right format? factors are factors, date information is in date format? Are levels in the correct order? Are level names textual information rather than cryptic numbers? Do variable names to be changed for convenience?
+
+Write an R script to keep track of all the changes, make sure that you document each step
+
+## Visual summary
+
+- For each relevant variable provide one chart as a visual summary
+- Document your expectation and describe what you see in the plot (2 sentence summary: what is the structure of the plot, which variable is shown, what is the main finding? )
+- Emphasize your main finding by adding extras, e.g. label outliers, color groups, add a trend line, ...
+
+## Investigate relationships
+
+## Expanding complexity
+
+- Investigate two-way relationships
+- scatterplots for two numeric variables: numeric vs. numeric
+- side-by-side boxplots or facetted plots for numeric/categorical pair: numeric vs. categorical
+- barchart with facetting or other aesthetic (filling e.g.) for two categorical variables: relationship among categorical
+
+## Repeat the above process
+
+- What is your expectation for the relationship?
+- Is or in how-far is your expectation met?
+- Follow up on cases/situations where your expectation is not met. 
+
+## Include the next variable 
+
+- include another variable into the relationship. 
+- focus on describing 'what does this finding mean?'
+
+... for data sets with a lot of variables this approach gets unwieldy, because it grows multiplicatively. In those cases we need to focus on some lines of investigations.
+
+
+## Requirements
+
+- Clear statement of research question, and where you get the data;
+- Data cleaning into an analysis format;
+- Plots should include different color and use facet function;
+- Plot polishing;
+- Analysis results and conclusions;
+- Individual work: at least 5 variables, 100 observations and 4 out of the 8 Candidate plots;
+- Group work: at least 10 variables, 100 observations and 6 out of the 8 Candidate plots.
+
+Candidate plots: scatter plot, line plot, time series plot, boxplot, barplot, histogram, mosaic plot, map plot. 
+
+## Submission for the plan (Homework 11)
+
+In Canvas, submit an RMarkdown file (and the knitted html document) with: 
+
+  a. the names of all team members that worked on the final project;
+  b. an overview of the data set you are working with for the final project;
+  c. a discussion of cleaning steps that are necessary to get the data into the right shape.
+
+
+## Submission for the final project
+
+In Canvas, submit the files: 
+
+  a. the data you analyze;
+  b. Rmarkdown file (and the knitted html document) with the codes for cleaning the data, making the plots and your investigation; explanation for each step of the analysis; and the conclusions.
+  c. I should be able to reproduce all the results using the submitted data and the Rmarkdown file.
+
+**Due: May 11 at 11:59pm**
+
