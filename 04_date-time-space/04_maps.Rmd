@@ -255,8 +255,8 @@ states %>% ggplot(aes(x = long, y = lat)) +
 
 states %>% ggplot(aes(x = long, y = lat)) + 
   geom_path(aes(group = group)) +
-  geom_point(aes(x = LONGITUD, y = LATITUDE), size = 0.05, color = 'red', data = acc %>% filter(YEAR == 2016, LONGITUD < 0, LONGITUD > -130, DRUNK_DR == 1)) + 
-  geom_point(aes(x = LONGITUD, y = LATITUDE), size = 0.05, color = 'blue', data = acc %>% filter(YEAR == 2016, LONGITUD < 0, LONGITUD > -130, DRUNK_DR == 0))
+  geom_point(aes(x = LONGITUD, y = LATITUDE), size = 0.02, color = 'red', data = acc %>% filter(YEAR == 2016, LONGITUD < 0, LONGITUD > -130, DRUNK_DR == 1)) + 
+  geom_point(aes(x = LONGITUD, y = LATITUDE), size = 0.02, color = 'blue', data = acc %>% filter(YEAR == 2016, LONGITUD < 0, LONGITUD > -130, DRUNK_DR == 0))
 ```
 
 ## Your Turn  {.white}
@@ -277,7 +277,14 @@ states %>% ggplot(aes(x = long, y = lat)) +
 StateNames = read.csv("StateNames.csv", head = TRUE)
 acc1 = acc %>% left_join(StateNames, by = c("STATE" = "code"))
 
-acc2 = acc1 %>% group_by(State) %>% summarise(total.acc = n(), total.fatal = sum(FATALS))
+acc2 = acc1 %>% group_by(State) %>% summarise(total.acc = n(), total.fatal = sum(FATALS), drunk.rate = mean(DRUNK_DR))
+
+acc2 = acc2 %>% mutate(fatal.rate = total.fatal / total.acc, 
+                       region = tolower(State))
+
+states1 = states %>% left_join(acc2, by = "region")
+states1 %>% ggplot(aes(x = long, y = lat)) + 
+  geom_polygon(aes(group = group, fill = fatal.rate))
 ```
 
 ```{r, echo = FALSE, eval = FALSE}
