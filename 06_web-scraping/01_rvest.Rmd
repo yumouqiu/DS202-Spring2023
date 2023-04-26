@@ -59,6 +59,7 @@ names(tables[[2]])[1:2] <- c("Rank", "Rank.Last.Week")
 str(tables[[2]])
 box <- tables[[2]] %>% mutate(
   Gross = parse_number(Gross),
+  TotalGross = parse_number(TotalGross),
   Theaters = parse_number(Theaters)
 )
 head(box)
@@ -128,8 +129,8 @@ length(h1)
 h1[1]
 
 h0 = "http://www.baseball-reference.com"
-url.player = paste(h0, h1[1], sep = "")
-url.player
+url.player = paste(h0, h1, sep = "")
+url.player[1 : 10]
 ```
 
 ## Your Turn {.white}
@@ -161,8 +162,20 @@ h3 = html %>% html_nodes(".p3 p , .p2 p , .p1 p , .stats_pullout strong , h4")
 
 ```{r}
 # better: pull out individual vectors
-html %>% html_nodes("h4") %>% html_text()
+html %>% html_nodes("span strong") %>% html_text()
+
 html %>% html_nodes(".stats_pullout p") %>% html_text() 
 ```
 
+Another player:
+
+```{r}
+url <- "https://www.baseball-reference.com/players/k/kaminro01.shtml"
+html <- read_html(url)
+html %>% html_nodes("span strong") %>% html_text()
+
+html %>% html_nodes(".stats_pullout p") %>% html_text() 
+
+html %>% html_nodes("#pitching_standard .right , #pitching_standard .center , #pitching_standard .left") %>% html_text() 
+```
 
