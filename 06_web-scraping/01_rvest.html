@@ -15,44 +15,73 @@
   
   
     <style type="text/css">
-   div.sourceCode { overflow-x: auto; }
-   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-     margin: 0; padding: 0; vertical-align: baseline; border: none; }
-   table.sourceCode { width: 100%; line-height: 100%; }
-   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-   td.sourceCode { padding-left: 5px; }
-   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-   code > span.dt { color: #902000; } /* DataType */
-   code > span.dv { color: #40a070; } /* DecVal */
-   code > span.bn { color: #40a070; } /* BaseN */
-   code > span.fl { color: #40a070; } /* Float */
-   code > span.ch { color: #4070a0; } /* Char */
-   code > span.st { color: #4070a0; } /* String */
-   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-   code > span.ot { color: #007020; } /* Other */
-   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-   code > span.fu { color: #06287e; } /* Function */
-   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-   code > span.cn { color: #880000; } /* Constant */
-   code > span.sc { color: #4070a0; } /* SpecialChar */
-   code > span.vs { color: #4070a0; } /* VerbatimString */
-   code > span.ss { color: #bb6688; } /* SpecialString */
-   code > span.im { } /* Import */
-   code > span.va { color: #19177c; } /* Variable */
-   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-   code > span.op { color: #666666; } /* Operator */
-   code > span.bu { } /* BuiltIn */
-   code > span.ex { } /* Extension */
-   code > span.pp { color: #bc7a00; } /* Preprocessor */
-   code > span.at { color: #7d9029; } /* Attribute */
-   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
+   .sourceCode { overflow: visible; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+   }
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {   }
+   @media screen {
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   
   
+      <script src="01_rvest_files/header-attrs-2.19/header-attrs.js"></script>
   
 </head>
 
@@ -65,178 +94,224 @@
 
   
   
-<section id="web-scraping-with-r" class="titleslide slide level1"><h2 class="shout">Web Scraping with R</h2></section><section id="the-rvest-package" class="slide level2">
+<section>
+<section id="web-scraping-with-r" class="title-slide slide level1">
+<h2>Web Scraping with R</h2>
+
+</section>
+<section id="the-rvest-package" class="slide level2">
 <h2>The <code>rvest</code> package</h2>
-<p><code>read_html</code> gets <em>all</em> the information from a URL</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
-url &lt;-<span class="st"> &quot;https://www.the-numbers.com/weekend-box-office-chart&quot;</span>
-html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)
-html</code></pre></div>
-<pre><code>## {xml_document}
-## &lt;html&gt;
-## [1] &lt;head&gt;\n&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;&lt;script ...
-## [2] &lt;body&gt;\n&lt;center&gt;\n\t&lt;/center&gt;\n\r\n\n\r\n&lt;script&gt;\r\n  window.fbAsyn ...</code></pre>
-</section><section id="get-a-table-from-an-online-source" class="slide level2">
+<p><code>read_html</code> gets <em>all</em> the information from a
+URL</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://www.the-numbers.com/weekend-box-office-chart&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>html</span></code></pre></div>
+<pre><code>## {html_document}
+## &lt;html xmlns:og=&quot;http://ogp.me/ns#&quot; xmlns:fb=&quot;http://www.facebook.com/2008/fbml&quot;&gt;
+## [1] &lt;head&gt;\n&lt;link rel=&quot;icon&quot; href=&quot;/images/logo_2021/favicon.ico&quot;&gt;\n&lt;meta nam ...
+## [2] &lt;body&gt;\n\r\n\r\n\r\n\r\r\n\r\r\n&lt;div id=&quot;wrap&quot;&gt;\r\r\n\r\r\n&lt;div id=&quot;deskt ...</code></pre>
+</section>
+<section id="get-a-table-from-an-online-source" class="slide level2">
 <h2>Get a <em>table</em> from an online source</h2>
-<p><code>html_table</code> extracts all tables from the sourced html into a list of data frames:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tables &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_table</span>(<span class="dt">fill=</span><span class="ot">TRUE</span>)
-<span class="kw">length</span>(tables)</code></pre></div>
+<p><code>html_table</code> extracts all tables from the sourced html
+into a list of data frames:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tables <span class="ot">&lt;-</span> html <span class="sc">%&gt;%</span> <span class="fu">html_table</span>(<span class="at">fill=</span><span class="cn">TRUE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(tables)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-</section><section id="lists" class="slide level2">
+</section>
+<section id="lists" class="slide level2">
 <h2>Lists</h2>
 <ul>
 <li>are most general form of objects in R</li>
 <li><code>length()</code> accesses the number of items in a list</li>
 <li><code>[[ ]]</code> accesses each item</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(tables[[<span class="dv">1</span>]])</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(tables[[<span class="dv">1</span>]])</span></code></pre></div>
 <pre><code>## [1] 1 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(tables[[<span class="dv">2</span>]])</code></pre></div>
-<pre><code>## [1] 87 10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(tables[[<span class="dv">2</span>]])</code></pre></div>
-<pre><code>##                                Movie        Distributor       Gross Change
-## 1 1 new    Ralph Breaks The Internet        Walt Disney $56,237,634       
-## 2 2 new                     Creed II                MGM $35,574,710       
-## 3 3 (2)        Dr. Seuss’ The Grinch          Universal $30,392,220   -21%
-## 4 4 (1) Fantastic Beasts: The Crime…       Warner Bros. $29,375,498   -53%
-## 5 5 (3)            Bohemian Rhapsody   20th Century Fox $14,001,156   -13%
-## 6 6 (4)               Instant Family Paramount Pictures $12,310,708   -15%
-##   Thtrs. Per Thtr.  Total Gross Week
-## 1  4,017   $14,000  $84,750,405    1
-## 2  3,441   $10,338  $56,007,007    1
-## 3  3,960    $7,675 $180,494,990    3
-## 4  4,163    $7,056 $116,554,309    2
-## 5  2,927    $4,783 $152,158,106    4
-## 6  3,286    $3,746  $35,564,886    2</code></pre>
-</section><section id="section" class="slide level2">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(tables[[<span class="dv">2</span>]])</span></code></pre></div>
+<pre><code>## [1] 55 11</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tables[[<span class="dv">2</span>]])</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 11
+##   ``    ``    `Movie Title`      Distributor Gross `%LW` Theaters TheatersChange
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;         
+## 1 1     (1)   The Super Mario B… Universal   $59,… &quot;-35… 4,350    &quot;-21&quot;         
+## 2 2     N     Evil Dead Rise     Warner Bro… $24,… &quot;&quot;    3,402    &quot;&quot;            
+## 3 3     N     Guy Ritchie’s The… MGM         $6,3… &quot;&quot;    2,611    &quot;&quot;            
+## 4 4     (3)   John Wick: Chapte… Lionsgate   $5,8… &quot;-27… 2,685    &quot;-348&quot;        
+## 5 5     (6)   Dungeons &amp; Dragon… Paramount … $5,5… &quot;-27… 2,960    &quot;-364&quot;        
+## 6 6     (5)   AIR                Amazon Stu… $5,4… &quot;-31… 2,823    &quot;-684&quot;        
+## # … with 3 more variables: PerTheater &lt;chr&gt;, TotalGross &lt;chr&gt;,
+## #   `Weekends InRelease` &lt;chr&gt;</code></pre>
+</section>
+<section id="section" class="slide level2">
 <h2></h2>
 <p>Most tables need a bit of clean-up:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(tables[[<span class="dv">2</span>]])</code></pre></div>
-<pre><code>##  [1] &quot;&quot;            &quot;&quot;            &quot;Movie&quot;       &quot;Distributor&quot; &quot;Gross&quot;      
-##  [6] &quot;Change&quot;      &quot;Thtrs.&quot;      &quot;Per Thtr.&quot;   &quot;Total Gross&quot; &quot;Week&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(tables[[<span class="dv">2</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rank&quot;</span>, <span class="st">&quot;Rank.Last.Week&quot;</span>)
-<span class="kw">str</span>(tables[[<span class="dv">2</span>]])</code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    87 obs. of  10 variables:
-##  $ Rank          : int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ Rank.Last.Week: chr  &quot;new&quot; &quot;new&quot; &quot;(2)&quot; &quot;(1)&quot; ...
-##  $ Movie         : chr  &quot;Ralph Breaks The Internet&quot; &quot;Creed II&quot; &quot;Dr. Seuss’ The Grinch&quot; &quot;Fantastic Beasts: The Crime…&quot; ...
-##  $ Distributor   : chr  &quot;Walt Disney&quot; &quot;MGM&quot; &quot;Universal&quot; &quot;Warner Bros.&quot; ...
-##  $ Gross         : chr  &quot;$56,237,634&quot; &quot;$35,574,710&quot; &quot;$30,392,220&quot; &quot;$29,375,498&quot; ...
-##  $ Change        : chr  &quot;&quot; &quot;&quot; &quot;-21%&quot; &quot;-53%&quot; ...
-##  $ Thtrs.        : chr  &quot;4,017&quot; &quot;3,441&quot; &quot;3,960&quot; &quot;4,163&quot; ...
-##  $ Per Thtr.     : chr  &quot;$14,000&quot; &quot;$10,338&quot; &quot;$7,675&quot; &quot;$7,056&quot; ...
-##  $ Total Gross   : chr  &quot;$84,750,405&quot; &quot;$56,007,007&quot; &quot;$180,494,990&quot; &quot;$116,554,309&quot; ...
-##  $ Week          : chr  &quot;1&quot; &quot;1&quot; &quot;3&quot; &quot;2&quot; ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">box &lt;-<span class="st"> </span>tables[[<span class="dv">2</span>]] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
-  <span class="dt">Gross =</span> <span class="kw">parse_number</span>(Gross),
-  <span class="dt">Thtrs. =</span> <span class="kw">parse_number</span>(Thtrs.)
-)
-<span class="kw">head</span>(box)</code></pre></div>
-<pre><code>##   Rank Rank.Last.Week                        Movie        Distributor
-## 1    1            new    Ralph Breaks The Internet        Walt Disney
-## 2    2            new                     Creed II                MGM
-## 3    3            (2)        Dr. Seuss’ The Grinch          Universal
-## 4    4            (1) Fantastic Beasts: The Crime…       Warner Bros.
-## 5    5            (3)            Bohemian Rhapsody   20th Century Fox
-## 6    6            (4)               Instant Family Paramount Pictures
-##      Gross Change Thtrs. Per Thtr.  Total Gross Week
-## 1 56237634          4017   $14,000  $84,750,405    1
-## 2 35574710          3441   $10,338  $56,007,007    1
-## 3 30392220   -21%   3960    $7,675 $180,494,990    3
-## 4 29375498   -53%   4163    $7,056 $116,554,309    2
-## 5 14001156   -13%   2927    $4,783 $152,158,106    4
-## 6 12310708   -15%   3286    $3,746  $35,564,886    2</code></pre>
-</section><section id="your-turn-6-mins" class="slide level2 white">
-<h2>Your Turn (6 mins)</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tables[[<span class="dv">2</span>]])</span></code></pre></div>
+<pre><code>##  [1] &quot;&quot;                   &quot;&quot;                   &quot;Movie Title&quot;       
+##  [4] &quot;Distributor&quot;        &quot;Gross&quot;              &quot;%LW&quot;               
+##  [7] &quot;Theaters&quot;           &quot;TheatersChange&quot;     &quot;PerTheater&quot;        
+## [10] &quot;TotalGross&quot;         &quot;Weekends InRelease&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tables[[<span class="dv">2</span>]])[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Rank&quot;</span>, <span class="st">&quot;Rank.Last.Week&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(tables[[<span class="dv">2</span>]])</span></code></pre></div>
+<pre><code>## tibble [55 × 11] (S3: tbl_df/tbl/data.frame)
+##  $ Rank              : chr [1:55] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##  $ Rank.Last.Week    : chr [1:55] &quot;(1)&quot; &quot;N&quot; &quot;N&quot; &quot;(3)&quot; ...
+##  $ Movie Title       : chr [1:55] &quot;The Super Mario Bros. Movie&quot; &quot;Evil Dead Rise&quot; &quot;Guy Ritchie’s The Covenant&quot; &quot;John Wick: Chapter 4&quot; ...
+##  $ Distributor       : chr [1:55] &quot;Universal&quot; &quot;Warner Bros.&quot; &quot;MGM&quot; &quot;Lionsgate&quot; ...
+##  $ Gross             : chr [1:55] &quot;$59,930,940&quot; &quot;$24,504,315&quot; &quot;$6,380,188&quot; &quot;$5,843,792&quot; ...
+##  $ %LW               : chr [1:55] &quot;-35%&quot; &quot;&quot; &quot;&quot; &quot;-27%&quot; ...
+##  $ Theaters          : chr [1:55] &quot;4,350&quot; &quot;3,402&quot; &quot;2,611&quot; &quot;2,685&quot; ...
+##  $ TheatersChange    : chr [1:55] &quot;-21&quot; &quot;&quot; &quot;&quot; &quot;-348&quot; ...
+##  $ PerTheater        : chr [1:55] &quot;$13,777&quot; &quot;$7,203&quot; &quot;$2,444&quot; &quot;$2,176&quot; ...
+##  $ TotalGross        : chr [1:55] &quot;$436,030,550&quot; &quot;$24,504,315&quot; &quot;$6,380,188&quot; &quot;$168,974,046&quot; ...
+##  $ Weekends InRelease: chr [1:55] &quot;3&quot; &quot;1&quot; &quot;1&quot; &quot;5&quot; ...</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>box <span class="ot">&lt;-</span> tables[[<span class="dv">2</span>]] <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gross =</span> <span class="fu">parse_number</span>(Gross),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Theaters =</span> <span class="fu">parse_number</span>(Theaters)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(box)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 11
+##   Rank  Rank.Last.Week `Movie Title`           Distributor  Gross `%LW` Theaters
+##   &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;                   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
+## 1 1     (1)            The Super Mario Bros. … Universal   5.99e7 &quot;-35…     4350
+## 2 2     N              Evil Dead Rise          Warner Bro… 2.45e7 &quot;&quot;        3402
+## 3 3     N              Guy Ritchie’s The Cove… MGM         6.38e6 &quot;&quot;        2611
+## 4 4     (3)            John Wick: Chapter 4    Lionsgate   5.84e6 &quot;-27…     2685
+## 5 5     (6)            Dungeons &amp; Dragons: Ho… Paramount … 5.50e6 &quot;-27…     2960
+## 6 6     (5)            AIR                     Amazon Stu… 5.45e6 &quot;-31…     2823
+## # … with 4 more variables: TheatersChange &lt;chr&gt;, PerTheater &lt;chr&gt;,
+## #   TotalGross &lt;chr&gt;, `Weekends InRelease` &lt;chr&gt;</code></pre>
+</section>
+<section id="your-turn-6-mins" class="slide level2 white">
+<h2 class="white">Your Turn (6 mins)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at <a href="https://www.the-numbers.com/weekend-box-office-chart" class="uri">https://www.the-numbers.com/weekend-box-office-chart</a> </span></p>
+<p><span style="color:white">Connect to the The-Numbers website for
+weekly boxoffice gross at <a
+href="https://www.the-numbers.com/weekend-box-office-chart"
+class="uri">https://www.the-numbers.com/weekend-box-office-chart</a>
+</span></p>
 <ul>
-<li><span style="color:white">Pick the week that you were last in the movies. </span></li>
-<li><span style="color:white">Use <code>rvest</code> to download the box office gross in that week. </span></li>
-<li><span style="color:white">Clean up the data (name all the variables, numbers should be numbers). </span></li>
+<li><span style="color:white">Pick the week that you were last in the
+movies. </span></li>
+<li><span style="color:white">Use <code>rvest</code> to download the box
+office gross in that week. </span></li>
+<li><span style="color:white">Clean up the data (name all the variables,
+numbers should be numbers). </span></li>
 </ul>
-</section><section id="beyond-tables" class="slide level2">
+</section>
+<section id="beyond-tables" class="slide level2">
 <h2>Beyond tables</h2>
-<p>Sometimes data on the web is not structured as nicely … e.g. let’s assume we want to get a list of all recently active baseball players from <a href="http://www.baseball-reference.com/players/">Baseball reference</a></p>
-</section><section id="cascading-style-sheets-css" class="slide level2">
+<p>Sometimes data on the web is not structured as nicely … e.g. let’s
+assume we want to get a list of all recently active baseball players
+from <a href="http://www.baseball-reference.com/players/">Baseball
+reference</a></p>
+</section>
+<section id="cascading-style-sheets-css" class="slide level2">
 <h2>Cascading Style Sheets (CSS)</h2>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">css</a> is a language that describes the style of an HTML document.</li>
+<li><a
+href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">css</a> is a
+language that describes the style of an HTML document.</li>
 </ul>
 <p><img src="images/css-selectors-lrg.png" height=100, width=600></p>
 <ul>
-<li>Example: (<a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_default" class="uri">https://www.w3schools.com/css/tryit.asp?filename=trycss_default</a>)</li>
+<li>Example: (<a
+href="https://www.w3schools.com/css/tryit.asp?filename=trycss_default"
+class="uri">https://www.w3schools.com/css/tryit.asp?filename=trycss_default</a>)</li>
 <li>play <a href="http://flukeout.github.io/">the game</a></li>
 </ul>
-</section><section id="selectorgadget" class="slide level2">
+</section>
+<section id="selectorgadget" class="slide level2">
 <h2>SelectorGadget</h2>
 <ul>
-<li>SelectorGadget is a javascript bookmarklet to determine the <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">css</a> selectors of pieces of a website we want to extract.</li>
-<li>Read up on the <a href="http://selectorgadget.com/">SelectorGadget</a> link: install it for your machine by installing the Chrome extension, then click on it to use it.</li>
-<li>When SelectorGadget is active, pieces of the website are highlighted in orange/green/red.</li>
-<li>Use SelectorGadget on <a href="http://www.baseball-reference.com/players/" class="uri">http://www.baseball-reference.com/players/</a>.</li>
-<li>read more details on <code>vignette(&quot;selectorgadget&quot;)</code></li>
+<li>SelectorGadget is a javascript bookmarklet to determine the <a
+href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">css</a>
+selectors of pieces of a website we want to extract.</li>
+<li>Read up on the <a
+href="http://selectorgadget.com/">SelectorGadget</a> link: install it
+for your machine by installing the Chrome extension, then click on it to
+use it.</li>
+<li>When SelectorGadget is active, pieces of the website are highlighted
+in orange/green/red.</li>
+<li>Use SelectorGadget on <a
+href="http://www.baseball-reference.com/players/"
+class="uri">http://www.baseball-reference.com/players/</a>.</li>
+<li>read more details on <code>vignette("selectorgadget")</code></li>
 </ul>
-</section><section id="selectorgadget-result" class="slide level2">
+</section>
+<section id="selectorgadget-result" class="slide level2">
 <h2>SelectorGadget Result</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> &quot;http://www.baseball-reference.com/players/a/&quot;</span>
-html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)
-html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://www.baseball-reference.com/players/a/&quot;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>html <span class="sc">%&gt;%</span> <span class="fu">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## {xml_nodeset (6)}
 ## [1] &lt;a href=&quot;/players/a/aardsda01.shtml&quot;&gt;David Aardsma&lt;/a&gt;
-## [2] &lt;a href=&quot;/players/a/aaronha01.shtml&quot;&gt;Hank Aaron&lt;/a&gt;
+## [2] &lt;a href=&quot;/players/a/aaronha01.shtml&quot;&gt;Henry Aaron&lt;/a&gt;
 ## [3] &lt;a href=&quot;/players/a/aaronto01.shtml&quot;&gt;Tommie Aaron&lt;/a&gt;
 ## [4] &lt;a href=&quot;/players/a/aasedo01.shtml&quot;&gt;Don Aase&lt;/a&gt;
 ## [5] &lt;a href=&quot;/players/a/abadan01.shtml&quot;&gt;Andy Abad&lt;/a&gt;
 ## [6] &lt;a href=&quot;/players/a/abadfe01.shtml&quot;&gt;Fernando Abad&lt;/a&gt;</code></pre>
-</section><section id="example" class="slide level2">
+</section>
+<section id="example" class="slide level2">
 <h2>Example</h2>
 <p>We want to get access to pieces of the links:</p>
-<p><code>html_text</code> allows us to get text out, <code>html_attr</code> let’s us access an attribute of an html node, <code>html_attrs</code> extracts all attributes of an html node:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</code></pre></div>
-<pre><code>## [1] &quot;David Aardsma&quot; &quot;Hank Aaron&quot;    &quot;Tommie Aaron&quot;  &quot;Don Aase&quot;     
+<p><code>html_text</code> allows us to get text out,
+<code>html_attr</code> let’s us access an attribute of an html node,
+<code>html_attrs</code> extracts all attributes of an html node:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>html <span class="sc">%&gt;%</span> <span class="fu">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">html_text</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;David Aardsma&quot; &quot;Henry Aaron&quot;   &quot;Tommie Aaron&quot;  &quot;Don Aase&quot;     
 ## [5] &quot;Andy Abad&quot;     &quot;Fernando Abad&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="dt">name=</span><span class="st">&quot;href&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>html <span class="sc">%&gt;%</span> <span class="fu">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">html_attr</span>(<span class="at">name=</span><span class="st">&quot;href&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;/players/a/aardsda01.shtml&quot; &quot;/players/a/aaronha01.shtml&quot;
 ## [3] &quot;/players/a/aaronto01.shtml&quot; &quot;/players/a/aasedo01.shtml&quot; 
 ## [5] &quot;/players/a/abadan01.shtml&quot;  &quot;/players/a/abadfe01.shtml&quot;</code></pre>
-</section><section id="how-to-use-the-href" class="slide level2">
+</section>
+<section id="how-to-use-the-href" class="slide level2">
 <h2>How to use the href?</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h1 =<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="dt">name=</span><span class="st">&quot;href&quot;</span>)
-<span class="kw">length</span>(h1)</code></pre></div>
-<pre><code>## [1] 593</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h1[<span class="dv">1</span>]</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>h1 <span class="ot">=</span> html <span class="sc">%&gt;%</span> <span class="fu">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">html_attr</span>(<span class="at">name=</span><span class="st">&quot;href&quot;</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(h1)</span></code></pre></div>
+<pre><code>## [1] 708</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>h1[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;/players/a/aardsda01.shtml&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h0 =<span class="st"> &quot;http://www.baseball-reference.com&quot;</span>
-url.player =<span class="st"> </span><span class="kw">paste</span>(h0, h1[<span class="dv">1</span>], <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-url.player</code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>h0 <span class="ot">=</span> <span class="st">&quot;http://www.baseball-reference.com&quot;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>url.player <span class="ot">=</span> <span class="fu">paste</span>(h0, h1[<span class="dv">1</span>], <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>url.player</span></code></pre></div>
 <pre><code>## [1] &quot;http://www.baseball-reference.com/players/a/aardsda01.shtml&quot;</code></pre>
-</section><section id="your-turn" class="slide level2 white">
-<h2>Your Turn</h2>
+</section>
+<section id="your-turn" class="slide level2 white">
+<h2 class="white">Your Turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">Use the SelectorGadget on the website for <a href="http://www.baseball-reference.com/players/a/aardsda01.shtml">David Aardsma</a> </span></p>
+<p><span style="color:white">Use the SelectorGadget on the website for
+<a
+href="http://www.baseball-reference.com/players/a/aardsda01.shtml">David
+Aardsma</a> </span></p>
 <ul>
-<li><span style="color:white">Find the css description to extract his career statistics and load them into your R session. </span></li>
-<li><span style="color:white">Does the same code work to extract career statistics for (some of) the other players? </span></li>
-<li><span style="color:white">What other information do we need to know? and how can we get to that? </span></li>
+<li><span style="color:white">Find the css description to extract his
+career statistics and load them into your R session. </span></li>
+<li><span style="color:white">Does the same code work to extract career
+statistics for (some of) the other players? </span></li>
+<li><span style="color:white">What other information do we need to know?
+and how can we get to that? </span></li>
 </ul>
-</section><section id="your-turn---solution" class="slide level2">
+</section>
+<section id="your-turn---solution" class="slide level2">
 <h2>Your Turn - Solution</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> &quot;http://www.baseball-reference.com/players/a/aardsda01.shtml&quot;</span>
-html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)
-<span class="co"># good first start, but not good for further processing</span>
-h2 =<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.stats_pullout p , h4&quot;</span>)
-
-h3 =<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.p3 p , .p2 p , .p1 p , .stats_pullout strong , h4&quot;</span>)</code></pre></div>
-</section><section id="your-turn---solution-2" class="slide level2">
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://www.baseball-reference.com/players/a/aardsda01.shtml&quot;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># good first start, but not good for further processing</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>h2 <span class="ot">=</span> html <span class="sc">%&gt;%</span> <span class="fu">html_nodes</span>(<span class="st">&quot;.stats_pullout p , h4&quot;</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>h3 <span class="ot">=</span> html <span class="sc">%&gt;%</span> <span class="fu">html_nodes</span>(<span class="st">&quot;.p3 p , .p2 p , .p1 p , .stats_pullout strong , h4&quot;</span>)</span></code></pre></div>
+</section>
+<section id="your-turn---solution-2" class="slide level2">
 <h2>Your Turn - Solution (2)</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># better: pull out individual vectors</span>
-html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h4&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</code></pre></div>
-<pre><code>##  [1] &quot;SUMMARY&quot; &quot;WAR&quot;     &quot;W&quot;       &quot;L&quot;       &quot;ERA&quot;     &quot;G&quot;       &quot;GS&quot;     
-##  [8] &quot;SV&quot;      &quot;IP&quot;      &quot;SO&quot;      &quot;WHIP&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.stats_pullout p&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>() </code></pre></div>
-<pre><code>##  [1] &quot;Career&quot; &quot;1.7&quot;    &quot;16&quot;     &quot;18&quot;     &quot;4.27&quot;   &quot;331&quot;    &quot;0&quot;     
-##  [8] &quot;69&quot;     &quot;337.0&quot;  &quot;340&quot;    &quot;1.421&quot;</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># better: pull out individual vectors</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>html <span class="sc">%&gt;%</span> <span class="fu">html_nodes</span>(<span class="st">&quot;h4&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">html_text</span>()</span></code></pre></div>
+<pre><code>## character(0)</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>html <span class="sc">%&gt;%</span> <span class="fu">html_nodes</span>(<span class="st">&quot;.stats_pullout p&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">html_text</span>() </span></code></pre></div>
+<pre><code>##  [1] &quot;Career&quot; &quot;1.8&quot;    &quot;16&quot;     &quot;18&quot;     &quot;4.27&quot;   &quot;331&quot;    &quot;0&quot;      &quot;69&quot;    
+##  [9] &quot;337.0&quot;  &quot;340&quot;    &quot;1.421&quot;</code></pre>
 </section>
 
   <!--

@@ -59,7 +59,7 @@ names(tables[[2]])[1:2] <- c("Rank", "Rank.Last.Week")
 str(tables[[2]])
 box <- tables[[2]] %>% mutate(
   Gross = parse_number(Gross),
-  Thtrs. = parse_number(Thtrs.)
+  Theaters = parse_number(Theaters)
 )
 head(box)
 ```
